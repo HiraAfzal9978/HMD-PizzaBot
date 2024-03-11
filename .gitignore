@@ -1,0 +1,4 @@
+.idea/
+.rasa/
+__pycache__/
+models/

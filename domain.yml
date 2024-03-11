@@ -1,197 +1,207 @@
+version: '3.1'
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
 
-version: "3.1"
-
 intents:
-- welcome_greet
-- init_request
-- init_pizza_question
-- item_start_generic
-- order_confirm_negative
-- order_confirm_positive
-- item_change
-- extra_order_negative
-- extra_order_postive
-- order_take_home
-- order_delivery
-- order_delivery_address
-- order_confirm_final
-- item_confirm_no
-- item_confirm_yes
-- response_negative
-- response_positive
-- response_name_phone
-- item_change_request_without_entity
-- item_type_start_negative
-- item_type_start_postive
-- item_type
-- item_size
-- item_topping
-- item_amount
-- pizza_questions
-- item_type_start_positive
+- add_more_pizza
+- add_topping
+- customize_toppings
+- confirm_order
+- topping_confirm
+- toppings
+- remove_topping
+
+
+- deny_add_more_pizza
+- deny_order
+- finish_order
+- generic_start
+- goodbye
+- greet
+- menu
+- non_vegetarian_menu
 - out_of_scope
+- pizza_Category
+- pizza_type
+- quantity
+- remove_pizza
+- size
+- vegetarian_menu
 
 entities:
-- anti_pizza_type
-- pizza_size
 - pizza_type
-- pizza_amount
-- active_form_pizza_order_form
+- quantity
+- size
+- pizza_Category
 - toppings
-- client_name
-- phone_number
-- order_number
 
 slots:
-  anti_pizza_type:
-    type: any
+  pizza_Category:
+    type: text
+    influence_conversation: true
     mappings:
-      - type: from_entity
-        entity: anti_pizza_type
-  client_name:
-    type: any
-    mappings:
-      - type: from_entity
-        entity: client_name
-  order_number:
-    type: any
-    mappings:
-      - type: custom
-  phone_number:
-    type: any
-    mappings:
-      - type: from_entity
-        entity: phone_number
-  pizza_amount:
-    type: any
-    mappings:
-      - type: from_entity
-        entity: pizza_amount
-  pizza_size:
-    type: any
-    mappings:
-      - type: from_entity
-        entity: pizza_size
+    - type: from_entity
+      entity: pizza_Category
   pizza_type:
-    type: any
+    type: text
+    influence_conversation: true
     mappings:
-      - type: from_entity
-        entity: pizza_type
-  requested_slot:
-    type: any
-    mappings:
-      - type: custom
+    - type: from_entity
+      entity: pizza_type
   toppings:
-    type: any
+    type: list
+    influence_conversation: false
     mappings:
-      - type: from_entity
-        entity: toppings
+    - type: from_entity
+      entity: toppings
+  add_topping:
+    type: list
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: toppings
+  remove_topping:
+    type: list
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: toppings
+  quantity:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: quantity
+  size:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: size
   total_order:
     type: any
     mappings:
-      - type: custom
+    - type: custom
 
 responses:
-  utter_out_of_scope:
-    - text: Sorry, I can't handle that request.
-  utter_welcome_greet:
-  - text: Hello There! Welcome to Pizzbot. How can I help you?
-  utter_init_request:
-  - text: Okay. In today's menu, we have Funghi, Hawaii, Margherita, Pepperoni, Vegetarian,
-      all available in sizes Small, Medium or Large . What would you like to have?
-  utter_init_pizza_question:
-  - text: For pizza without meat we have.... For pizza without cheese we have. Sizes
-      available are Small, Medium and Large. What would you love to have?
-  utter_ask_pizza_size:
-  - text: What size of pizza do you want?
+  utter_greet:
+  - text: Hi, Welcome to Champ Pizza Hut! How may I assist you today?
+  utter_goodbye:
+  - text: Goodbye! Have a great day.
+  utter_menu:
+  - text: |
+      'Menu of the Pizza:'
+        - Vegetarian Pizzas:
+              - Margherita Pizza
+              - Vegetarian Supreme Pizza
+              - Pesto and Sun-Dried Tomato Pizza
+        - Non-Vegetarian Pizzas:
+              - Pepperoni Pizza
+              - BBQ Chicken Pizza
+              - Seafood Delight Pizza
+      ---------------------------------------------
+      Which Pizza would you like to order?
+  utter_ask_pizza_Category:
+  - text: |
+      'Please choose a category:'
+      - Vegetarian Pizza
+      - Non-Vegetarian Pizza
+  utter_vegetarian_menu:
+  - text: |
+      Here's the Menu of Vegetarian Pizzas:
+       1. Margherita Pizza
+       2. Vegetarian Supreme Pizza
+       3. Pesto and Sun-Dried Tomato Pizza
+      ---------------------------------------------
+            Which Pizza would you like to order?
+  utter_non_vegetarian_menu:
+  - text: |
+      Here's the Menu of Non-Vegetarian Pizzas:
+       1. Pepperoni Pizza
+       2. BBQ Chicken Pizza
+       3. Seafood Delight Pizza
+      ---------------------------------------------
+            Which Pizza would you like to order?
+  utter_toppings_margherita:
+  - text: |
+      Margherita Pizza has tomato sauce, fresh mozzarella cheese, fresh basil leaves, and a drizzle of olive oil topping.
+      Would you like to go with the same toppings or would you like to customize the toppings on your pizza?
+  utter_toppings_vegetarian_supreme:
+  - text: |
+      Vegetarian Supreme Pizza comes with tomato sauce, mozzarella cheese, bell peppers, red onions, black olives, mushrooms, and spinach pizza topping.
+      Would you like to go with the same toppings or would you like to customize the toppings on your pizza?
+  utter_toppings_pesto_sundried:
+  - text: |
+      Pesto and Sun-Dried Tomato Pizza includes pesto sauce, mozzarella cheese, sun-dried tomatoes, feta cheese, pine nuts, and fresh arugula toppings.
+      Would you like to go with the same toppings or would you like to customize the toppings on your pizza?
+  utter_toppings_pepperoni:
+  - text: |
+      Pepperoni Pizza is topped with tomato sauce, mozzarella cheese, and pepperoni slices.
+      Would you like to go with the same toppings or would you like to customize the toppings on your pizza?
+  utter_toppings_bbq_chicken:
+  - text: |
+      BBQ Chicken Pizza has BBQ sauce, mozzarella cheese, cooked and shredded chicken, red onions, cilantro, and a BBQ drizzle.
+      Would you like to go with the same toppings or would you like to customize the toppings on your pizza?
+  utter_toppings_seafood:
+  - text: |
+      Seafood Delight Pizza features garlic butter sauce, mozzarella cheese, shrimp, scallops, fresh basil, and lemon zest.
+      Would you like to go with the same toppings or would you like to customize the toppings on your pizza?
+  utter_unavailable_topping:
+  - text: I'm sorry, we don't offer {topping} as a topping. Would you like to choose from our available toppings?
   utter_ask_pizza_type:
-  - text: What type of pizza do you want?
-  utter_ask_pizza_amount:
-  - text: How many pizzas do you want?
-  utter_order_confirm_negative:
-  - text: What would you like to change?
-  utter_order_confirm_positive:
-  - text: Great. Anything else?
-  utter_item_change:
-  - text: Ok! So you want {pizza_amount} {pizza_type} pizzas in {pizza_size}. Is that
-      correct?
-  utter_extra_order:
-  - text: Would you like to order anything else?
-  utter_final_order:
-  - text: Your total order is {pizza_amount} {pizza_type} pizzas in {pizza_size}.
-      Do you prefer take away or home delivery?
-  utter_total_order_final:
-  - text: Do you prefer takeaway or home delivery
-  utter_name_phone:
-  - text: Here is your total order, {total_order} . what is your name and phone number?
-  utter_order_complete:
-  - text: Here is your order number {order_number}. Your order will be ready in 15
-      minutes. Thanks for the opportunity to serve you
-  utter_delivery_address:
-  - text: Please provide us with your home/ office address
-  utter_order_add:
-  - text: which pizza like to add in your order?
-  utter_default:
-  - text: Sorry, I didn’t understand that. Can you please retype it?
-  utter_item_type_start_negative:
-  - text: sadly , we don't offer {pizza_type}
-  utter_item_type_start_postive:
-  - text: yes, we do offer {pizza_type} would you like to order one?
-  utter_item_type:
-  - text: what pizza type would you like?
-  utter_item_size:
-  - text: what size do you want your {pizza_type} in
-  utter_item_amount:
-  - text: how many would like?
-  utter_pizza_questions:
-  - text: what would you like on your pizza?
-  utter_order_processing_positive:
-  - text: Great. Your order is being processed. Please wait. We will get back to your
-      shortly?
-  utter_order_processing_negative:
-  - text: Sorry, there is a problem with your order
-
+  - text: What type of pizza would you like to order?
+  utter_ask_toppings:
+  - text: What pizza topping would you like?
+  utter_ask_quantity:
+  - text: How many pizzas would you like to order?
+  utter_ask_size:
+  - text: What size would you like? (Small, Medium, Large)
+  utter_invalid_input:
+  - text: I'm sorry, I didn't understand. Please choose from the provided options.
+  utter_out_of_scope:
+  - text: Sorry, I can't handle that request.
+  utter_add_more_pizza:
+  - text: Would you like to add more pizzas ?
   utter_summarize_order:
-  - text: "Okay Great. Your order is {} {} pizzas in {}. Can you confirm please"
-actions:
-- utter_welcome_greet
-- utter_init_request
-- utter_init_pizza_question
-- utter_ask_pizza_size
-- utter_ask_pizza_type
-- utter_ask_pizza_amount
-- utter_order_confirm_negative
-- utter_order_confirm_positive
-- utter_item_change
-- utter_extra_order
-- utter_final_order
-- utter_total_order_final
-- utter_name_phone
-- utter_order_complete
-- utter_delivery_address
-- action_change_order
-- action_pizza_order_add
-- action_reset_pizza_form
-- action_order_number
-- utter_item_type_start_negative
-- utter_item_type_start_postive
-- utter_item_type
-- utter_item_size
-- utter_item_amount
-- utter_pizza_questions
-- utter_order_processing_positive
-- utter_order_processing_negative
-- utter_order_add
-- utter_default
-- utter_summarize_order
+  - text: |
+      You have ordered {quantity} {size} {pizza_type} pizza with {toppings} toppings.
+      total amount is {total_order}
+      Do you want to confirm this order?
+  utter_confirm_order:
+  - text: Do you want to confirm this order?
+  utter_finish_order:
+  - text: Thank you for your order!
+  utter_deny_order:
+  - text: Sure, let me know if there's anything else I can help you with.
+  utter_ask_delivery:
+  - text: Would you like to pick up your order or have it delivered?
+  utter_ask_delivery_address:
+  - text: Please provide your delivery address.
+  utter_ask_pickup:
+  - text: Please provide your name and phone number.
 
 forms:
   pizza_order_form:
     required_slots:
-    - pizza_amount
     - pizza_type
-    - pizza_size
+    - toppings
+    - quantity
+    - size
 
+actions:
+- utter_menu
+- utter_ask_quantity
+- action_provide_toppings
+- utter_summarize_order
+- action_handle_user_request
+- utter_ask_size
+- utter_greet
+- action_customize_toppings
+- utter_add_more_pizza
+- utter_finish_order
+- utter_goodbye
+- utter_toppings_margherita
+- utter_vegetarian_menu
+- action_show_category_menu
+- action_pizza_order_form

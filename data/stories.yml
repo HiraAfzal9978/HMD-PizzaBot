@@ -1,0 +1,373 @@
+version: "3.1"
+#
+stories:
+#- story: greet and order vegetarian pizza
+#  steps:
+#  - intent: greet
+#  - action: utter_greet
+#  - intent: pizza_Category
+#  - action: action_show_category_menu
+#  - slot:
+#      pizza_Category: "vegetarian"
+#  - intent: pizza_type
+#  - action: action_provide_toppings
+#  - intent: quantity
+#  - slot:
+#      quantity: "two"
+#  - intent: size
+#  - slot:
+#      size: "large"
+#  - action: pizza_order_form
+#  - action: utter_summarize_order
+#  - action: utter_confirm_order
+#
+#- story: greet and order non-vegetarian pizza
+#  steps:
+#  - intent: greet
+#  - action: utter_greet
+#  - intent: pizza_Category
+#  - action: action_show_category_menu
+#  - slot:
+#      pizza_Category: "non-vegetarian"
+#  - intent: pizza_type
+#  - action: action_provide_toppings
+#  - intent: quantity
+#  - slot:
+#      quantity: "one"
+#  - intent: size
+#  - slot:
+#      size: "medium"
+#  - action: pizza_order_form
+#  - action: utter_summarize_order
+#  - action: utter_confirm_order
+#
+#- story: user wants to add more pizzas
+#  steps:
+#  - intent: greet
+#  - action: utter_greet
+#  - intent: pizza_Category
+#  - action: action_show_category_menu
+#  - slot:
+#      pizza_Category: "vegetarian"
+#  - intent: pizza_type
+#  - action: action_provide_toppings
+#  - intent: quantity
+#  - slot:
+#      quantity: "two"
+#  - intent: size
+#  - slot:
+#      size: "medium"
+#  - action: pizza_order_form
+#  - action: utter_summarize_order
+#  - action: utter_add_more_pizza
+#  - intent: pizza_Category
+#  - action: action_show_category_menu
+#  - slot:
+#      pizza_Category: "non-vegetarian"
+#  - intent: pizza_type
+#  - action: action_provide_toppings
+#  - intent: quantity
+#  - slot:
+#      quantity: "one"
+#  - intent: size
+#  - slot:
+#      size: "large"
+#  - action: pizza_order_form
+#  - action: utter_summarize_order
+#  - action: utter_confirm_order
+
+
+#stories:
+#  - story: User shows interest in the menu
+#    steps:
+#      - intent: greet
+#      - action: utter_greet
+#      - intent: menu
+#      - action: utter_menu
+#
+#  - story: User chooses Vegetarian pizza
+#    steps:
+#      - intent: pizza_Category
+#        entities:
+#          - pizza_Category: "vegetarian"
+#      - action: utter_vegetarian_menu
+#
+#  - story: User chooses Non Vegetarian pizza
+#    steps:
+#      - intent: pizza_Category
+#        entities:
+#          - pizza_Category: "non_vegetarian_menu"
+#      - action: utter_vegetarian_menu
+#  # a
+##
+##version: "3.1"
+##stories:
+#  - story: interactive_story_1
+#    steps:
+#      - intent: menu
+#      - action: utter_menu
+#      - intent: vegetarian_menu
+#      - action: utter_vegetarian_menu
+#      - intent: choose_pizza
+#        entities:
+#          - pizza_type: Margherita
+#      - slot_was_set:
+#          - pizza_type: Margherita
+#      - action: utter_choose_topping
+#      - intent: choose_topping
+#        entities:
+#          - topping: Tomato sauce
+#      - slot_was_set:
+#          - toppings: Tomato sauce
+#      - action: utter_ask_size
+#      - intent: choose_size
+#        entities:
+#          - size: Medium
+#      - slot_was_set:
+#          - size: Medium
+#      - action: utter_ask_quantity
+#      - intent: choose_quantity
+#      - intent: choose_quantity
+#      - action: utter_add_more_pizza
+#      - intent: confirm_order
+#      - action: utter_finish_order
+#
+#- story: interactive_story_1
+#  steps:
+#  - intent: greet
+#  - action: utter_greet
+#  - intent: menu
+#  - action: utter_menu
+#  - intent: vegetarian_menu
+#  - action: utter_vegetarian_menu
+#  - intent: choose_pizza
+#    entities:
+#    - pizza_type: Margherita
+#  - slot_was_set:
+#    - pizza_type: Margherita
+#  - action: utter_choose_topping
+#  - intent: choose_topping
+#    entities:
+#    - topping: Tomato sauce
+#  - slot_was_set:
+#    - toppings: Tomato sauce
+#  - action: utter_ask_size
+#  - intent: choose_size
+#    entities:
+#    - size: Small
+#  - slot_was_set:
+#    - size: Small
+#  - action: utter_ask_quantity
+#  - intent: choose_quantity
+#    entities:
+#    - quantity: '1'
+#  - slot_was_set:
+#    - quantity: '1'
+#  - action: utter_add_more_pizza
+#  - intent: menu
+#  - action: utter_menu
+#  - intent: non_vegetarian_menu
+#  - action: utter_non_vegetarian_menu
+#  - intent: choose_pizza
+#    entities:
+#    - pizza_type: Pepperoni and Sausage
+#  - slot_was_set:
+#    - pizza_type: Pepperoni and Sausage
+#  - action: utter_choose_topping
+#  - intent: choose_topping
+#    entities:
+#    - topping: Mozzarella cheese
+#  - slot_was_set:
+#    - toppings: Mozzarella cheese
+#  - action: utter_ask_size
+#  - intent: choose_size
+#    entities:
+#    - size: Medium
+#  - slot_was_set:
+#    - size: Medium
+#  - action: utter_ask_quantity
+#  - intent: choose_quantity
+#    entities:
+#    - quantity: '2'
+#  - slot_was_set:
+#    - quantity: '2'
+#  - action: utter_add_more_pizza
+#  - intent: confirm_order
+#  - action: utter_confirm_order
+#  - intent: finish_order
+#  - action: utter_finish_order
+#  - action: utter_goodbye
+##############################################################################################################
+#####################################################################main story#######################
+#- story: interactive_story_1
+#  steps:
+#  - intent: greet
+#  - action: utter_greet
+#  - intent: menu
+#  - action: utter_menu
+#  - intent: pizza_type
+#  - action: utter_toppings_margherita
+#  - intent: topping_confirm
+#  - action: utter_ask_size
+#  - intent: size
+#  - action: utter_ask_quantity
+#  - intent: greet
+#  - intent: quantity
+#  - action: utter_summarize_order
+#  - intent: confirm_order
+#  - action: utter_finish_order
+#
+#- story: interactive_story_2
+#  steps:
+#  - intent: greet
+#  - action: utter_greet
+#  - intent: pizza_Category
+#    entities:
+#    - pizza_Category: vegetarian
+#  - slot_was_set:
+#    - pizza_Category: vegetarian
+#  - action: utter_vegetarian_menu
+#  - intent: pizza_type
+#  - intent: pizza_type
+#    entities:
+#    - pizza_type: margherita
+#  - action: utter_toppings_margherita
+#  - intent: topping_confirm
+#  - action: utter_ask_size
+#  - intent: size
+#  - intent: size
+#    entities:
+#    - size: small
+#  - action: utter_ask_quantity
+#  - intent: quantity
+#  - intent: quantity
+#    entities:
+#    - quantity: '1'
+#  - action: utter_summarize_order
+#  - intent: topping_confirm
+#  - intent: confirm_order
+#  - action: utter_finish_order
+#
+#- story: interactive_story_1
+#  steps:
+#  - intent: menu
+#  - action: utter_menu
+#  - intent: pizza_type
+#    entities:
+#    - pizza_type: margherita
+#  - slot_was_set:
+#    - pizza_type: margherita
+#  - action: action_provide_toppings
+#  - intent: topping_confirm
+#  - action: action_customize_toppings
+#  - slot_was_set:
+#    - toppings:
+#      - tomato sauce
+#      - mozzarella cheese
+#      - fresh basil leaves
+#      - olive oil
+#  - action: utter_ask_size
+#  - intent: size
+#    entities:
+#    - size: small
+#  - slot_was_set:
+#    - size: small
+#  - action: utter_ask_quantity
+#  - intent: quantity
+#    entities:
+#    - quantity: '2'
+#  - slot_was_set:
+#    - quantity: '2'
+#  - action: utter_add_more_pizza
+#  - intent: quantity
+#  - intent: deny_add_more_pizza
+#  - action: utter_summarize_order
+#  - action: utter_finish_order
+#  - action: utter_goodbye
+
+#- story: General pizza ordering process
+#  steps:
+#  - intent: menu
+#  - action: utter_menu
+#  - intent: pizza_type
+#  - action: action_provide_toppings
+#  - intent: topping_confirm
+#  - action: action_customize_toppings
+#  - action: utter_ask_size
+#  - intent: size
+#  - action: utter_ask_quantity
+#  - intent: quantity
+#  - action: utter_add_more_pizza
+#  - intent: deny_add_more_pizza
+#  - action: utter_summarize_order
+#  - action: utter_finish_order
+#  - action: utter_goodbye
+##############################################################updated story##############################################
+#- story: interactive_story_1
+#  steps:
+#  - intent: greet
+#  - action: utter_greet
+#  - intent: menu
+#  - action: utter_menu
+#  - intent: pizza_type
+#    entities:
+#    - pizza_type: margerita
+#  - slot_was_set:
+#    - pizza_type: margerita
+#  - action: action_provide_toppings
+#  - action: action_default_fallback
+#  - intent: pizza_type
+#    entities:
+#    - pizza_type: margherita
+#  - slot_was_set:
+#    - pizza_type: margherita
+#  - action: action_provide_toppings
+#  - intent: topping_confirm
+#  - intent: topping_confirm
+#  - action: action_customize_toppings
+#  - slot_was_set:
+#    - toppings:
+#      - tomato sauce
+#      - mozzarella cheese
+#      - fresh basil leaves
+#      - olive oil
+#  - action: pizza_order_form
+#  - action: utter_ask_size
+#  - intent: size
+#    entities:
+#    - size: small
+#  - slot_was_set:
+#    - size: small
+#  - action: utter_ask_quantity
+#  - intent: quantity
+#    entities:
+#    - quantity: '2'
+#  - slot_was_set:
+#    - quantity: '2'
+#  - action: utter_summarize_order
+#  - intent: add_more_pizza
+#  - action: action_handle_user_request
+#  - slot_was_set:
+#    - total_order:
+#      - 2 margherita is of small
+#  - intent: generic_start
+#    entities:
+#    - size: small
+#    - topping: pepperoni
+#  - slot_was_set:
+#    - size: small
+#  - intent: toppings
+#    entities:
+#    - size: small
+#    - pizza_type: pepperoni
+#  - action: action_provide_toppings
+#  - intent: pizza_type
+#    entities:
+#    - topping: pepperoni
+#  - intent: pizza_type
+#    entities:
+#    - topping: pepperoni
+#  - intent: pizza_type
+#    entities:
+#    - pizza_type: pepperoni
+#  - action: action_provide_toppings

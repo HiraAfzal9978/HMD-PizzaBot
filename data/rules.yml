@@ -1,170 +1,68 @@
 version: "3.1"
 
 rules:
-  - rule: Activate pizza order form after showing menu
+  - rule: Handle starting greetings
     steps:
-      - intent: menu
-      - action: utter_menu
-      - action: action_pizza_order_form
-      - active_loop: action_pizza_order_form
-      - active_loop: null
-      - action: utter_summarize_order
-
-#  - rule: Confirm pizza order after form submission
-#    condition:
-#      - active_loop: pizza_order_form
-#    steps:
-#      - action: pizza_order_form
-#      - active_loop: null
-#      - slot_was_set:
-#          - requested_slot: null
-#      - intent: confirm_order
-#      - action: action_submit_order  # This action processes the final order
-#######################################################################################
-#  - rule: General pizza ordering process
-#    steps:
-#      - intent: menu
-#      - action: utter_menu
-#      - intent: pizza_type
-#      - action: action_provide_toppings
-#      - intent: topping_confirm
-#      - action: action_customize_toppings
-#      - action: utter_ask_size
-#      - intent: size
-#      - action: utter_ask_quantity
-#      - intent: quantity
-#      - action: utter_add_more_pizza
-#      - intent: deny_add_more_pizza
-#      - action: utter_summarize_order
-#      - action: utter_finish_order
-#      - action: utter_goodbye
-#######################################################################################
-  - rule: Handle order denial after form submission
-    condition:
-      - active_loop: action_pizza_order_form
-    steps:
-      - action: action_pizza_order_form
-      - active_loop: null
-      - slot_was_set:
-          - requested_slot: null
-      - intent: deny_order
-      - action: action_handle_user_request  # This action handles order denial
-
-#######################################################################################
-  - rule: Greet user
-    steps:
-      - intent: greet
+      - intent: start_greet
       - action: utter_greet
 
-#  - rule: Show menu when asked
-#    steps:
-#      - intent: menu
-#      - action: action_show_category_menu
-
-  - rule: Goodbye
+  - rule: Handle ending greetings
     steps:
-      - intent: goodbye
-      - action: utter_goodbye
+      - intent: end_greet
+      - action: utter_end_greet
 
-#  - rule: Start pizza order
-#    steps:
-#      - intent: pizza_Category
-#      - action: pizza_order_form
-#      - active_loop: pizza_order_form
-
-#  - rule: Order confirmation
-#    condition:
-#      # Condition that this rule is only applied when the pizza order form is filled
-#      - active_loop: pizza_order_form
-#    steps:
-#      - action: pizza_order_form
-#      - active_loop: null
-#      - slot_was_set:
-#          - requested_slot: null
-#      - action: utter_confirm_order
-  - rule: out-of-scope
+  - rule: Handle out of scope questions
     steps:
       - intent: out_of_scope
       - action: utter_out_of_scope
 
-  - rule: Finish order
+  - rule: Handle bot challenge questions
     steps:
-      - intent: finish_order
-      - action: utter_finish_order
+      - intent: bot_challenge
+      - action: utter_bot_challenge
 
-  - rule: Deny order
+  - rule: Handle user acknowledges the bot's response as correct
     steps:
-      - intent: deny_order
-      - action: utter_deny_order
-      - action: action_handle_user_request
+      - intent: affirm
+      - action: utter_affirm
 
-#  - rule: Show menu when asked
-#    steps:
-#      - intent: menu
-#      - action: utter_menu
+  - rule: Handle user denying the bot's response
+    steps:
+      - intent: deny
+      - action: utter_deny
 
+  - rule: Handle user's request to initiate general conversation for ordering something
+    steps:
+      - intent: initiate_general_conversation
+      - action: utter_initiate_general_conversation
 
+  - rule: Handle user's request to show the menu
+    steps:
+      - intent: inform_menu
+      - action: utter_inform_menu
 
+  - rule: Handle user's request to show the vegetarian menu
+    steps:
+      - intent: inform_vegetarian_menu
+      - action: utter_inform_vegetarian_menu
 
-#rules:
-#- rule: User shows interest in the menu
-#  steps:
-#  - intent: menu
-#  - action: utter_menu
-#
-#- rule: User chooses Vegetarian pizza
-#  steps:
-#  - intent: choose_pizza
-#    entities:
-#    - pizza_type: "Vegetarian"
-#  - action: utter_vegetarian_menu
-#
-#- rule: User chooses Non-Vegetarian pizza
-#  steps:
-#  - intent: choose_pizza
-#    entities:
-#    - pizza_type: "Non-Vegetarian"
-#  - action: utter_non_vegetarian_menu
+  - rule: Handle user's request to show the non-vegetarian menu
+    steps:
+      - intent: inform_non_vegetarian_menu
+      - action: utter_inform_non_vegetarian_menu
 
+  - rule: Handle user's request for recommendations
+    steps:
+      - intent: recommend_pizza
+      - action: utter_recommend_pizza
 
+  - rule: Handle user's request to show the vegetarian recommendations
+    steps:
+      - intent: recommend_vegetarian_pizza
+      - action: utter_recommend_vegetarian_pizza
 
-#rules:
-#- rule: Activate form
-#  steps:
-#  - intent: item_start_generic
-#  - action: pizza_order_form
-#  - active_loop: pizza_order_form
-#
-#
-#- rule: submit form
-#  condition:
-#    - active_loop: pizza_order_form
-#  steps:
-#      - action: pizza_order_form      # run the form
-#      - active_loop: null
-#      - action: utter_item_change
-#
-#
-#- rule: out-of-scope
-#  steps:
-#  - intent: out_of_scope
-#  - action: utter_out_of_scope
-#
-#- rule: start
-#  steps:
-#    - intent: init_request
-#    - action: utter_init_request
-#
-#- rule: menu
-#  steps:
-#    - intent: menu
-#    - action: utter_ask_menu
-#    - active_loop: pizza_order_form
-#
-#
-#- rule: where are you?
-#  steps:
-#    - intent: request_restaurant_location
-#    - action: action_get_restaurant_location
-#    - action: utter_inform_restaurant_location
-#    - action: utter_anything_else
+  - rule: Handle user's request to show the non-vegetarian recommendations
+    steps:
+      - intent: recommend_non_vegetarian_pizza
+      - action: utter_recommend_non_vegetarian_pizza
+

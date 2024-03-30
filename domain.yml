@@ -1,207 +1,63 @@
-version: '3.1'
-session_config:
-  session_expiration_time: 60
-  carry_over_slots_to_new_session: true
+version: "3.1"
 
 intents:
-- add_more_pizza
-- add_topping
-- customize_toppings
-- confirm_order
-- topping_confirm
-- toppings
-- remove_topping
-
-
-- deny_add_more_pizza
-- deny_order
-- finish_order
-- generic_start
-- goodbye
-- greet
-- menu
-- non_vegetarian_menu
-- out_of_scope
-- pizza_Category
-- pizza_type
-- quantity
-- remove_pizza
-- size
-- vegetarian_menu
+  - start_greet
+  - end_greet
+  - out_of_scope
+  - bot_challenge
+  - affirm
+  - deny
+  - initiate_general_conversation
+  - inform_menu
+  - inform_vegetarian_menu
+  - inform_non_vegetarian_menu
+  - recommend_pizza
+  - recommend_vegetarian_pizza
+  - recommend_non_vegetarian_pizza
 
 entities:
-- pizza_type
-- quantity
-- size
-- pizza_Category
-- toppings
-
-slots:
-  pizza_Category:
-    type: text
-    influence_conversation: true
-    mappings:
-    - type: from_entity
-      entity: pizza_Category
-  pizza_type:
-    type: text
-    influence_conversation: true
-    mappings:
-    - type: from_entity
-      entity: pizza_type
-  toppings:
-    type: list
-    influence_conversation: false
-    mappings:
-    - type: from_entity
-      entity: toppings
-  add_topping:
-    type: list
-    influence_conversation: false
-    mappings:
-    - type: from_entity
-      entity: toppings
-  remove_topping:
-    type: list
-    influence_conversation: false
-    mappings:
-    - type: from_entity
-      entity: toppings
-  quantity:
-    type: text
-    influence_conversation: true
-    mappings:
-    - type: from_entity
-      entity: quantity
-  size:
-    type: text
-    influence_conversation: true
-    mappings:
-    - type: from_entity
-      entity: size
-  total_order:
-    type: any
-    mappings:
-    - type: custom
-
-responses:
-  utter_greet:
-  - text: Hi, Welcome to Champ Pizza Hut! How may I assist you today?
-  utter_goodbye:
-  - text: Goodbye! Have a great day.
-  utter_menu:
-  - text: |
-      'Menu of the Pizza:'
-        - Vegetarian Pizzas:
-              - Margherita Pizza
-              - Vegetarian Supreme Pizza
-              - Pesto and Sun-Dried Tomato Pizza
-        - Non-Vegetarian Pizzas:
-              - Pepperoni Pizza
-              - BBQ Chicken Pizza
-              - Seafood Delight Pizza
-      ---------------------------------------------
-      Which Pizza would you like to order?
-  utter_ask_pizza_Category:
-  - text: |
-      'Please choose a category:'
-      - Vegetarian Pizza
-      - Non-Vegetarian Pizza
-  utter_vegetarian_menu:
-  - text: |
-      Here's the Menu of Vegetarian Pizzas:
-       1. Margherita Pizza
-       2. Vegetarian Supreme Pizza
-       3. Pesto and Sun-Dried Tomato Pizza
-      ---------------------------------------------
-            Which Pizza would you like to order?
-  utter_non_vegetarian_menu:
-  - text: |
-      Here's the Menu of Non-Vegetarian Pizzas:
-       1. Pepperoni Pizza
-       2. BBQ Chicken Pizza
-       3. Seafood Delight Pizza
-      ---------------------------------------------
-            Which Pizza would you like to order?
-  utter_toppings_margherita:
-  - text: |
-      Margherita Pizza has tomato sauce, fresh mozzarella cheese, fresh basil leaves, and a drizzle of olive oil topping.
-      Would you like to go with the same toppings or would you like to customize the toppings on your pizza?
-  utter_toppings_vegetarian_supreme:
-  - text: |
-      Vegetarian Supreme Pizza comes with tomato sauce, mozzarella cheese, bell peppers, red onions, black olives, mushrooms, and spinach pizza topping.
-      Would you like to go with the same toppings or would you like to customize the toppings on your pizza?
-  utter_toppings_pesto_sundried:
-  - text: |
-      Pesto and Sun-Dried Tomato Pizza includes pesto sauce, mozzarella cheese, sun-dried tomatoes, feta cheese, pine nuts, and fresh arugula toppings.
-      Would you like to go with the same toppings or would you like to customize the toppings on your pizza?
-  utter_toppings_pepperoni:
-  - text: |
-      Pepperoni Pizza is topped with tomato sauce, mozzarella cheese, and pepperoni slices.
-      Would you like to go with the same toppings or would you like to customize the toppings on your pizza?
-  utter_toppings_bbq_chicken:
-  - text: |
-      BBQ Chicken Pizza has BBQ sauce, mozzarella cheese, cooked and shredded chicken, red onions, cilantro, and a BBQ drizzle.
-      Would you like to go with the same toppings or would you like to customize the toppings on your pizza?
-  utter_toppings_seafood:
-  - text: |
-      Seafood Delight Pizza features garlic butter sauce, mozzarella cheese, shrimp, scallops, fresh basil, and lemon zest.
-      Would you like to go with the same toppings or would you like to customize the toppings on your pizza?
-  utter_unavailable_topping:
-  - text: I'm sorry, we don't offer {topping} as a topping. Would you like to choose from our available toppings?
-  utter_ask_pizza_type:
-  - text: What type of pizza would you like to order?
-  utter_ask_toppings:
-  - text: What pizza topping would you like?
-  utter_ask_quantity:
-  - text: How many pizzas would you like to order?
-  utter_ask_size:
-  - text: What size would you like? (Small, Medium, Large)
-  utter_invalid_input:
-  - text: I'm sorry, I didn't understand. Please choose from the provided options.
-  utter_out_of_scope:
-  - text: Sorry, I can't handle that request.
-  utter_add_more_pizza:
-  - text: Would you like to add more pizzas ?
-  utter_summarize_order:
-  - text: |
-      You have ordered {quantity} {size} {pizza_type} pizza with {toppings} toppings.
-      total amount is {total_order}
-      Do you want to confirm this order?
-  utter_confirm_order:
-  - text: Do you want to confirm this order?
-  utter_finish_order:
-  - text: Thank you for your order!
-  utter_deny_order:
-  - text: Sure, let me know if there's anything else I can help you with.
-  utter_ask_delivery:
-  - text: Would you like to pick up your order or have it delivered?
-  utter_ask_delivery_address:
-  - text: Please provide your delivery address.
-  utter_ask_pickup:
-  - text: Please provide your name and phone number.
-
-forms:
-  pizza_order_form:
-    required_slots:
-    - pizza_type
-    - toppings
-    - quantity
-    - size
+  - menu_category
+  - recommendation_category
 
 actions:
-- utter_menu
-- utter_ask_quantity
-- action_provide_toppings
-- utter_summarize_order
-- action_handle_user_request
-- utter_ask_size
-- utter_greet
-- action_customize_toppings
-- utter_add_more_pizza
-- utter_finish_order
-- utter_goodbye
-- utter_toppings_margherita
-- utter_vegetarian_menu
-- action_show_category_menu
-- action_pizza_order_form
+  - utter_greet
+  - utter_end_greet
+  - utter_out_of_scope
+  - utter_bot_challenge
+  - utter_affirm
+  - utter_deny
+  - utter_initiate_general_conversation
+  - utter_inform_menu
+  - utter_inform_vegetarian_menu
+  - utter_inform_non_vegetarian_menu
+  - utter_recommend_pizza
+  - utter_recommend_vegetarian_pizza
+  - utter_recommend_non_vegetarian_pizza
+
+templates:
+  utter_greet:
+    - text: "Hello! How can I assist you today?"
+  utter_end_greet:
+    - text: "Goodbye! Have a great day."
+  utter_out_of_scope:
+    - text: "I'm sorry, I can only assist with menu-related queries."
+  utter_bot_challenge:
+    - text: "Yes, I am a bot designed to help you with menu information."
+  utter_affirm:
+    - text: "Great!"
+  utter_deny:
+    - text: "Okay, let me know if you need anything else."
+  utter_initiate_general_conversation:
+    - text: "Sure, let's talk about the menu. What type of pizza are you interested in?"
+  utter_inform_menu:
+    - text: "Here is our pizza menu: [Menu Link]."
+  utter_inform_vegetarian_menu:
+    - text: "Here is our vegetarian pizza menu: [Menu Link]."
+  utter_inform_non_vegetarian_menu:
+    - text: "Here is our non-vegetarian pizza menu: [Menu Link]."
+  utter_recommend_pizza:
+    - text: "Our popular recommendation is the Margherita Pizza. Would you like to try it?"
+  utter_recommend_vegetarian_pizza:
+    - text: "For vegetarian options, we highly recommend the Veggie Delight Pizza."
+  utter_recommend_non_vegetarian_pizza:
+    - text: "If you prefer non-vegetarian, the Pepperoni Pizza is a customer favorite."

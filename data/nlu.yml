@@ -1,6 +1,8 @@
 version: "3.1"
 nlu:
-- intent: greet
+
+# Intent to handle starting greetings from the user
+- intent: start_greet
   examples: |
     - hi
     - just going to say hi
@@ -16,30 +18,22 @@ nlu:
     - greetings
     - long time no see
     - hello
-- intent: pizza_Category
+    - hello there
+
+
+# Intent to handle ending greeting from the bot
+- intent: end_greet
   examples: |
-    - I want to order a Pizza
-    - I want to order a [vegetarian](pizza_Category) pizza
-    - Do you have [vegetarian](pizza_Category) pizza
-    - I want to order a [non vegetarian](pizza_Category) pizza
-    - Do you have [non vegetarian](pizza_Category) pizza
-    - [non vegetarian](pizza_Category)
-    - I want a [vegetarian](pizza_Category) pizza
-    - Show me [vegetarian](pizza_Category) options
-    - [vegetarian](pizza_Category) pizza
-    - show me the menu of [vegetarian](pizza_Category) pizza
-    - I want a [non vegetarian](pizza_Category) pizza
-    - Show me [non vegetarian](pizza_Category) options
-    - [non vegetarian](pizza_Category) pizza
-    - show me the menu of [non vegetarian](pizza_Category) pizza
-    - I want [vegetarian](pizza_Category) pizza
-    - do you have [veg](pizza_Category) pizza
-    - Do you have [nonveg](pizza_Category) pizza
-    - Do you have [non veg](pizza_Category) pizza
-    - Do you have [non-vegetarian](pizza_Category) pizza
-    - Do you have [non-veg](pizza_Category) pizza
-    - Vegetarian[pizza_Category] pizza
-    - Non Vegetarian[pizza_Category] pizza
+    - bye
+    - see you around
+    - Goodbye
+    - bye bye
+    - see you later
+    - see you
+    - bye for now
+
+
+# Intent to handle out of scope questions
 - intent: out_of_scope
   examples: |
     - What is 2 + 2?
@@ -51,13 +45,141 @@ nlu:
     - book a flight from milan to ny
     - how far is the square
     - give me the directions to time square
-- intent: menu
+    - what is the weather in Trento
+
+
+# Intent to handle bot challenge questions
+- intent: bot_challenge
+  examples: |
+    - are you a bot?
+    - are you a human?
+    - am I talking to a bot?
+    - am I talking to a human?
+    - are you a real person?
+    - you're a bot, right?
+    - you're a human, right?
+    - are you a bot or a human?
+    - are you a real human?
+    - are you a real bot?
+    - are you a human or a bot?
+
+
+# User acknowledges the bot's response as correct
+- intent: affirm
+  examples: |
+    - yes
+    - indeed
+    - of course
+    - that sounds good
+    - correct
+    - absolutely
+    - sure
+    - definitely
+    - yeah
+    - yep
+    - ya
+    - yup
+    - right
+    - ok
+    - okay
+    - sounds good
+    - that's right
+    - that's correct
+    - that is correct
+    - that is right
+    - that is true
+    - that's true
+    - that is accurate
+    - that's accurate
+    - that is exact
+    - that's exact
+    - that is precise
+    - that's precise
+    - that is spot on
+    - that's spot on
+    - that is on the mark
+    - that's on the mark
+    - that is on the target
+    - that's on the target
+    - that is on the goal
+    - that's on the goal
+    
+
+
+
+# Intent to handle user denying the bot's response
+- intent: deny
+  examples: |
+    - no
+    - nah
+    - never
+    - I don't think so
+    - don't like that
+    - no way
+    - not really
+    - not sure
+    - I don't think that's right
+    - I don't think that's correct
+    - I don't think that's true
+    - I don't think that's accurate
+    - I don't think that's exact
+    - I don't think that's precise
+    - I don't think that's spot on
+    - I don't think that's on the mark
+    - I don't think that's on the target
+    - I don't think that's on the goal
+
+
+# Intent to handle user's request to initiate general conversation for ordering something
+- intent: initiate_general_conversation
+  examples: |
+    - I am looking for a pizza
+    - I want to order a pizza
+    - I want to order an pizza
+    - I am looking for a pizza to order
+    - I want to order a pizza
+    - I am hungry
+    - I want to eat
+    - I want to order food
+    - I want to order something
+    - I want to eat something
+    - I am hungry and want to eat
+    - I am hungry and want to order food
+    - I am hungry and want to order something
+    - I am hungry and want to order a pizza
+    - order a pizza
+    - order food
+    - order something
+    - Want to order a pizza
+    - Want to order food
+    - Want to order something
+    - Want to eat
+    - Want to eat something
+    - Want to eat a pizza
+    - Do you have pizza?
+    - Do you have food?
+    - Do you have something to eat?
+    - Do you have something for me to eat?
+    - Do you have something for me to order?
+    - Do you have something for me to order to eat?
+    - Are you a pizza place?
+    - Are you a food place?
+    - Are you there?
+    - Are you a restaurant?
+    - Are you a pizza restaurant?
+    - Are you a food restaurant?
+    - Are you a pizza place?
+    - Are you a pizza shop?
+    - Are you a food shop?
+
+# Intent to handle user's request to show the menu
+- intent: inform_menu
   examples: |
     - What do you have in the pizza menu?
     - Hi I want to order a pizza
     - what pizza do you have?
     - Could you show me the pizza menu again?
-    - show me the menu of pizza?
+    - Show me the menu of pizza?
     - what is the menu?
     - show me menu again?
     - Show me the pizza menu
@@ -81,186 +203,169 @@ nlu:
     - Pizza will do
     - pizza will do
     - what do you have?
-    - hi i want to order a pizza
-- intent: pizza_type
+    - what do you have
+    - what do you have in the menu
+    - what do you have in the Menu
+    - what do you have in the pizza menu
+    - what do you have in the Pizza menu    
+
+# Intent to handle user's request to show the vegetarian menu
+- intent: inform_vegetarian_menu
   examples: |
-    - [Margherita](pizza_type) Pizza
-    - [Vegetarian Supreme](pizza_type) Pizza
-    - [Pesto and Sun-Dried Tomato](pizza_type )Pizza
-    - [Pepperoni](pizza_type) Pizza
-    - [BBQ Chicken Pizza](pizza_type) Pizza
-    - [Seafood Delight](pizza_type) Pizza
-    - I want to order a [Margherita](pizza_type) Pizza
-    - do you have [Vegetarian Supreme](pizza_type) Pizza
-    - do you have [Pesto and Sun-Dried Tomato](pizza_type )Pizza
-    - I want [Pepperoni](pizza_type) Pizza
-    - May I have [BBQ Chicken Pizza](pizza_type) Pizza
-    - I wanna [Seafood Delight](pizza_type) Pizza
-    - marghrita
-    - [margherita](pizza_type)
-    - I want [margherita](pizza_type) pizza
-    - i want [margherita](pizza_type) pizza
-    - no i want [pepperoni](pizza_type) pizza
-- intent: generic_start
+    - What do you have in the [vegetarian](menu_category) pizza menu?
+    - Hi I want to order a [vegetarian](menu_category) pizza
+    - what [vegetarian](menu_category) pizza do you have?
+    - Could you show me the [vegetarian](menu_category) pizza menu again?
+    - Show me the menu of [vegetarian](menu_category) pizza?
+    - what is the [vegetarian](menu_category) pizza menu?
+    - show me [vegetarian](menu_category) pizza menu again?
+    - Show me the [vegetarian](menu_category) pizza menu
+    - What [vegetarian](menu_category) pizzas are available?
+    - show [vegetarian](menu_category) pizza list
+    - show me the list of [vegetarian](menu_category) pizza
+    - list of [vegetarian](menu_category) pizza
+    - [vegetarian](menu_category) pizza
+    - I want to order a [vegetarian](menu_category) pizza
+    - show me the today's [vegetarian](menu_category) Menu
+    - show [vegetarian](menu_category) menu again
+    - [vegetarian](menu_category) menu
+    - what [vegetarian](menu_category) pizzas do you have?
+    - take me on [vegetarian](menu_category) menu page
+    - what do you have in [vegetarian](menu_category) menu?
+    - what do you have in the [vegetarian](menu_category) Menu?
+    - [vegetarian](menu_category) Menu?
+    - [vegetarian](menu_category) Menu
+    - [vegetarian](menu_category) pizza please
+    - [Vegetarian](menu_category) pizza please
+    - [Vegetarian](menu_category) pizza will do
+    - [vegetarian](menu_category) pizza will do
+    - what do you have in the [vegetarian](menu_category) menu?
+    - what do you have in the [vegetarian](menu_category) Menu?
+    - what do you have in the [vegetarian](menu_category) pizza menu?
+    - what do you have in the [Vegetarian](menu_category) pizza menu
+    - what do you have in the [Vegetarian](menu_category) Pizza menu
+
+
+# Intent to handle user's request to show the non-vegetarian menu
+- intent: inform_non_vegetarian_menu
+    - What do you have in the [non-vegetarian](menu_category) pizza menu?
+    - Hi I want to order a [non-vegetarian](menu_category) pizza
+    - what [non-vegetarian](menu_category) pizza do you have?
+    - Could you show me the [non-vegetarian](menu_category) pizza menu again?
+    - Show me the menu of [non-vegetarian](menu_category) pizza?
+    - what is the [non-vegetarian](menu_category) pizza menu?
+    - show me [non-vegetarian](menu_category) pizza menu again?
+    - Show me the [non-vegetarian](menu_category) pizza menu
+    - What [non-vegetarian](menu_category) pizzas are available?
+    - show [non-vegetarian](menu_category) pizza list
+    - show me the list of [non-vegetarian](menu_category) pizza
+    - list of [non-vegetarian](menu_category) pizza
+    - [non-vegetarian](menu_category) pizza
+    - I want to order a [non-vegetarian](menu_category) pizza
+    - show me the today's [non-vegetarian](menu_category) Menu
+    - show [non-vegetarian](menu_category) menu again
+    - [non-vegetarian](menu_category) menu
+    - what [non-vegetarian](menu_category) pizzas do you have?
+    - take me on [non-vegetarian](menu_category) menu page
+    - what do you have in [non-vegetarian](menu_category) menu?
+    - what do you have in the [non-vegetarian](menu_category) Menu?
+    - [non-vegetarian](menu_category) Menu?
+    - [non-vegetarian](menu_category) Menu
+    - [non-vegetarian](menu_category) pizza please?
+    - [non-vegetarian](menu_category) pizza please
+    - [non-vegetarian](menu_category) pizza will do?
+    - [non-vegetarian](menu_category) pizza will do
+    - what do you have in the [non-vegetarian](menu_category) menu?
+    - what do you have in the [non-vegetarian](menu_category) Menu?
+    - what do you have in the [non-vegetarian](menu_category) pizza menu?
+    - what do you have in the [non-vegetarian](menu_category) Pizza menu
+    - what do you have in the [non-vegetarian](menu_category) pizza menu
+# Intent to handle user's request for recommendations
+- intent: recommend_pizza
   examples: |
-    - I want to order a [Margherita](pizza_type) Pizza
-    - I want [two](quantity) [small](size) [margherita](pizza_type) pizza
-    - I want [one](quantity) [Pepperoni](pizza_type) [small](size) pizza
-    - I want [BBQ Chicken](pizza_type) pizza
-    - I want [pesto](pizza_type) pizza please
-    - I [Seafood](pizza_type) pizza small
-    - I want [BBQ ](pizza_type) [small](size) pizza [three](quantity)
-    - I want [four](quantity) [small](size) pizza [non vegetarian](pizza_category)
-    - I want [2](quantity) [medium](size) pizza [Vegetarian](pizza_type) please
-    - [ two ](quantity) [small](size) [Vegetarian Supreme](pizza_type) pizza
-    - [ two ](quantity) [medium](size) [Margherita](pizza_type) pizza
-    - [ 2 ](quantity) [large](size) [BBQ Chicken](pizza_type) pizza
-    - [ two ](quantity) [medium](size) [Pepperoni](pizza_type) pizza
-    - [ 4 ](quantity) [small](size) [Vegetarian](pizza_Category) pizza pizza
-    - [ four ](quantity) [small](size) pizza [Pesto and Sun-Dried Tomato](pizza_type)
-    - [ two ](quantity) [large](size) pizza [Pesto](pizza_type)
-    - [ four ](quantity) [medium](size) pizza [Margherita](pizza_type)
-    - [ 4 ](quantity) [large](size) pizza [Sun-Dried Tomato](pizza_type)
-    - [ four ](quantity) [medium](size) pizza [Pepperoni](pizza_type)
-    - [ four ](quantity) [small](size) pizza [Vegetarian](pizza_Category)
-    - [ one ](quantity) [pesto and sun dried tomatoes](pizza_type) [small](size) pizza
-    - [ one ](quantity) [Margherita](pizza_type) [medium](size) pizza
-    - [ 1 ](quantity) [BBQ Chicken](pizza_type) [large](size) pizza
-    - [ one ](quantity) [Pepperoni](pizza_type)[medium](size) pizza
-    - [ 3 ](quantity) [Vegetarian](pizza_Category) [small](size) pizza
-    - [ one ](quantity) [Pesto](pizza_type) pizza [small](size)
-    - [ one ](quantity) [Margherita](pizza_type) pizza [medium](size)
-    - [ 1 ](quantity) [BBQ chicken](pizza_type) pizza [large](size)
-    - [ one ](quantity) [Pepperoni](pizza_type) pizza[medium](size)
-    - [ 3 ](quantity) [Non Vegetarian](pizza_Category) pizza [small](size)
-    - [ seafood delight ](pizza_type) [small](size) pizza [three](quantity)
-    - [ Margherita ](pizza_type) [medium](size) pizza [6](quantity)
-    - [ BBQ chicken ](pizza_type) [large](size) pizza [9](quantity)
-    - [ Pepperoni ](pizza_type)[medium](size) pizza  [4](quantity)
-    - [ Vegetarian ](pizza_Category) [small](size) pizza [two](quantity)
-    - [ BBQ chicken ](pizza_type) pizza
-    - [ Margherita ](pizza_type) pizza
-    - [ seafood delight ](pizza_type) pizza
-    - [ Pepperoni and Sun-Dried Tomato](pizza_type) pizza
-    - [ non vegetarian ](pizza_Category) pizza
-- intent: vegetarian_menu
+    - What do you recommend?
+    - Hi I want to order a pizza, what do you recommend?
+    - what pizza do you recommend?
+    - Could you recommend me a pizza?
+    - Recommend me a pizza?
+    - what is the recommended pizza?
+    - recommend me a pizza
+    - What pizzas are recommended?
+    - recommend pizza
+    - recommend me a pizza
+    - Which is the best pizza?
+    - What is your best pizza?
+    - What is your popular pizza?
+    - What is your most popular pizza?
+    - What is your special pizza?
+    - Which is people's favorite pizza here?
+    - What is the most ordered pizza?
+    - What is the most ordered pizza here?
+    - What is the most ordered pizza in your restaurant?
+    - What is the most ordered pizza in your shop?
+
+# Intent to handle user's request to show the vegetarian recommendations
+- intent: recommend_vegetarian_pizza
   examples: |
-    - I want a [vegetarian](pizza_Category)pizza
-    - Show me [vegetarian](pizza_Category)options
-    - I want to order a [vegetarian](pizza_Category) pizza
-    - Do you have [vegetarian](pizza_Category) pizza
-    - [vegetarian](pizza_Category) pizza
-    - show me the menu of [vegetarian](pizza_Category) pizza
-    - [vegetarian](pizza_Category) pizza please
-- intent: non_vegetarian_menu
+    - What do you recommend in the [vegetarian](recommendation_category) pizza?
+    - Hi I want to order a [vegetarian](recommendation_category) pizza, what do you recommend?
+    - what [vegetarian](recommendation_category) pizza do you recommend?
+    - Could you recommend me a [vegetarian](recommendation_category) pizza?
+    - Recommend me a [vegetarian](recommendation_category) pizza?
+    - what is the recommended [vegetarian](recommendation_category) pizza?
+    - recommend me a [vegetarian](recommendation_category) pizza
+    - What [vegetarian](recommendation_category) pizzas are recommended?
+    - recommend [vegetarian](recommendation_category) pizza
+    - recommend me a [vegetarian](recommendation_category) pizza
+    - Which is the best [vegetarian](recommendation_category) pizza?
+    - What is your best [vegetarian](recommendation_category) pizza?
+    - What is your popular [vegetarian](recommendation_category) pizza?
+    - What is your most popular [vegetarian](recommendation_category) pizza?
+    - What is your special [vegetarian](recommendation_category) pizza?
+    - Which is people's favorite [vegetarian](recommendation_category) pizza here?
+    - What is the most ordered [vegetarian](recommendation_category) pizza?
+    - What is the most ordered [vegetarian](recommendation_category) pizza here?
+    - What is the most ordered [vegetarian](recommendation_category) pizza in your restaurant?
+    - What is the most ordered [vegetarian](recommendation_category) pizza in your shop?
+    - What is the most ordered [vegetarian](recommendation_category) pizza in your place?
+    - What is the most ordered [vegetarian](recommendation_category) pizza in your store?
+    - What is the most ordered [vegetarian](recommendation_category) pizza in your outlet?
+    - What is the most ordered [vegetarian](recommendation_category) pizza in your joint?
+    - What is the most ordered [vegetarian](recommendation_category) pizza in your cafe?
+    - What is the most ordered [vegetarian](recommendation_category) pizza in your diner?
+    - What is the most ordered [vegetarian](recommendation_category) pizza in your eatery?
+    - What is the most ordered [vegetarian](recommendation_category) pizza in your bistro?
+    - What is the most ordered [vegetarian](recommendation_category) pizza in your pizzeria?
+
+# Intent to handle user's request to show the non-vegetarian recommendations
+- intent: recommend_non_vegetarian_pizza
   examples: |
-    - I want a [non vegetarian](pizza_Category)pizza
-    - Show me [non vegetarian](pizza_Category) options
-    - I want to order a [non vegetarian](pizza_Category) pizza
-    - Do you have [non vegetarian](pizza_Category) pizza
-    - [non vegetarian](pizza_Category) pizza
-    - show me the menu of [non vegetarian](pizza_Category) pizza
-    - I want a [non vegetarian](pizza_Category) pizza
-- intent: toppings
-  examples: |
-    - What toppings are on the [Margherita](pizza_type) Pizza?
-    - Can you tell me the toppings for [BBQ Chicken](pizza_type) Pizza?
-    - What's on the [Vegetarian Supreme](pizza_type) Pizza?
-    - What are the toppings for [Pepperoni](pizza_type) Pizza?
-    - What's on the [Pesto and Sun-Dried Tomato](pizza_type) Pizza?
-    - What are the toppings for [Seafood Delight](pizza_type) Pizza?
-    - What's on the [Margherita](pizza_type) Pizza?
-    - What are the toppings for [BBQ Chicken](pizza_type) Pizza?
-    - i want to add 1 [small](size) [pepperoni](pizza_type) pizza
-- intent: confirm_order
-  examples: |
-    - Yes, confirm my order
-    - That's correct
-    - Proceed with the order
-    - yes
-- intent: deny_order
-  examples: |
-    - No, cancel the order
-    - I changed my mind
-    - Stop the order
-- intent: add_more_pizza
-  examples: |
-    - Add one more pizza
-    - Yes, I want another pizza
-    - Include an additional pizza
-    - yes I want to add more pizza
-- intent: finish_order
-  examples: |
-    - That's it, finish the order
-    - I'm done ordering
-    - Complete the order
-- intent: goodbye
-  examples: |
-    - bye
-    - see you around
-    - Goodbye
-- intent: topping_confirm
-  examples: |
-    - yes
-    - yes, I want these toppings
-    - yes, i will go with these toppings
-    - yes I want to go with same toppings
-    - yes I want to go with these toppings
-- intent: topping_customization
-  examples: |
-    - I want to customize my toppings
-    - I want [mushrooms](topping) and [pepperoni](topping)
-    - Add [extra cheese](topping) and [olives](topping)
-    - I want [mushrooms](topping), [pepperoni](topping), [extra cheese](topping) and [olives](topping)
-    - I want [mushrooms](topping), [pepperoni](topping) and [extra cheese](topping)
-    - I want [mushrooms](topping), [pepperoni](topping) and [olives](topping)
-    - I want [pepperoni](topping), [extra cheese](topping), [olives](topping) and [onions](topping)
-    - I want [pepperoni](topping), [extra cheese](topping) and [olives](topping)
-    - I want [extra cheese](topping) and [tomato sauce](topping)
-    - I want [extra cheese](topping) and [onions](topping)
-    - add [pesto sauce](topping) and [sun dried tomatoes](topping)
-    - add [pesto sauce](topping) and [sun dried tomatoes](topping) and [feta cheese](topping)
-- intent: add_topping
-  examples: |
-    - I want to add [pineapple](topping)
-    - Add [olives](topping) and [mushrooms](topping) to my pizza
-    - Can you put extra [cheese](topping) on it?
-    - I'd like [pepperoni](topping) as an additional topping
-- intent: remove_topping
-  examples: |
-    - Please remove [onions](topping)
-    - I don't want any [mushrooms](topping)
-    - Take off the [olives](topping)
-    - No [pepperoni](topping), please
-- intent: size
-  examples: |
-    - [small](size)
-    - [medium](size)
-    - [large](size)
-    - [small](size)
-- intent: quantity
-  examples: |
-    - [1](quantity)
-    - [2](quantity)
-    - [3](quantity)
-    - [4](quantity)
-    - [5](quantity)
-    - [6](quantity)
-    - [7](quantity)
-    - [8](quantity)
-    - [9](quantity)
-    - [10](quantity)
-    - [one](quantity)
-    - [two](quantity)
-    - [three](quantity)
-    - [four](quantity)
-    - [five](quantity)
-    - [six](quantity)
-    - [seven](quantity)
-    - [eight](quantity)
-    - [nine](quantity)
-    - [ten](quantity)
-    - [2](quantity)
-- intent: deny_add_more_pizza
-  examples: |
-    - no
+    - What do you recommend in the [non-vegetarian](recommendation_category) pizza?
+    - Hi I want to order a [non-vegetarian](recommendation_category) pizza, what do you recommend?
+    - what [non-vegetarian](recommendation_category) pizza do you recommend?
+    - Could you recommend me a [non-vegetarian](recommendation_category) pizza?
+    - Recommend me a [non-vegetarian](recommendation_category) pizza?
+    - what is the recommended [non-vegetarian](recommendation_category) pizza?
+    - recommend me a [non-vegetarian](recommendation_category) pizza
+    - What [non-vegetarian](recommendation_category) pizzas are recommended?
+    - recommend [non-vegetarian](recommendation_category) pizza
+    - recommend me a [non-vegetarian](recommendation_category) pizza
+    - Which is the best [non-vegetarian](recommendation_category) pizza?
+    - What is your best [non-vegetarian](recommendation_category) pizza?
+    - What is your popular [non-vegetarian](recommendation_category) pizza?
+    - What is your most popular [non-vegetarian](recommendation_category) pizza?
+    - What is your special [non-vegetarian](recommendation_category) pizza?
+    - Which is people's favorite [non-vegetarian](recommendation_category) pizza here?
+    - What is the most ordered [non-vegetarian](recommendation_category) pizza?
+    - What is the most ordered [non-vegetarian](recommendation_category) pizza here?
+    - What is the most ordered [non-vegetarian](recommendation_category) pizza in your restaurant?
+    - What is the most ordered [non-vegetarian](recommendation_category) pizza in your shop?
+    - What is the most ordered [non-vegetarian](recommendation_category) pizza in your place?
+    - What is the most ordered [non-vegetarian](recommendation_category) pizza in your store?
+    - What is the most ordered [non-vegetarian](recommendation_category) pizza in your outlet?
+    - What is the most ordered [non-vegetarian](recommendation_category) pizza in your joint?
+    - What is the most ordered [non-vegetarian](recommendation_category) pizza in your cafe?
+    - What is the most ordered [non-vegetarian](recommendation_category) pizza in your diner?
+    - What is the most ordered [non-vegetarian](recommendation_category) pizza in your eatery?
+    - What is the most ordered [non-vegetarian](recommendation_category) pizza in your bistro?
+    - What is the most ordered [non-vegetarian](recommendation_category) pizza in your pizzeria?

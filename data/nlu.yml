@@ -134,7 +134,6 @@ nlu:
 - intent: initiate_general_conversation
   examples: |
     - I am looking for a pizza
-    - I want to order a pizza
     - I want to order an pizza
     - I am looking for a pizza to order
     - I want to order a pizza
@@ -176,7 +175,6 @@ nlu:
 - intent: inform_menu
   examples: |
     - What do you have in the pizza menu?
-    - Hi I want to order a pizza
     - what pizza do you have?
     - Could you show me the pizza menu again?
     - Show me the menu of pizza?
@@ -188,7 +186,6 @@ nlu:
     - show me the list of pizza
     - list of pizza
     - pizza
-    - I want to order a pizza
     - show me the today's Menu
     - show menu again
     - menu
@@ -244,10 +241,9 @@ nlu:
     - what do you have in the [vegetarian](menu_category) pizza menu?
     - what do you have in the [Vegetarian](menu_category) pizza menu
     - what do you have in the [Vegetarian](menu_category) Pizza menu
-
-
 # Intent to handle user's request to show the non-vegetarian menu
 - intent: inform_non_vegetarian_menu
+  examples: |
     - What do you have in the [non-vegetarian](menu_category) pizza menu?
     - Hi I want to order a [non-vegetarian](menu_category) pizza
     - what [non-vegetarian](menu_category) pizza do you have?

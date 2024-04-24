@@ -14,10 +14,26 @@ intents:
   - recommend_pizza
   - recommend_vegetarian_pizza
   - recommend_non_vegetarian_pizza
+  - pizza_order_start
+  - pizza_order_confirm_positive
+  - pizza_order_confirm_negative
+  - pizza_order_modify
+  - complete_pizza_order_confirm
+  - pizza_order_cancel
+  - show_complete_pizza_order
+  - pizza_standard_topping_confirm
+  - pizza_custom_topping_request
+  - inform_pizza_customized_topping
+  - inform_pizza_amount
+  - inform_pizza_size
 
 entities:
   - menu_category
   - recommendation_category
+  - pizza_type
+  - pizza_size
+  - pizza_topping
+  - pizza_amount
 
 actions:
   - utter_greet

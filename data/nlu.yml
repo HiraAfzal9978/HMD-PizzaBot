@@ -1,118 +1,5 @@
 version: "3.1"
 nlu:
-
-############################# Lookup Tables ###########################
-- regex: pizza_amount
-  examples: |
-    - a
-    - A
-    - one
-    - two
-    - three
-    - four
-    - five
-    - six
-    - seven
-    - eight
-    - nine
-    - ten
-    - One
-    - Two
-    - Three
-    - Four
-    - Five
-    - Six
-    - Seven
-    - Eight
-    - Nine
-    - Ten
-    - 1
-    - 2
-    - 3
-    - 4
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    - 10
-
-
-- regex: pizza_size
-  examples: |
-    - small
-    - medium
-    - large
-    - Small
-    - Medium
-    - Large
-
-
-- regex: pizza_type
-  examples: |
-    - Margherita
-    - Vegetarian Supreme
-    - Pesto and Sun-Dried Tomato
-    - Pepperoni
-    - BBQ Chicken
-    - Seafood Delight
-    - margherita
-    - vegetarian supreme
-    - pesto and sun-dried tomato
-    - pepperoni
-    - bbq chicken
-    - seafood delight
-
-
-- regex: pizza_topping
-  examples: |
-    - tomato sauce
-    - mozzarella
-    - basil
-    - tomato sauce
-    - mozzarella
-    - pepperoni
-    - tomato sauce
-    - mozzarella
-    - olives
-    - bell peppers
-    - mushrooms
-    - Tangy BBQ sauce
-    - grilled chicken
-    - red onions
-    - cilantro
-    - mozzarella cheese
-    - tomato sauce
-    - mozzarella
-    - shrimp
-    - calamari
-    - Tomato sauce
-    - Mozzarella
-    - Basil
-    - Tomato sauce
-    - Mozzarella
-    - Pepperoni
-    - Tomato sauce
-    - Mozzarella
-    - Olives
-    - Bell peppers
-    - Mushrooms
-    - Tangy BBQ sauce
-    - Grilled chicken
-    - Red onions
-    - Cilantro
-    - Mozzarella cheese
-    - Tomato sauce
-    - Mozzarella
-    - Shrimp
-    - Calamari
-
-
-
-
-
-############################# Intents ###############################
-# Intent to handle starting greetings from the user
 - intent: start_greet
   examples: |
     - hi
@@ -130,9 +17,6 @@ nlu:
     - long time no see
     - hello
     - hello there
-
-
-# Intent to handle ending greeting from the bot
 - intent: end_greet
   examples: |
     - bye
@@ -142,9 +26,6 @@ nlu:
     - see you later
     - see you
     - bye for now
-
-
-# Intent to handle out of scope questions
 - intent: out_of_scope
   examples: |
     - What is 2 + 2?
@@ -157,9 +38,6 @@ nlu:
     - how far is the square
     - give me the directions to time square
     - what is the weather in Trento
-
-
-# Intent to handle bot challenge questions
 - intent: bot_challenge
   examples: |
     - are you a bot?
@@ -173,9 +51,6 @@ nlu:
     - are you a real human?
     - are you a real bot?
     - are you a human or a bot?
-
-
-# User acknowledges the bot's response as correct
 - intent: affirm
   examples: |
     - yes
@@ -214,11 +89,6 @@ nlu:
     - that's on the target
     - that is on the goal
     - that's on the goal
-    
-
-
-
-# Intent to handle user denying the bot's response
 - intent: deny
   examples: |
     - no
@@ -239,9 +109,6 @@ nlu:
     - I don't think that's on the mark
     - I don't think that's on the target
     - I don't think that's on the goal
-
-
-# Intent to handle user's request to initiate general conversation for ordering something
 - intent: initiate_general_conversation
   examples: |
     - I am looking for a pizza
@@ -278,11 +145,8 @@ nlu:
     - Are you a restaurant?
     - Are you a pizza restaurant?
     - Are you a food restaurant?
-    - Are you a pizza place?
     - Are you a pizza shop?
     - Are you a food shop?
-
-# Intent to handle user's request to show the menu
 - intent: inform_menu
   examples: |
     - What do you have in the pizza menu?
@@ -315,9 +179,8 @@ nlu:
     - what do you have in the menu
     - what do you have in the Menu
     - what do you have in the pizza menu
-    - what do you have in the Pizza menu    
-
-# Intent to handle user's request to show the vegetarian menu
+    - what do you have in the Pizza menu
+    - menu please
 - intent: inform_vegetarian_menu
   examples: |
     - What do you have in the [vegetarian](menu_category) pizza menu?
@@ -348,11 +211,9 @@ nlu:
     - [Vegetarian](menu_category) pizza will do
     - [vegetarian](menu_category) pizza will do
     - what do you have in the [vegetarian](menu_category) menu?
-    - what do you have in the [vegetarian](menu_category) Menu?
     - what do you have in the [vegetarian](menu_category) pizza menu?
     - what do you have in the [Vegetarian](menu_category) pizza menu
     - what do you have in the [Vegetarian](menu_category) Pizza menu
-# Intent to handle user's request to show the non-vegetarian menu
 - intent: inform_non_vegetarian_menu
   examples: |
     - What do you have in the [non-vegetarian](menu_category) pizza menu?
@@ -383,11 +244,9 @@ nlu:
     - [non-vegetarian](menu_category) pizza will do?
     - [non-vegetarian](menu_category) pizza will do
     - what do you have in the [non-vegetarian](menu_category) menu?
-    - what do you have in the [non-vegetarian](menu_category) Menu?
     - what do you have in the [non-vegetarian](menu_category) pizza menu?
     - what do you have in the [non-vegetarian](menu_category) Pizza menu
     - what do you have in the [non-vegetarian](menu_category) pizza menu
-# Intent to handle user's request for recommendations
 - intent: recommend_pizza
   examples: |
     - What do you recommend?
@@ -399,7 +258,6 @@ nlu:
     - recommend me a pizza
     - What pizzas are recommended?
     - recommend pizza
-    - recommend me a pizza
     - Which is the best pizza?
     - What is your best pizza?
     - What is your popular pizza?
@@ -410,8 +268,6 @@ nlu:
     - What is the most ordered pizza here?
     - What is the most ordered pizza in your restaurant?
     - What is the most ordered pizza in your shop?
-
-# Intent to handle user's request to show the vegetarian recommendations
 - intent: recommend_vegetarian_pizza
   examples: |
     - What do you recommend in the [vegetarian](recommendation_category) pizza?
@@ -423,7 +279,6 @@ nlu:
     - recommend me a [vegetarian](recommendation_category) pizza
     - What [vegetarian](recommendation_category) pizzas are recommended?
     - recommend [vegetarian](recommendation_category) pizza
-    - recommend me a [vegetarian](recommendation_category) pizza
     - Which is the best [vegetarian](recommendation_category) pizza?
     - What is your best [vegetarian](recommendation_category) pizza?
     - What is your popular [vegetarian](recommendation_category) pizza?
@@ -443,8 +298,6 @@ nlu:
     - What is the most ordered [vegetarian](recommendation_category) pizza in your eatery?
     - What is the most ordered [vegetarian](recommendation_category) pizza in your bistro?
     - What is the most ordered [vegetarian](recommendation_category) pizza in your pizzeria?
-
-# Intent to handle user's request to show the non-vegetarian recommendations
 - intent: recommend_non_vegetarian_pizza
   examples: |
     - What do you recommend in the [non-vegetarian](recommendation_category) pizza?
@@ -456,7 +309,6 @@ nlu:
     - recommend me a [non-vegetarian](recommendation_category) pizza
     - What [non-vegetarian](recommendation_category) pizzas are recommended?
     - recommend [non-vegetarian](recommendation_category) pizza
-    - recommend me a [non-vegetarian](recommendation_category) pizza
     - Which is the best [non-vegetarian](recommendation_category) pizza?
     - What is your best [non-vegetarian](recommendation_category) pizza?
     - What is your popular [non-vegetarian](recommendation_category) pizza?
@@ -476,71 +328,70 @@ nlu:
     - What is the most ordered [non-vegetarian](recommendation_category) pizza in your eatery?
     - What is the most ordered [non-vegetarian](recommendation_category) pizza in your bistro?
     - What is the most ordered [non-vegetarian](recommendation_category) pizza in your pizzeria?
-# Intent to handle customer's request to order pizza from the menu
 - intent: pizza_order_start
   examples: |
-    - I want to order [a](pizza_amount) [Margherita](pizza_type) pizza.
-    - I want [one](pizza_amount) [Margherita](pizza_type) pizza.
-    - Add [one](pizza_amount) [Margherita](pizza_type) pizza to my order.
-    - Add [a](pizza_amount) [Margherita](pizza_type) pizza to my order.
-    - I would like to order [one](pizza_amount) [Margherita](pizza_type) pizza.
-    - I would like to order [a](pizza_amount) [Margherita](pizza_type) pizza.
-    - I want to order [one](pizza_amount) [Margherita](pizza_type) pizza please.
-    - I want to order [a](pizza_amount) [Margherita](pizza_type) pizza please.
-    - I would like to order [a](pizza_amount) [Margherita](pizza_type) pizza please.
-    - [One](pizza_amount) [Margherita](pizza_type) pizza.
-    - [a](pizza_amount) [Margherita](pizza_type).
-    - [One](pizza_amount) [Margherita](pizza_type) please.
-    - [1](pizza_amount) [Margherita](pizza_type) pizza.
-    - I want to order [1](pizza_amount) [Margherita](pizza_type) pizzas.
-    - I want to order [two](pizza_amount) [Margherita](pizza_type) pizzas.
-    - I want to order [2](pizza_amount) [Margherita](pizza_type) pizzas.
-    - Add [2](pizza_amount) [Margherita](pizza_type) pizzas to my order.
-    - I would like to order [2](pizza_amount) [Margherita](pizza_type) pizzas.
-    - I want to order [2](pizza_amount) [Margherita](pizza_type) pizzas please.
-    - [Two](pizza_amount) [Margherita](pizza_type) pizzas.
-    - [Two](pizza_amount) [Margherita](pizza_type) pizzas please.
-    - Please add [two](pizza_amount) [Margherita](pizza_type) pizzas to my order.
-    - Please [two](pizza_amount) [Margherita](pizza_type) pizzas.
-    - I want to order [a](pizza_amount) [small](pizza_size) pizza with [mushrooms](pizza_topping).
-    - I want [one](pizza_amount) [medium](pizza_size) pizza with [pepperoni](pizza_topping).
-    - Add [one](pizza_amount) [large](pizza_size) pizza with [bell peppers](pizza_topping) to my order.
-    - I would like to order [two](pizza_amount) [small](pizza_size) pizzas with [onions](pizza_topping).
-    - I would like to order [a](pizza_amount) [medium](pizza_size) pizza with [sausage](pizza_topping).
-    - I want to order [three](pizza_amount) [large](pizza_size) pizzas with [mushrooms](pizza_topping) please.
-    - I would like to order [two](pizza_amount) [small](pizza_size) pizzas with [pepperoni](pizza_topping) please.
-    - I would like to order [a](pizza_amount) [medium](pizza_size) pizza with [mushrooms](pizza_topping) please.
-    - I want to order [three](pizza_amount) [large](pizza_size) pizzas with [peppers](pizza_topping) please.
-    - [Two](pizza_amount) [small](pizza_size) pizzas with [sausage](pizza_topping).
-    - [one](pizza_amount) [medium](pizza_size) pizza with [mushrooms](pizza_topping).
-    - [A](pizza_amount) [large](pizza_size) pizza with [pepperoni](pizza_topping).
+    - I want to order [a](pizza_quantity) [Margherita](pizza_type) pizza.
+    - I want [one](pizza_quantity) [Margherita](pizza_type) pizza.
+    - Add [one](pizza_quantity) [Margherita](pizza_type) pizza to my order.
+    - Add [a](pizza_quantity) [Margherita](pizza_type) pizza to my order.
+    - I would like to order [one](pizza_quantity) [Margherita](pizza_type) pizza.
+    - I would like to order [a](pizza_quantity) [Margherita](pizza_type) pizza.
+    - I want to order [one](pizza_quantity) [Margherita](pizza_type) pizza please.
+    - I want to order [a](pizza_quantity) [Margherita](pizza_type) pizza please.
+    - I would like to order [a](pizza_quantity) [Margherita](pizza_type) pizza please.
+    - [One](pizza_quantity) [Margherita](pizza_type) pizza.
+    - [a](pizza_quantity) [Margherita](pizza_type).
+    - [One](pizza_quantity) [Margherita](pizza_type) please.
+    - [1](pizza_quantity) [Margherita](pizza_type) pizza.
+    - I want to order [1](pizza_quantity) [Margherita](pizza_type) pizzas.
+    - I want to order [two](pizza_quantity) [Margherita](pizza_type) pizzas.
+    - I want to order [2](pizza_quantity) [Margherita](pizza_type) pizzas.
+    - Add [2](pizza_quantity) [Margherita](pizza_type) pizzas to my order.
+    - I would like to order [2](pizza_quantity) [Margherita](pizza_type) pizzas.
+    - I want to order [2](pizza_quantity) [Margherita](pizza_type) pizzas please.
+    - [Two](pizza_quantity) [Margherita](pizza_type) pizzas.
+    - [Two](pizza_quantity) [Margherita](pizza_type) pizzas please.
+    - Please add [two](pizza_quantity) [Margherita](pizza_type) pizzas to my order.
+    - Please [two](pizza_quantity) [Margherita](pizza_type) pizzas.
+    - I want to order [a](pizza_quantity) [small](pizza_size) pizza with [mushrooms](pizza_topping).
+    - I want [one](pizza_quantity) [medium](pizza_size) pizza with [pepperoni](pizza_topping).
+    - Add [one](pizza_quantity) [large](pizza_size) pizza with [bell peppers](pizza_topping) to my order.
+    - I would like to order [two](pizza_quantity) [small](pizza_size) pizzas with [onions](pizza_topping).
+    - I would like to order [a](pizza_quantity) [medium](pizza_size) pizza with [sausage](pizza_topping).
+    - I want to order [three](pizza_quantity) [large](pizza_size) pizzas with [mushrooms](pizza_topping) please.
+    - I would like to order [two](pizza_quantity) [small](pizza_size) pizzas with [pepperoni](pizza_topping) please.
+    - I would like to order [a](pizza_quantity) [medium](pizza_size) pizza with [mushrooms](pizza_topping) please.
+    - I want to order [three](pizza_quantity) [large](pizza_size) pizzas with [peppers](pizza_topping) please.
+    - [Two](pizza_quantity) [small](pizza_size) pizzas with [sausage](pizza_topping).
+    - [one](pizza_quantity) [medium](pizza_size) pizza with [mushrooms](pizza_topping).
+    - [A](pizza_quantity) [large](pizza_size) pizza with [pepperoni](pizza_topping).
     - [Medium](pizza_size) pizza with [olives](pizza_topping).
     - [Small](pizza_size) pizzas with [pepperoni](pizza_topping).
     - [Large](pizza_size) pizza with [mushrooms](pizza_topping) please.
-    - Please add [one](pizza_amount) [small](pizza_size) pizza with [mushrooms](pizza_topping) to my order.
+    - Please add [one](pizza_quantity) [small](pizza_size) pizza with [mushrooms](pizza_topping) to my order.
     - Please [medium](pizza_size) pizza with [pepperoni](pizza_topping).
-    - Please [a](pizza_amount) [large](pizza_size) pizza with [bell peppers](pizza_topping).
+    - Please [a](pizza_quantity) [large](pizza_size) pizza with [bell peppers](pizza_topping).
     - [Large](pizza_size) pizza with [sausage](pizza_topping).
-    - [Two](pizza_amount) [small](pizza_size) pizzas with [mushrooms](pizza_topping).
-    - [Three](pizza_amount) [medium](pizza_size) pizzas with [pepperoni](pizza_topping).
-    - [Four](pizza_amount) [large](pizza_size) pizzas with [sausage](pizza_topping).
-    - I want to order [a](pizza_amount) [small](pizza_size) [Margherita](pizza_type) pizza with [mushrooms](pizza_topping).
-    - I want [one](pizza_amount) [medium](pizza_size) [Vegetarian Supreme](pizza_type) pizza with [pepperoni](pizza_topping).
-    - Add [one](pizza_amount) [large](pizza_size) [Pesto and Sun-Dried Tomato](pizza_type) pizza to my order.
-    - I would like to order [two](pizza_amount) [small](pizza_size) [BBQ Chicken](pizza_type) pizzas with [mushrooms](pizza_topping).
-    - I would like to order [a](pizza_amount) [medium](pizza_size) [Seafood Delight](pizza_type) pizza with [Tangy BBQ sauce](pizza_topping).
-    - I want to order [three](pizza_amount) [large](pizza_size) [Margherita](pizza_type) pizzas with [grilled chicken](pizza_topping) please.
-    - I would like to order [two](pizza_amount) [small](pizza_size) [Pepperoni](pizza_type) pizzas with [cilantro](pizza_topping) please.
-    - I would like to order [a](pizza_amount) [medium](pizza_size) [Margherita](pizza_type) pizza with [mozzarella cheese](pizza_topping) please.
-    - I want to order [three](pizza_amount) [large](pizza_size) [BBQ Chicken](pizza_type) pizzas with [shrimp](pizza_topping) please.
-    - [Two](pizza_amount) [small](pizza_size) [Vegetarian Supreme](pizza_type) pizzas with [calamari](pizza_topping).
-    - [one](pizza_amount) [medium](pizza_size) [Margherita](pizza_type) pizza with [Tangy BBQ sauce](pizza_topping).
-    - [A](pizza_amount) [large](pizza_size) [Pepperoni](pizza_type) pizza with [grilled chicken](pizza_topping).
+    - [Two](pizza_quantity) [small](pizza_size) pizzas with [mushrooms](pizza_topping).
+    - [Three](pizza_quantity) [medium](pizza_size) pizzas with [pepperoni](pizza_topping).
+    - [Four](pizza_quantity) [large](pizza_size) pizzas with [sausage](pizza_topping).
+    - I want to order [a](pizza_quantity) [small](pizza_size) [Margherita](pizza_type) pizza with [mushrooms](pizza_topping).
+    - I want [one](pizza_quantity) [medium](pizza_size) [Vegetarian Supreme](pizza_type) pizza with [pepperoni](pizza_topping).
+    - Add [one](pizza_quantity) [large](pizza_size) [Pesto and Sun-Dried Tomato](pizza_type) pizza to my order.
+    - I would like to order [two](pizza_quantity) [small](pizza_size) [BBQ Chicken](pizza_type) pizzas with [mushrooms](pizza_topping).
+    - I would like to order [a](pizza_quantity) [medium](pizza_size) [Seafood Delight](pizza_type) pizza with [Tangy BBQ sauce](pizza_topping).
+    - I want to order [three](pizza_quantity) [large](pizza_size) [Margherita](pizza_type) pizzas with [grilled chicken](pizza_topping) please.
+    - I would like to order [two](pizza_quantity) [small](pizza_size) [Pepperoni](pizza_type) pizzas with [cilantro](pizza_topping) please.
+    - I would like to order [a](pizza_quantity) [medium](pizza_size) [Margherita](pizza_type) pizza with [mozzarella cheese](pizza_topping) please.
+    - I want to order [three](pizza_quantity) [large](pizza_size) [BBQ Chicken](pizza_type) pizzas with [shrimp](pizza_topping) please.
+    - [Two](pizza_quantity) [small](pizza_size) [Vegetarian Supreme](pizza_type) pizzas with [calamari](pizza_topping).
+    - [one](pizza_quantity) [medium](pizza_size) [Margherita](pizza_type) pizza with [Tangy BBQ sauce](pizza_topping).
+    - [A](pizza_quantity) [large](pizza_size) [Pepperoni](pizza_type) pizza with [grilled chicken](pizza_topping).
     - [Medium](pizza_size) [Pesto and Sun-Dried Tomato](pizza_type) pizza with [cilantro](pizza_topping).
     - [Small](pizza_size) [BBQ Chicken](pizza_type) pizzas with [mozzarella cheese](pizza_topping).
     - [Large](pizza_size) [Margherita](pizza_type) pizzas with [mushrooms](pizza_topping) please.
-
-# Intent to handle user's confirmation of the pizza order
+    - I want to order [a](pizza_quantity) [Margherita](pizza_type) pizza
+    - i will go with [margherita](pizza_type) pizza
 - intent: pizza_order_confirm_positive
   examples: |
     - Yes, that's what I want
@@ -548,8 +399,8 @@ nlu:
     - Yes, that's what I asked for
     - Yes, that's what I requested
     - yes, that's the correct pizza
-    - yeah, the pizza is correct 
-    - the pizza is correct 
+    - yeah, the pizza is correct
+    - the pizza is correct
     - sure, that is the right pizza
     - absolutely, that's it
     - indeed, that's the right pizza
@@ -572,9 +423,6 @@ nlu:
     - that's exactly the pizza I wanted
     - confirm my pizza
     - confirm pizza
-
-
-# Intent to handle user's denial of the pizza order
 - intent: pizza_order_confirm_negative
   examples: |
     - The pizza order is not correct
@@ -607,9 +455,8 @@ nlu:
     - No pizza is not right
     - No pizza is not correct
     - No pizza is incorrect
-# Intent to handle user's request to modify the pizza order
 - intent: pizza_order_modify
-  example: |
+  examples: |
     - I want to modify my pizza order
     - I want to change my pizza order
     - I want to edit my pizza order
@@ -631,8 +478,8 @@ nlu:
     - actually, can I get [margherita](pizza_type)?
     - actually, i'd like [small](pizza_size) pizza.
     - I'd like in [small](pizza_size) instead.
-    - i need [two](pizza_amount) instead
-    - i rather have [three](pizza_amount) instead
+    - i need [two](pizza_quantity) instead
+    - i rather have [three](pizza_quantity) instead
     - the [small](pizza_size) is too small, i want [medium](pizza_size)
     - actually, i would like a [small](pizza_size) [vegetarian](pizza_type).
     - wait, can i get  it in [large](pizza_size).
@@ -656,14 +503,6 @@ nlu:
     - i would like [small](pizza_size) [margherita](pizza_type) instead
     - i would like [medium](pizza_size) [vegetarian](pizza_type) instead
     - i would like [large](pizza_size) [pepperoni](pizza_type) instead
-    - i would like [small](pizza_size) [margherita](pizza_type) instead
-    - i would like [medium](pizza_size) [vegetarian](pizza_type) instead
-    - i would like [large](pizza_size) [pepperoni](pizza_type) instead
-    
-
-
-
-# Intent to handle user's request to show his/her complete pizza order
 - intent: show_complete_pizza_order
   examples: |
     - Can you show me my complete pizza order?
@@ -698,14 +537,6 @@ nlu:
     - Can you show me my pizza order once more please?
     - Can you show me my order once more please?
     - Can you show me my complete order once more please?
-    - Can you show me my complete pizza order again please?
-    - Can you show me my pizza order again please?
-    - Can you show me my order again please?
-    - Can you show me my complete order again please?
-    - Can you show me my complete pizza order one more time please?
-    - Can you show me my pizza order one more time please?
-    - Can you show me my order one more time please?
-    - Can you show me my complete order one more time please?
     - Yes, please show me my complete pizza order
     - Yes, please show me my pizza order
     - Yes, please show me my order
@@ -713,8 +544,6 @@ nlu:
     - Please show me my complete pizza order
     - Please show me my pizza order
     - Please show me my order
-    - How many pizzas did I order?
-    - How many pizzas did I order?
     - How many pizzas did I order?
     - How much order did I make?
     - Let me see my complete pizza order
@@ -735,9 +564,8 @@ nlu:
     - Summarize my pizza order
     - Summarize my order
     - Summarize my complete pizza order
-# Intent to handle user's acknowledgment of complete pizza order confirmation
 - intent: complete_pizza_order_confirm
-  example: |
+  examples: |
     - Perfect, that's my order
     - Pizza order is correct
     - It's the right order
@@ -771,18 +599,14 @@ nlu:
     - confirm my order
     - Yeah, that's my order
     - Yes, that's my order
-# Intent to handle user's request to cancel the pizza order
 - intent: pizza_order_cancel
   examples: |
     - I want to cancel my pizza order
     - I want to cancel my order
     - I want to cancel my pizza
-    - I want to cancel my order
-    - I want to cancel my pizza
     - I have changed my mind, I want to cancel my pizza order
     - I have changed my mind, I want to cancel my order
     - I have changed my mind, I want to cancel my pizza
-    - I have changed my mind, I don't want to order anymore
     - I have changed my mind, I don't want to order anymore
     - Sorry, I want to cancel my pizza order
     - Sorry, I want to cancel my order
@@ -807,7 +631,6 @@ nlu:
     - I want to cancel my pizza, I'm not hungry anymore
     - Suddenly I'm not hungry, I want to cancel my pizza order
     - I'm not hungry anymore, I want to cancel my pizza order. Thank you
-# Intent to handle customer's confirmation of pizza standard toppings
 - intent: pizza_standard_topping_confirm
   examples: |
     - Yes, I want the standard toppings
@@ -833,9 +656,8 @@ nlu:
     - I like the listed toppings
     - I like the listed toppings on my pizza
     - I like the listed toppings on my order
-# Intent to handle customer's denial of pizza standard toppings and request for customization
 - intent: pizza_custom_topping_request
-  example: |
+  examples: |
     - I want to customize my pizza toppings
     - I want to customize my pizza
     - I want to customize my order
@@ -866,74 +688,70 @@ nlu:
     - Please go with custom toppings
     - Custom pizza toppings, please
     - Custom please
-    - Custom toppings, please
-    - Custom toppings, thank you
     - No, thank you, I want to customize my pizza toppings
     - No, thank you, I want to customize my pizza
-# Intent to handle customer's preference for custom pizza toppings
 - intent: inform_pizza_customized_topping
-  example: |
+  examples: |
     - I want [mushrooms](pizza_topping) on my pizza
     - I want [pepperoni](pizza_topping) on my pizza
-# Intent to handle customer's response to the pizza amount
-- intent: inform_pizza_amount
+- intent: inform_pizza_quantity
   examples: |
-    - [one](pizza_amount)
-    - [two](pizza_amount)
-    - [three](pizza_amount)
-    - [four](pizza_amount)
-    - [five](pizza_amount)
-    - [six](pizza_amount)
-    - [seven](pizza_amount)
-    - [eight](pizza_amount)
-    - [nine](pizza_amount)
-    - [ten](pizza_amount)
-    - [1](pizza_amount)
-    - [2](pizza_amount)
-    - [3](pizza_amount)
-    - [4](pizza_amount)
-    - [5](pizza_amount)
-    - [6](pizza_amount)
-    - [7](pizza_amount)
-    - [8](pizza_amount)
-    - [9](pizza_amount)
-    - [10](pizza_amount)
-    - I want [one](pizza_amount)
-    - I want [two](pizza_amount)
-    - I want [three](pizza_amount)
-    - I want [four](pizza_amount)
-    - I want [five](pizza_amount)
-    - I want [six](pizza_amount)
-    - I want [seven](pizza_amount)
-    - I want [eight](pizza_amount)
-    - I want [nine](pizza_amount)
-    - I want [ten](pizza_amount)
-    - Please add [one](pizza_amount)
-    - Please add [two](pizza_amount)
-    - Please add [three](pizza_amount)
-    - Please add [four](pizza_amount)
-    - Please add [five](pizza_amount)
-    - Please add [six](pizza_amount)
-    - Please add [seven](pizza_amount)
-    - Please add [eight](pizza_amount)
-    - Please add [nine](pizza_amount)
-    - Please add [ten](pizza_amount)
-    - I would like [one](pizza_amount)
-    - I would like [two](pizza_amount)
-    - I would like [three](pizza_amount)
-    - I would like [four](pizza_amount)
-    - I would like [five](pizza_amount)
-    - I would like [six](pizza_amount)
-    - I would like [seven](pizza_amount)
-    - I would like [eight](pizza_amount)
-    - I would like [nine](pizza_amount)
-    - I would like [ten](pizza_amount)
-    - [one](pizza_amount) please
-    - [two](pizza_amount) please
-    - [three](pizza_amount) please
-    - [four](pizza_amount) please
-    - [five](pizza_amount) please
-# Intent to handle customer's response to the pizza size
+    - [one](pizza_quantity)
+    - [two](pizza_quantity)
+    - [three](pizza_quantity)
+    - [four](pizza_quantity)
+    - [five](pizza_quantity)
+    - [six](pizza_quantity)
+    - [seven](pizza_quantity)
+    - [eight](pizza_quantity)
+    - [nine](pizza_quantity)
+    - [ten](pizza_quantity)
+    - [1](pizza_quantity)
+    - [2](pizza_quantity)
+    - [3](pizza_quantity)
+    - [4](pizza_quantity)
+    - [5](pizza_quantity)
+    - [6](pizza_quantity)
+    - [7](pizza_quantity)
+    - [8](pizza_quantity)
+    - [9](pizza_quantity)
+    - [10](pizza_quantity)
+    - I want [one](pizza_quantity)
+    - I want [two](pizza_quantity)
+    - I want [three](pizza_quantity)
+    - I want [four](pizza_quantity)
+    - I want [five](pizza_quantity)
+    - I want [six](pizza_quantity)
+    - I want [seven](pizza_quantity)
+    - I want [eight](pizza_quantity)
+    - I want [nine](pizza_quantity)
+    - I want [ten](pizza_quantity)
+    - Please add [one](pizza_quantity)
+    - Please add [two](pizza_quantity)
+    - Please add [three](pizza_quantity)
+    - Please add [four](pizza_quantity)
+    - Please add [five](pizza_quantity)
+    - Please add [six](pizza_quantity)
+    - Please add [seven](pizza_quantity)
+    - Please add [eight](pizza_quantity)
+    - Please add [nine](pizza_quantity)
+    - Please add [ten](pizza_quantity)
+    - I would like [one](pizza_quantity)
+    - I would like [two](pizza_quantity)
+    - I would like [three](pizza_quantity)
+    - I would like [four](pizza_quantity)
+    - I would like [five](pizza_quantity)
+    - I would like [six](pizza_quantity)
+    - I would like [seven](pizza_quantity)
+    - I would like [eight](pizza_quantity)
+    - I would like [nine](pizza_quantity)
+    - I would like [ten](pizza_quantity)
+    - [one](pizza_quantity) please
+    - [two](pizza_quantity) please
+    - [three](pizza_quantity) please
+    - [four](pizza_quantity) please
+    - [five](pizza_quantity) please
+    - [2](pizza_quantity)
 - intent: inform_pizza_size
   examples: |
     - [small](pizza_size)
@@ -981,7 +799,7 @@ nlu:
     - [small](pizza_size) please
     - [medium](pizza_size) please
     - [large](pizza_size) please
-############################# Synonyms ###############################
+    - [small](pizza_size)
 - synonym: Margherita
   examples: |
     - margherita
@@ -1004,18 +822,15 @@ nlu:
     - supremo
 - synonym: Pesto
   examples: |
-      - Pesto
-      - pesto
-      - Pesto and Sun-Dried Tomato
+    - Pesto
+    - pesto
+    - Pesto and Sun-Dried Tomato
 - synonym: Sun-Dried
   examples: |
     - Sun-Dried
     - Sun Dried
     - Sun dried
     - Sun dried tomato
-    - Sun-Dried
-    - Sun dried tomato
-    - Sun dried
     - Sun-Dried Tomato
     - Sun dried Tomato
 - synonym: Pepperoni
@@ -1032,30 +847,21 @@ nlu:
     - BBQ Chicken
     - BBQ chicken
     - bbq chicken
-    - BBQ
-    - bbq
-- synonym: Seafood
-  examples: |
-      - Seafood
-      - seafood
-      - Seafood Delight
-      - seafood delight
-      - Seafood
-      - seafood
-- synonym: Delight
-  examples: |
-      - delight
-      - Delight
-      - Delightful
-      - delightful
 - synonym: Seafood Delight
   examples: |
-      - Seafood Delight
-      - Seafood delight
-      - Seafood
-      - seafood
-      - Delight
-      - delight
+    - Seafood
+    - seafood
+    - Seafood Delight
+    - delight
+    - Delight
+    - Seafood delight
+- synonym: Seafood
+  examples: |
+    - seafood delight
+- synonym: Delight
+  examples: |
+    - Delightful
+    - delightful
 - synonym: small
   examples: |
     - 10 inches
@@ -1134,3 +940,101 @@ nlu:
     - 7
     - seven
     - Seven
+- regex: pizza_quantity
+  examples: |
+    - 1
+    - 10
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - A
+    - Eight
+    - Five
+    - Four
+    - Nine
+    - One
+    - Seven
+    - Six
+    - Ten
+    - Three
+    - Two
+    - a
+    - eight
+    - five
+    - four
+    - nine
+    - one
+    - seven
+    - six
+    - ten
+    - three
+    - two
+- regex: pizza_size
+  examples: |
+    - Large
+    - Medium
+    - Small
+    - large
+    - medium
+    - small
+- regex: pizza_topping
+  examples: |
+    - Basil
+    - Bell peppers
+    - Calamari
+    - Cilantro
+    - Grilled chicken
+    - Mozzarella
+    - Mozzarella
+    - Mozzarella
+    - Mozzarella
+    - Mozzarella cheese
+    - Mushrooms
+    - Olives
+    - Pepperoni
+    - Red onions
+    - Shrimp
+    - Tangy BBQ sauce
+    - Tangy BBQ sauce
+    - Tomato sauce
+    - Tomato sauce
+    - Tomato sauce
+    - Tomato sauce
+    - basil
+    - bell peppers
+    - calamari
+    - cilantro
+    - grilled chicken
+    - mozzarella
+    - mozzarella
+    - mozzarella
+    - mozzarella
+    - mozzarella cheese
+    - mushrooms
+    - olives
+    - pepperoni
+    - red onions
+    - shrimp
+    - tomato sauce
+    - tomato sauce
+    - tomato sauce
+    - tomato sauce
+- regex: pizza_type
+  examples: |
+    - BBQ Chicken
+    - Margherita
+    - Pepperoni
+    - Pesto and Sun-Dried Tomato
+    - Seafood Delight
+    - Vegetarian Supreme
+    - bbq chicken
+    - margherita
+    - pepperoni
+    - pesto and sun-dried tomato
+    - seafood delight
+    - vegetarian supreme

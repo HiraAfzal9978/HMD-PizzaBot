@@ -66,3 +66,29 @@ rules:
       - intent: recommend_non_vegetarian_pizza
       - action: utter_recommend_non_vegetarian_pizza
 
+  - rule: Activate pizza order form
+    steps:
+      - intent: pizza_order_start
+      - action: pizza_order_form
+      - active_loop: pizza_order_form
+
+
+  - rule: Submit pizza order form
+    condition:
+      - active_loop: pizza_order_form
+    steps:
+      - action: pizza_order_form
+      - active_loop: null
+      - slot_was_set:
+        - requested_slot: null
+      - action: utter_summarize_pizza_order
+
+#  - rule: handle order prediction
+#    condition:
+#      - active_loop: pizza_order_form
+#    steps:
+#        - action: utter_pizza_order_form
+#        - active_loop: null
+#        - slot_was_set:
+#            - requested_slot: null
+#        - action: utter_summarize_pizza_order

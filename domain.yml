@@ -1,227 +1,232 @@
-version: "3.1"
-
+version: '3.1'
 intents:
-  - start_greet
-  - end_greet
-  - out_of_scope
-  - bot_challenge
-  - affirm
-  - deny
-  - initiate_general_conversation
-  - inform_menu
-  - inform_vegetarian_menu
-  - inform_non_vegetarian_menu
-  - recommend_pizza
-  - recommend_vegetarian_pizza
-  - recommend_non_vegetarian_pizza
-  - pizza_order_start
-  - pizza_order_confirm_positive
-  - pizza_order_confirm_negative
-  - pizza_order_modify
-  - complete_pizza_order_confirm
-  - pizza_order_cancel
-  - show_complete_pizza_order
-  - pizza_standard_topping_confirm
-  - pizza_custom_topping_request
-  - inform_pizza_customized_topping
-  - inform_pizza_amount
-  - inform_pizza_size
-
+- affirm
+- bot_challenge
+- complete_pizza_order_confirm
+- deny
+- end_greet
+- inform_menu
+- inform_non_vegetarian_menu
+- inform_pizza_customized_topping
+- inform_pizza_quantity
+- inform_pizza_size
+- inform_vegetarian_menu
+- initiate_general_conversation
+- out_of_scope
+- pizza_custom_topping_request
+- pizza_order_cancel
+- pizza_order_confirm_negative
+- pizza_order_confirm_positive
+- pizza_order_modify
+- pizza_order_start
+- pizza_standard_topping_confirm
+- recommend_non_vegetarian_pizza
+- recommend_pizza
+- recommend_vegetarian_pizza
+- show_complete_pizza_order
+- start_greet
+- user_topping_confirmation
 entities:
-  - menu_category
-  - recommendation_category
-  - pizza_type
-  - pizza_size
-  - pizza_topping
-  - pizza_amount
-
+- pizza_quantity
+- pizza_type
+- pizza_size
+- menu_category
+- recommendation_category
+- pizza_topping
 actions:
-  - utter_greet
-  - utter_end_greet
-  - utter_out_of_scope
-  - utter_bot_challenge
-  - utter_affirm
-  - utter_deny
-  - utter_initiate_general_conversation
-  - utter_inform_menu
-  - utter_inform_vegetarian_menu
-  - utter_inform_non_vegetarian_menu
-  - utter_recommend_pizza
-  - utter_recommend_vegetarian_pizza
-  - utter_recommend_non_vegetarian_pizza
-
+- action_ask_pizza_size
+- action_ask_pizza_quantity
+- utter_greet
+- utter_inform_menu
+- action_ask_pizza_topping
+- utter_initiate_general_conversation
+- utter_end_greet
+- utter_out_of_scope
+- utter_bot_challenge
+- utter_affirm
+- utter_deny
+- utter_inform_vegetarian_menu
+- utter_inform_non_vegetarian_menu
+- utter_recommend_pizza
+- utter_recommend_vegetarian_pizza
+- utter_recommend_non_vegetarian_pizza
+- action_ask_topping_confirmation
+- pizza_order_form
 responses:
-    utter_greet:
-        - text: "Hello! Welcome to Champ Pizza Hut! How may I assist you today?"
-    utter_end_greet:
-        - text: "Thank you for choosing Champ Pizza Hut! Have a great day."
-    utter_out_of_scope:
-        - text: "I'm sorry, I can only assist with Pizza Order."
-    utter_bot_challenge:
-        - text: "Yes, I am a bot designed to help you with Pizza Order."
-    utter_affirm:
-        - text: "Great!"
-    utter_deny:
-        - text: "Okay, let me know if you need anything else."
-    utter_initiate_general_conversation:
-        - text: "Ah, the aroma of freshly baked pizza! You've landed in pizza heaven, my friend. How can I make your pizza dreams come true today? Would you like to explore our menu, or are you curious about our recommended specialities?"
-    utter_inform_menu:
-        - text: |
-            🍕 Menu of the Pizza 🍕:
-    
-            - 🌱 Vegetarian Pizzas:
-                - Margherita Pizza: Classic tomato sauce, mozzarella cheese, fresh basil leaves. Price: $9.99
-                - Vegetarian Supreme Pizza: Loaded with mushrooms, bell peppers, onions, olives, and tomatoes. Price: $11.99
-                - Pesto and Sun-Dried Tomato Pizza: Pesto sauce, sun-dried tomatoes, spinach, feta cheese. Price: $12.99
-    
-            - 🍗 Non-Vegetarian Pizzas:
-                - Pepperoni Pizza: Generously topped with spicy pepperoni slices and mozzarella cheese. Price: $10.99
-                - BBQ Chicken Pizza: Tangy BBQ sauce, grilled chicken, red onions, cilantro, and mozzarella cheese. Price: $12.99
-                - Seafood Delight Pizza: A seafood lover's dream with shrimp, squid, mussels, and a blend of cheeses. Price: $14.99
-    
-            -------------------------------------------
-            🤔 Which pizza would you like to order?
-    utter_inform_vegetarian_menu:
-        - text: |
-            🥦 Here are our delicious Vegetarian Pizzas:
-    
-            - Margherita Pizza: Classic tomato sauce, mozzarella cheese, fresh basil leaves. Price: $9.99
-            - Vegetarian Supreme Pizza: Loaded with mushrooms, bell peppers, onions, olives, and tomatoes. Price: $11.99
-            - Pesto and Sun-Dried Tomato Pizza: Pesto sauce, sun-dried tomatoes, spinach, feta cheese. Price: $12.99
-            
-            -------------------------------------------
-            🤔 Which vegetarian pizza would you like to order?
-
-    utter_inform_non_vegetarian_menu:
-        - text: |
-            🍗 Here are our savory Non-Vegetarian Pizzas:
-    
-            - Pepperoni Pizza: Generously topped with spicy pepperoni slices and mozzarella cheese. Price: $10.99
-            - BBQ Chicken Pizza: Tangy BBQ sauce, grilled chicken, red onions, cilantro, and mozzarella cheese. Price: $12.99
-            - Seafood Delight Pizza: A seafood lover's dream with shrimp, squid, mussels, and a blend of cheeses. Price: $14.99
-            
-            -------------------------------------------
-            🤔 Which non-vegetarian pizza would you like to order?
-    utter_recommend_pizza:
-        - text: |
-            🍕 Here are some of our recommended pizzas:
-    
-            - 🌱 Recommended Vegetarian Pizzas:
-                - Chef's Special Veggie Pizza: Our chef's signature creation with a delightful combination of vegetarian flavors. Price: $15.99
-                - Margherita Pizza: Classic tomato sauce, mozzarella cheese, fresh basil leaves. Price: $10.99
-    
-            - 🍗 Recommended Non-Vegetarian Pizzas:
-                - Chef's Special Meat Lover's Pizza: Our chef's signature creation loaded with savory meats. Price: $16.99
-                - Pepperoni Paradise Pizza: A classic favorite topped with generous pepperoni slices. Price: $11.99
-            
-            -------------------------------------------
-            🤔 Which one would you like to try?
-    utter_recommend_vegetarian_pizza:
-        - text: |
-            🍕 Here are some of our recommended vegetarian pizzas:
-    
-            - 🥦 Recommended Vegetarian Pizzas:
-                - Chef's Special Veggie Pizza: Our chef's signature creation with a delightful combination of vegetarian flavors. Price: $15.99
-                - Margherita Pizza: Classic tomato sauce, mozzarella cheese, fresh basil leaves. Price: $10.99
-            
-            -------------------------------------------
-            🤔 Which one would you like to try?
-
-    utter_recommend_non_vegetarian_pizza:
-        - text: |
-            🍕 Here are some of our recommended non-vegetarian pizzas:
-    
-            - 🍗 Recommended Non-Vegetarian Pizzas:
-                - Chef's Special Meat Lover's Pizza: Our chef's signature creation loaded with savory meats. Price: $16.99
-                - Pepperoni Paradise Pizza: A classic favorite topped with generous pepperoni slices. Price: $11.99
-    
-            -------------------------------------------
-            🤔 Which one would you like to try?
-
-templates:
   utter_greet:
-    - text: "Hello! Welcome to Champ Pizza Hut! How may I assist you today?"
+  - text: Hello! Welcome to Champ Pizza Hut! How may I assist you today?
   utter_end_greet:
-    - text: "Thank you for choosing Champ Pizza Hut! Have a great day."
+  - text: Thank you for choosing Champ Pizza Hut! Have a great day.
   utter_out_of_scope:
-    - text: "I'm sorry, I can only assist with Pizza Order."
+  - text: I'm sorry, I can only assist with Pizza Order.
   utter_bot_challenge:
-    - text: "Yes, I am a bot designed to help you with Pizza Order."
+  - text: Yes, I am a bot designed to help you with Pizza Order.
   utter_affirm:
-    - text: "Great!"
+  - text: Great!
   utter_deny:
-    - text: "Okay, let me know if you need anything else."
+  - text: Okay, let me know if you need anything else.
   utter_initiate_general_conversation:
-    - text: "Ah, the aroma of freshly baked pizza! You've landed in pizza heaven, my friend. How can I make your pizza dreams come true today? Would you like to explore our menu, or are you curious about our recommended specialities?"
+  - text: Ah, the aroma of freshly baked pizza! You've landed in pizza heaven, my friend. How can I make your pizza dreams come true today? Would you like to explore our menu, or are you curious about our recommended specialities?
   utter_inform_menu:
-    - text: |
-        🍕 Menu of the Pizza 🍕:
+  - text: |
+      🍕 Menu of the Pizza 🍕:
 
-        - 🌱 Vegetarian Pizzas:
-            - Margherita Pizza: Classic tomato sauce, mozzarella cheese, fresh basil leaves. Price: $9.99
-            - Vegetarian Supreme Pizza: Loaded with mushrooms, bell peppers, onions, olives, and tomatoes. Price: $11.99
-            - Pesto and Sun-Dried Tomato Pizza: Pesto sauce, sun-dried tomatoes, spinach, feta cheese. Price: $12.99
-
-        - 🍗 Non-Vegetarian Pizzas:
-            - Pepperoni Pizza: Generously topped with spicy pepperoni slices and mozzarella cheese. Price: $10.99
-            - BBQ Chicken Pizza: Tangy BBQ sauce, grilled chicken, red onions, cilantro, and mozzarella cheese. Price: $12.99
-            - Seafood Delight Pizza: A seafood lover's dream with shrimp, squid, mussels, and a blend of cheeses. Price: $14.99
-
-        -------------------------------------------
-          🤔 Which pizza would you like to order?
-  utter_inform_vegetarian_menu:
-    - text: |
-        🥦 Here are our delicious Vegetarian Pizzas:
-
+      - 🌱 Vegetarian Pizzas:
           - Margherita Pizza: Classic tomato sauce, mozzarella cheese, fresh basil leaves. Price: $9.99
           - Vegetarian Supreme Pizza: Loaded with mushrooms, bell peppers, onions, olives, and tomatoes. Price: $11.99
           - Pesto and Sun-Dried Tomato Pizza: Pesto sauce, sun-dried tomatoes, spinach, feta cheese. Price: $12.99
 
-        -------------------------------------------
-        🤔 Which vegetarian pizza would you like to order?
-
-  utter_inform_non_vegetarian_menu:
-    - text: |
-        🍗 Here are our savory Non-Vegetarian Pizzas:
-
+      - 🍗 Non-Vegetarian Pizzas:
           - Pepperoni Pizza: Generously topped with spicy pepperoni slices and mozzarella cheese. Price: $10.99
           - BBQ Chicken Pizza: Tangy BBQ sauce, grilled chicken, red onions, cilantro, and mozzarella cheese. Price: $12.99
           - Seafood Delight Pizza: A seafood lover's dream with shrimp, squid, mussels, and a blend of cheeses. Price: $14.99
 
-        -------------------------------------------
-        🤔 Which non-vegetarian pizza would you like to order?
+      -------------------------------------------
+  utter_inform_vegetarian_menu:
+  - text: |
+      🥦 Here are our delicious Vegetarian Pizzas:
+
+      - Margherita Pizza: Classic tomato sauce, mozzarella cheese, fresh basil leaves. Price: $9.99
+      - Vegetarian Supreme Pizza: Loaded with mushrooms, bell peppers, onions, olives, and tomatoes. Price: $11.99
+      - Pesto and Sun-Dried Tomato Pizza: Pesto sauce, sun-dried tomatoes, spinach, feta cheese. Price: $12.99
+
+      -------------------------------------------
+  utter_inform_non_vegetarian_menu:
+  - text: |
+      🍗 Here are our savory Non-Vegetarian Pizzas:
+
+      - Pepperoni Pizza: Generously topped with spicy pepperoni slices and mozzarella cheese. Price: $10.99
+      - BBQ Chicken Pizza: Tangy BBQ sauce, grilled chicken, red onions, cilantro, and mozzarella cheese. Price: $12.99
+      - Seafood Delight Pizza: A seafood lover's dream with shrimp, squid, mussels, and a blend of cheeses. Price: $14.99
+
+      -------------------------------------------
   utter_recommend_pizza:
-    - text: |
-        🍕 Here are some of our recommended pizzas:
+  - text: |
+      🍕 Here are some of our recommended pizzas:
 
-          - 🌱 Recommended Vegetarian Pizzas:
-              - Chef's Special Veggie Pizza: Our chef's signature creation with a delightful combination of vegetarian flavors. Price: $15.99
-              - Margherita Pizza: Classic tomato sauce, mozzarella cheese, fresh basil leaves. Price: $10.99
+      - 🌱 Recommended Vegetarian Pizzas:
+          - Chef's Special Veggie Pizza: Our chef's signature creation with a delightful combination of vegetarian flavors. Price: $15.99
+          - Margherita Pizza: Classic tomato sauce, mozzarella cheese, fresh basil leaves. Price: $10.99
 
-          - 🍗 Recommended Non-Vegetarian Pizzas:
-              - Chef's Special Meat Lover's Pizza: Our chef's signature creation loaded with savory meats. Price: $16.99
-              - Pepperoni Paradise Pizza: A classic favorite topped with generous pepperoni slices. Price: $11.99
+      - 🍗 Recommended Non-Vegetarian Pizzas:
+          - Chef's Special Meat Lover's Pizza: Our chef's signature creation loaded with savory meats. Price: $16.99
+          - Pepperoni Paradise Pizza: A classic favorite topped with generous pepperoni slices. Price: $11.99
 
-        -------------------------------------------
-        🤔 Which one would you like to try?
+      -------------------------------------------
+      🤔 Which one would you like to try?
   utter_recommend_vegetarian_pizza:
-    - text: |
-        🍕 Here are some of our recommended vegetarian pizzas:
+  - text: |
+      🍕 Here are some of our recommended vegetarian pizzas:
 
-          - 🥦 Recommended Vegetarian Pizzas:
-              - Chef's Special Veggie Pizza: Our chef's signature creation with a delightful combination of vegetarian flavors. Price: $15.99
-              - Margherita Pizza: Classic tomato sauce, mozzarella cheese, fresh basil leaves. Price: $10.99
+      - 🥦 Recommended Vegetarian Pizzas:
+          - Chef's Special Veggie Pizza: Our chef's signature creation with a delightful combination of vegetarian flavors. Price: $15.99
+          - Margherita Pizza: Classic tomato sauce, mozzarella cheese, fresh basil leaves. Price: $10.99
 
-        -------------------------------------------
-        🤔 Which one would you like to try?
-
+      -------------------------------------------
+      🤔 Which one would you like to try?
   utter_recommend_non_vegetarian_pizza:
-    - text: |
-        🍕 Here are some of our recommended non-vegetarian pizzas:
+  - text: |
+      🍕 Here are some of our recommended non-vegetarian pizzas:
 
-          - 🍗 Recommended Non-Vegetarian Pizzas:
-              - Chef's Special Meat Lover's Pizza: Our chef's signature creation loaded with savory meats. Price: $16.99
-              - Pepperoni Paradise Pizza: A classic favorite topped with generous pepperoni slices. Price: $11.99
+      - 🍗 Recommended Non-Vegetarian Pizzas:
+          - Chef's Special Meat Lover's Pizza: Our chef's signature creation loaded with savory meats. Price: $16.99
+          - Pepperoni Paradise Pizza: A classic favorite topped with generous pepperoni slices. Price: $11.99
 
-        -------------------------------------------
-        🤔 Which one would you like to try?
+      -------------------------------------------
+      🤔 Which one would you like to try?
+  utter_pizza_order_form:
+  - text: Your pizza is on the way
+  utter_summarize_pizza_order:
+  - text: You have ordered a {pizza_quantity} {pizza_size} {pizza_type} pizza with {pizza_topping} topping. Is this correct?
+  utter_ask_pizza_size:
+  - text: |
+      🍕 We offer the following sizes for our pizzas:
+
+      - Small: 8 inches
+      - Medium: 12 inches
+      - Large: 16 inches
+
+      🤔 Which size would you like to order?
+  utter_pizza_size:
+  - text: |
+      🍕 Here are the available sizes for our pizzas:
+
+      - Small: 8 inches
+      - Medium: 12 inches
+      - Large: 16 inches
+  utter_ask pizza_topping:
+  - text: |
+      🍕 What toppings would you like on your pizza?
+  utter_ask_pizza_quantity:
+  - text: |
+      🍕 How many pizzas would you like to order?
+  utter_ask_pizza_type:
+  - text: |
+      🤔 Which pizza would you like to order?
+  utter_ask_topping_confirmation:
+  - text: |
+      🍕 Would you like to go with the standard toppings or customize your own toppings?
+templates:
+  utter_greet:
+  - text: Hello! Welcome to Champ Pizza Hut! How may I assist you today?
+  utter_end_greet:
+  - text: Thank you for choosing Champ Pizza Hut! Have a great day.
+  utter_out_of_scope:
+  - text: I'm sorry, I can only assist with Pizza Order.
+  utter_bot_challenge:
+  - text: Yes, I am a bot designed to help you with Pizza Order.
+  utter_affirm:
+  - text: Great!
+  utter_deny:
+  - text: Okay, let me know if you need anything else.
+  utter_initiate_general_conversation:
+  - text: Ah, the aroma of freshly baked pizza! You've landed in pizza heaven, my friend. How can I make your pizza dreams come true today? Would you like to explore our menu, or are you curious about our recommended specialities?
+  utter_inform_menu:
+  - text: "\U0001F355 Menu of the Pizza \U0001F355:\n\n- \U0001F331 Vegetarian Pizzas:\n    - Margherita Pizza: Classic tomato sauce, mozzarella cheese, fresh basil leaves. Price: $9.99\n    - Vegetarian Supreme Pizza: Loaded with mushrooms, bell peppers, onions, olives, and tomatoes. Price: $11.99\n    - Pesto and Sun-Dried Tomato Pizza: Pesto sauce, sun-dried tomatoes, spinach, feta cheese. Price: $12.99\n\n- \U0001F357 Non-Vegetarian Pizzas:\n    - Pepperoni Pizza: Generously topped with spicy pepperoni slices and mozzarella cheese. Price: $10.99\n    - BBQ Chicken Pizza: Tangy BBQ sauce, grilled chicken, red onions, cilantro, and mozzarella cheese. Price: $12.99\n    - Seafood Delight Pizza: A seafood lover's dream with shrimp, squid, mussels, and a blend of cheeses. Price: $14.99\n\n-------------------------------------------\n  \U0001F914 Which pizza would you like to order?\n"
+  utter_inform_vegetarian_menu:
+  - text: "\U0001F966 Here are our delicious Vegetarian Pizzas:\n\n  - Margherita Pizza: Classic tomato sauce, mozzarella cheese, fresh basil leaves. Price: $9.99\n  - Vegetarian Supreme Pizza: Loaded with mushrooms, bell peppers, onions, olives, and tomatoes. Price: $11.99\n  - Pesto and Sun-Dried Tomato Pizza: Pesto sauce, sun-dried tomatoes, spinach, feta cheese. Price: $12.99\n\n-------------------------------------------\n\U0001F914 Which vegetarian pizza would you like to order?\n"
+  utter_inform_non_vegetarian_menu:
+  - text: "\U0001F357 Here are our savory Non-Vegetarian Pizzas:\n\n  - Pepperoni Pizza: Generously topped with spicy pepperoni slices and mozzarella cheese. Price: $10.99\n  - BBQ Chicken Pizza: Tangy BBQ sauce, grilled chicken, red onions, cilantro, and mozzarella cheese. Price: $12.99\n  - Seafood Delight Pizza: A seafood lover's dream with shrimp, squid, mussels, and a blend of cheeses. Price: $14.99\n\n-------------------------------------------\n\U0001F914 Which non-vegetarian pizza would you like to order?\n"
+  utter_recommend_pizza:
+  - text: "\U0001F355 Here are some of our recommended pizzas:\n\n  - \U0001F331 Recommended Vegetarian Pizzas:\n      - Chef's Special Veggie Pizza: Our chef's signature creation with a delightful combination of vegetarian flavors. Price: $15.99\n      - Margherita Pizza: Classic tomato sauce, mozzarella cheese, fresh basil leaves. Price: $10.99\n\n  - \U0001F357 Recommended Non-Vegetarian Pizzas:\n      - Chef's Special Meat Lover's Pizza: Our chef's signature creation loaded with savory meats. Price: $16.99\n      - Pepperoni Paradise Pizza: A classic favorite topped with generous pepperoni slices. Price: $11.99\n\n-------------------------------------------\n\U0001F914 Which one would you like to try?\n"
+  utter_recommend_vegetarian_pizza:
+  - text: "\U0001F355 Here are some of our recommended vegetarian pizzas:\n\n  - \U0001F966 Recommended Vegetarian Pizzas:\n      - Chef's Special Veggie Pizza: Our chef's signature creation with a delightful combination of vegetarian flavors. Price: $15.99\n      - Margherita Pizza: Classic tomato sauce, mozzarella cheese, fresh basil leaves. Price: $10.99\n\n-------------------------------------------\n\U0001F914 Which one would you like to try?\n"
+  utter_recommend_non_vegetarian_pizza:
+  - text: "\U0001F355 Here are some of our recommended non-vegetarian pizzas:\n\n  - \U0001F357 Recommended Non-Vegetarian Pizzas:\n      - Chef's Special Meat Lover's Pizza: Our chef's signature creation loaded with savory meats. Price: $16.99\n      - Pepperoni Paradise Pizza: A classic favorite topped with generous pepperoni slices. Price: $11.99\n\n-------------------------------------------\n\U0001F914 Which one would you like to try?\n"
+  utter_pizza_size:
+  - text: "\U0001F355 Here are the available sizes for our pizzas:\n\n  - Small: 8 inches\n  - Medium: 12 inches\n  - Large: 16 inches\n\n\U0001F914 Which size would you like to order?\n"
+  utter_pizza_order_form:
+  - text: Your pizza is on the way
+  utter_summarize_pizza_order:
+  - text: You have ordered a {pizza_quantity} {pizza_size} {pizza_type} pizza with {pizza_topping} topping. Is this correct?
+forms:
+  pizza_order_form:
+    required_slots:
+    - pizza_type
+    - pizza_quantity
+    - pizza_size
+    - pizza_topping
+slots:
+  pizza_type:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: pizza_type
+  pizza_quantity:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: pizza_quantity
+  pizza_size:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: pizza_size
+  pizza_topping:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: pizza_topping
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

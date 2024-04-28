@@ -4,13 +4,12 @@ from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import SlotSet, FollowupAction
 from typing import Dict, Text, Any, List, Union, Optional
 
-
 PIZZA_TYPES = ["margherita", "supreme", "pesto and sun-dried tomato", "pepperoni", "seafood", "bbq chicken"]
 PIZZA_SIZES = ["small", "medium", "large"]
 PIZZA_QUANTITY = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"]
 PIZZA_TOPPINGS_STD = {
     "margherita": ["Mozzarella Cheese", "Classic Tomato Sauce ", "Fresh Basil Leaves"],
-    "supreme": ["Loaded with Mushrooms", "Bell Peppers", "Onions", "Olives", "Tomatoes"],
+    "supreme": ["Mushrooms", "Bell Peppers", "Onions", "Olives", "Tomatoes"],
     "pesto and sun-dried tomato": ["Pesto Sauce", "Sun-dried Tomatoes", "Feta Cheese", "Spinach"],
     "pepperoni": ["Pepperoni Slices", "Mozzarella Cheese", "Classic Tomato Sauce"],
     "bbq chicken": ["BBQ Sauce", "Grilled Chicken", "Red Onions", "Cilantro", "Mozzarella Cheese"],
@@ -31,7 +30,7 @@ class ActionAskPizzaSize(Action):
         return "action_ask_pizza_size"
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        dispatcher.utter_message(response="utter_ask_pizza_size")
+        dispatcher.utter_message(response="utter_pizza_size")
         return []
 
 
@@ -62,9 +61,48 @@ class ActionAskPizzaTopping(Action):
                 FollowupAction("action_ask_topping_confirmation")
             ]
         else:
-            dispatcher.utter_message(text="Sorry, I didn't get that. Please choose a pizza type from the available menu.", response="utter_inform_menu")
+            dispatcher.utter_message(text="Sorry,I didn't get that. Please choose a pizza type from the available menu.", response="utter_inform_menu")
             return []
+class ActionAddCustTopping(Action):
+    def name(self) -> Text:
+        return "action_add_cust_topping"
 
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        pizza_topping = tracker.get_slot("pizza_topping")
+        pizza_topping = pizza_topping.split(",")
+        pizza_topping = [topping.strip() for topping in pizza_topping]
+
+        return [
+            SlotSet("pizza_topping", pizza_topping),  # set the slot value
+            FollowupAction("pizza_order_form")  # go back to the pizza_order_form
+        ]
+class ActionRemoveCustTopping(Action):
+    def name(self) -> Text:
+        return "action_remove_cust_topping"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        pizza_topping = tracker.get_slot("pizza_topping")
+        pizza_topping = pizza_topping.split(",")
+        pizza_topping = [topping.strip() for topping in pizza_topping]
+
+        return [
+            SlotSet("pizza_topping", pizza_topping),  # set the slot value
+            FollowupAction("pizza_order_form")  # go back to the pizza_order_form
+        ]
+
+class ActionAddRemoveCustTopping(Action):
+    def name(self) -> Text:
+        return "action_add_remove_cust_topping"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        pizza_topping = tracker.get_slot("pizza_topping")
+        pizza_topping = pizza_topping.split(",")
+        pizza_topping = [topping.strip() for topping in pizza_topping]
+
+        return [
+            SlotSet("pizza_topping", pizza_topping),  # set the slot value
+            FollowupAction("pizza_order_form")  # go back to the pizza_order_form
+        ]
 
 class ActionAskToppingConfirmation(Action):
     def name(self) -> Text:
@@ -135,7 +173,7 @@ class ActionValidatePizzaOrderForm(FormValidationAction):
         if slot_value.lower() in PIZZA_QUANTITY:
             return {"pizza_quantity": slot_value}
         else:
-            dispatcher.utter_message(text="Sorry, if you want to order more than 10 pizzas, then please contact us on +XX-XXX-XXX-XXXX")
+            dispatcher.utter_message(text="Sorry,if you want to order more than 10 pizzas, then please contact us on +XX-XXX-XXX-XXXX")
             return {"pizza_quantity": None}
 
 

@@ -26,6 +26,7 @@ nlu:
     - see you later
     - see you
     - bye for now
+    - ok, Goodbye
 - intent: out_of_scope
   examples: |
     - What is 2 + 2?
@@ -149,6 +150,7 @@ nlu:
     - Are you a food shop?
     - i want food
     - I want to order pizza
+    - i want ot order a pizza
 - intent: inform_menu
   examples: |
     - What do you have in the pizza menu?
@@ -183,6 +185,7 @@ nlu:
     - what do you have in the pizza menu
     - what do you have in the Pizza menu
     - menu please
+    - show menu
 - intent: inform_vegetarian_menu
   examples: |
     - What do you have in the [vegetarian](menu_category) pizza menu?
@@ -395,7 +398,7 @@ nlu:
     - I want to order [a](pizza_quantity) [Margherita](pizza_type) pizza
     - i will go with [margherita](pizza_type) pizza
     - I want to order [Margherita](pizza_type) pizza
-    - I want to order [Margherita](pizza_type) pizza
+    - [margherita](pizza_type) pizza
 - intent: pizza_order_confirm_positive
   examples: |
     - Yes, that's what I want
@@ -661,6 +664,7 @@ nlu:
     - I like the listed toppings on my pizza
     - I like the listed toppings on my order
     - Yes, standard toppings please
+    - yes, i want the standrd toppings
 - intent: pizza_custom_topping_request
   examples: |
     - I want to customize my pizza toppings
@@ -699,7 +703,6 @@ nlu:
 - intent: inform_pizza_customized_topping
   examples: |
     - I want [mushrooms](pizza_topping) on my pizza
-    - I want [pepperoni](pizza_topping) on my pizza
     - I want [pepperoni](pizza_topping) on my pizza
 - intent: inform_pizza_quantity
   examples: |
@@ -807,6 +810,90 @@ nlu:
     - [medium](pizza_size) please
     - [large](pizza_size) please
     - [small](pizza_size)
+    
+- intent: add_cust_toppings
+  examples: |
+    - I want [mushrooms](cust_topping)
+    - I want to add [pepperoni](cust_topping)
+    - Could you add [bell peppers](cust_topping)
+    - I would like to add [onions](cust_topping)
+    - It would be grateful if you add [sausage](cust_topping)
+    - I want [olives](cust_topping)
+    - I want [shrimp](cust_topping)
+    - I want [grilled chicken](cust_topping)
+    - I want [mozzarella](cust_topping)
+    - I want [mozzarella cheese](cust_topping)
+    - add [tomato sauce](cust_topping)
+    - I want [tangy BBQ sauce](cust_topping)
+    - I want [basil](cust_topping)
+    - I want [red onions](cust_topping)
+    - I want [mushrooms](cust_topping) and [pepperoni](cust_topping)
+    - I want [bell peppers](cust_topping) and [onions](cust_topping)
+    - Please put [sausage](cust_topping) and [olives](cust_topping) on my pizza
+    - I'd like my pizza to have a combination of [shrimp](cust_topping) and [grilled chicken](cust_topping)
+    - I want [Mushrooms](cust_topping) and [mozzarella cheese](cust_topping)
+    - I'm in the mood for a pizza with [tomato sauce](cust_topping) and [tangy BBQ sauce](cust_topping)
+    - I want [basil](cust_topping) and [red onions](cust_topping)
+    - Please make my pizza with[mushrooms](cust_topping) and [pepperoni](cust_topping) and [bell peppers](cust_topping)
+    - I want [onions](cust_topping) and [sausage](cust_topping) and [olives](cust_topping)
+    - Include [mozzarella](cust_topping) and [shrimp](cust_topping) and [grilled chicken](cust_topping) in my pizza
+    - Add [olives](topping) and [red onions](cust_topping) to my pizza
+    - I want [extra cheese](topping) on my pizza
+    - Put [mushrooms](cust_topping) and [green peppers](cust_topping) on my pizza
+    - Can you add [pineapple](cust_topping) and [tomato sauce](cust_topping) to my pizza?
+    - I'd like [onions](cust_topping) and [basil](cust_topping) on my pizza, please
+
+- intent: remove_cust_toppings
+  examples: |
+    - I don't want [mushrooms](cust_topping)
+    - I don't want [pepperoni](cust_topping)
+    - I don't want [bell peppers](cust_topping)
+    - I don't want [onions](cust_topping)
+    - I don't want [sausage](cust_topping)
+    - Could you make my pizza without any [olives](cust_topping) toppings?
+    - I don't want [shrimp](cust_topping)
+    - I don't want [grilled chicken](cust_topping)
+    - I don't want [mozzarella](cust_topping)
+    - Could you customize my pizza by taking off the [mozzarella cheese](cust_topping)
+    - I don't want [tomato sauce](cust_topping)
+    - I don't want [tangy BBQ sauce](cust_topping)
+    - I'd like my pizza with no [basil](cust_topping)
+    - I don't want [red onions](cust_topping)
+    - Could you customize my pizza by taking off the [mushrooms](cust_topping) and [pepperoni](cust_topping)
+    - I don't want [bell peppers](cust_topping) and [onions](cust_topping)
+    - I don't want [sausage](cust_topping) and [olives](cust_topping)
+    - I don't want [shrimp](cust_topping) and [grilled chicken](cust_topping)
+    - I don't want [Mussels](cust_topping) and [mozzarella cheese](cust_topping)
+    - I don't want [tomato sauce](cust_topping) and [tangy BBQ sauce](cust_topping)
+    - I don't want [basil](cust_topping) and [red onions](cust_topping)
+    - I don't want [mushrooms](cust_topping) and [pepperoni](cust_topping) and [bell peppers](cust_topping)
+    - I don't want [onions](cust_topping) and [sausage](cust_topping) and [olives](cust_topping)
+    - Remove [olives](topping) from my pizza
+    - Take off [pineapple](cust_topping) from my pizza
+    - I don't want [extra cheese](cust_topping) on my pizza anymore
+    - Exclude [mushrooms](cust_topping) and [green peppers](cust_topping) from my pizza
+    - Remove [oilives](cust_topping) on my pizza
+    - Can you take off [pineapple](cust_topping) but keep [shrimp](cust_topping) on my pizza?
+    - No [onions](cust_topping) and [tomatoes](cust_topping) on my pizza, please
+
+- intent: add_remove_cust_toppings
+  examples: |
+    - I want [mushrooms](cust_topping) and [pepperoni](cust_topping) but not [bell peppers](cust_topping)
+    - Can you add [onions](cust_topping) and [sausage](cust_topping) but not [olives](cust_topping)?
+    - I want [mozzarella](cust_topping) and [basil](cust_topping) but not [tomato sauce](cust_topping)
+    - Add [olives](topping) and [red onions](cust_topping) but not [mushrooms](cust_topping)
+    - I want [extra cheese](cust_topping) and [green peppers](cust_topping) but not [bell peppers](cust_topping)
+    - Include [pineapple](cust_topping) and [basil](cust_topping) but not [onions](cust_topping)
+    - I'd like [mushrooms](cust_topping) and [green peppers](cust_topping) but not [shrimps](cust_topping)
+    - Please make my pizza with just [cheese](cust_topping) and (pepperoni](cust_topping), no other toppings.
+    - I want [mushrooms](cust_topping) and [pepperoni](cust_topping) but not [bell peppers](cust_topping) and [onions](cust_topping)
+    - Can you add [onions](cust_topping) and [sausage](cust_topping) but not [olives](cust_topping) and [shrimp](cust_topping)?
+    - I want [mozzarella](cust_topping) and [Cilantro](cust_topping) but not [tomato sauce](cust_topping) and [tangy BBQ sauce](cust_topping)
+    - Add [olives](topping) and [red onions](cust_topping) but not [mushrooms](cust_topping) and [pepperoni](cust_topping)
+    - I want [extra cheese](cust_topping) and [green peppers](cust_topping) but not [bell peppers](cust_topping) and [onions](cust_topping)
+    - could you taking off [pineapple](cust_topping) and [basil](cust_topping) but  adding [shrimp](cust_topping) and [grilled chicken](cust_topping) instead?
+    - Could you customize my pizza by taking off the [mozzarella cheese](cust_topping) and [tomato sauce](cust_topping) but keep [mozzarella](cust_topping) and [tangy BBQ sauce](cust_topping)?
+
 - synonym: Margherita
   examples: |
     - margherita

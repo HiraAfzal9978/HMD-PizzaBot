@@ -26,11 +26,14 @@ intents:
 - show_complete_pizza_order
 - start_greet
 - user_topping_confirmation
+- add_cust_toppings
+- remove_cust_toppings
+- add_remove_cust_toppings
 entities:
-- pizza_quantity
 - pizza_type
-- pizza_topping
 - pizza_size
+- pizza_quantity
+- pizza_topping
 - menu_category
 - recommendation_category
 slots:
@@ -226,26 +229,28 @@ templates:
   utter_summarize_customized_toppings:
   - text: "\U0001F355 You have customized your pizza with the following toppings: {pizza_topping}. Is this correct?\n"
 actions:
-- action_ask_topping_confirmation
-- utter_affirm
-- utter_ask_pizza_type
 - utter_initiate_general_conversation
 - utter_greet
+- utter_summarize_pizza_order
+- action_ask_topping_confirmation
 - utter_inform_menu
+- action_submit_pizza_order_form
+- utter_ask_pizza_type
+- utter_affirm
 - utter_summarize_customized_toppings
 - action_submit_pizza_custom_topping_form
-- utter_summarize_pizza_order
 - action_ask_pizza_topping
 - utter_ask_custom_toppings
 - action_set_standard_toppings_null
 - action_ask_pizza_custom_toppings
-- action_submit_pizza_order_form
 - action_ask_pizza_size
 - action_ask_pizza_quantity
 - action_validate_pizza_order_form
 - action_validate_pizza_custom_topping_form
 
-
+- action_add_cust_toppings
+- action_remove_cust_toppings
+- action_add_remove_cust_toppings
 forms:
   pizza_order_form:
     required_slots:
@@ -256,7 +261,6 @@ forms:
   pizza_custom_topping_form:
     required_slots:
     - pizza_custom_toppings
-
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true

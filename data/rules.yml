@@ -87,6 +87,41 @@ rules:
       - action: pizza_custom_topping_form
       - active_loop: pizza_custom_topping_form
 
+ #////////////////////////////////////////////////////////////////////////////////////////////
+  - rule: Pizza Topping Confirmation with Custom add Topping Request and Activate Pizza Custom Topping Form
+    condition:
+      - active_loop: pizza_order_form
+      - slot_was_set:
+          - pizza_type: true
+    steps:
+      - intent: add_cust_toppings
+      - action: action_set_standard_toppings_null
+      - action: pizza_custom_topping_form
+      - active_loop: pizza_custom_topping_form
+
+  - rule: Pizza Topping Confirmation with Custom remove Topping Request and Activate Pizza Custom Topping Form
+    condition:
+      - active_loop: pizza_order_form
+      - slot_was_set:
+          - pizza_type: true
+    steps:
+      - intent: remove_cust_toppings
+      - action: action_set_standard_toppings_null
+      - action: pizza_custom_topping_form
+      - active_loop: pizza_custom_topping_form
+
+  - rule: Pizza Topping Confirmation with add and remove toppings and Activate Pizza Custom Topping Form
+    condition:
+      - active_loop: pizza_order_form
+      - slot_was_set:
+          - pizza_type: true
+    steps:
+      - intent: add_remove_cust_toppings
+      - action: action_set_standard_toppings_null
+      - action: pizza_custom_topping_form
+      - active_loop: pizza_custom_topping_form
+#////////////////////////////////////////////////////////////////////////////////////////////
+
   - rule: Pizza Topping Confirmation with Standard Toppings
     condition:
       - slot_was_set:

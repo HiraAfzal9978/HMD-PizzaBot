@@ -175,7 +175,7 @@ responses:
   - text: |
       🍕 Would you like to go with the standard toppings or customize your own toppings?
   utter_summarize_pizza_order:
-  - text: You have ordered a {pizza_quantity} {pizza_size} {pizza_type} pizza with {pizza_topping} topping. Is this correct?
+  - text: You have ordered {pizza_quantity} {pizza_size} {pizza_type} pizza(s) with {pizza_topping} toppings. Is this correct?
   utter_ask_custom_toppings:
   - text: |
       🍕 What toppings would you like to add to your pizza?

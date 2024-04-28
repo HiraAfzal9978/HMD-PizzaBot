@@ -32,7 +32,7 @@ rules:
       - intent: deny
       - action: utter_deny
 
-  - rule: Handle user's request to initiate general conversation for ordering something
+  - rule: Handle user's request to initiate general conversation for ordering pizza
     steps:
       - intent: initiate_general_conversation
       - action: utter_initiate_general_conversation
@@ -70,13 +70,13 @@ rules:
       - intent: recommend_non_vegetarian_pizza
       - action: utter_recommend_non_vegetarian_pizza
 
-  - rule: Order pizza with standard toppings with form
+  - rule: Activate Pizza Order Form
     steps:
       - intent: inform_pizza_type
       - action: pizza_order_form
       - active_loop: pizza_order_form
 
-  - rule: Pizza Topping Confirmation and Activation of Custom Topping Form
+  - rule: Pizza Topping Confirmation with Custom Topping Request and Activate Pizza Custom Topping Form
     condition:
       - active_loop: pizza_order_form
       - slot_was_set:
@@ -97,30 +97,7 @@ rules:
       - action: pizza_order_form
       - active_loop: pizza_order_form
 
-  - rule: Submit pizza order form with standard toppings
-    condition:
-      - active_loop: pizza_order_form
-      - slot_was_set:
-          - pizza_type: true
-          - pizza_topping: true
-          - pizza_size: true
-          - pizza_quantity: true
-    steps:
-      - action: pizza_order_form
-      - active_loop: null
-      - action: utter_summarize_pizza_order
-
-#  - rule: Activate custom pizza topping form
-#    condition:
-#      - active_loop: pizza_order_form
-#      - slot_was_set:
-#          - pizza_type: true
-#    steps:
-#      - intent: pizza_custom_topping_request
-#      - action: pizza_custom_topping_form
-#      - active_loop: pizza_custom_topping_form
-
-  - rule: Submit custom pizza topping form
+  - rule: Submit Custom Pizza Topping Form
     condition:
       - active_loop: pizza_custom_topping_form
       - slot_was_set:
@@ -133,3 +110,16 @@ rules:
       - intent: affirm
       - action: utter_affirm
       - action: action_submit_pizza_custom_topping_form
+
+  - rule: Submit Pizza Order Form
+    condition:
+      - active_loop: pizza_order_form
+      - slot_was_set:
+          - pizza_type: true
+          - pizza_topping: true
+          - pizza_size: true
+          - pizza_quantity: true
+    steps:
+      - action: pizza_order_form
+      - active_loop: null
+      - action: utter_summarize_pizza_order

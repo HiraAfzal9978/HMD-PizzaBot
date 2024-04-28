@@ -10,6 +10,7 @@ intents:
 - inform_pizza_customized_topping
 - inform_pizza_quantity
 - inform_pizza_size
+- inform_pizza_type
 - inform_vegetarian_menu
 - initiate_general_conversation
 - out_of_scope
@@ -18,7 +19,6 @@ intents:
 - pizza_order_confirm_negative
 - pizza_order_confirm_positive
 - pizza_order_modify
-- pizza_order_start
 - pizza_standard_topping_confirm
 - recommend_non_vegetarian_pizza
 - recommend_pizza
@@ -29,29 +29,41 @@ intents:
 entities:
 - pizza_quantity
 - pizza_type
+- pizza_topping
 - pizza_size
 - menu_category
 - recommendation_category
-- pizza_topping
-actions:
-- action_ask_pizza_size
-- action_ask_pizza_quantity
-- utter_greet
-- utter_inform_menu
-- action_ask_pizza_topping
-- utter_initiate_general_conversation
-- utter_end_greet
-- utter_out_of_scope
-- utter_bot_challenge
-- utter_affirm
-- utter_deny
-- utter_inform_vegetarian_menu
-- utter_inform_non_vegetarian_menu
-- utter_recommend_pizza
-- utter_recommend_vegetarian_pizza
-- utter_recommend_non_vegetarian_pizza
-- action_ask_topping_confirmation
-- pizza_order_form
+slots:
+  pizza_type:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: pizza_type
+  pizza_custom_toppings:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: pizza_topping
+  pizza_topping:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: pizza_topping
+  pizza_size:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: pizza_size
+  pizza_quantity:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: pizza_quantity
 responses:
   utter_greet:
   - text: Hello! Welcome to Champ Pizza Hut! How may I assist you today?
@@ -134,10 +146,12 @@ responses:
 
       -------------------------------------------
       🤔 Which one would you like to try?
-  utter_pizza_order_form:
-  - text: Your pizza is on the way
-  utter_summarize_pizza_order:
-  - text: You have ordered a {pizza_quantity} {pizza_size} {pizza_type} pizza with {pizza_topping} topping. Is this correct?
+  utter_ask_pizza_type:
+  - text: |
+      🤔 Which pizza would you like to order?
+  utter_ask_pizza_topping:
+  - text: |
+      🍕 What toppings would you like on your pizza?
   utter_ask_pizza_size:
   - text: |
       🍕 We offer the following sizes for our pizzas:
@@ -147,25 +161,27 @@ responses:
       - Large: 16 inches
 
       🤔 Which size would you like to order?
-  utter_pizza_size:
+  utter_pizza_sizes:
   - text: |
       🍕 Here are the available sizes for our pizzas:
 
       - Small: 8 inches
       - Medium: 12 inches
       - Large: 16 inches
-  utter_ask pizza_topping:
-  - text: |
-      🍕 What toppings would you like on your pizza?
   utter_ask_pizza_quantity:
   - text: |
       🍕 How many pizzas would you like to order?
-  utter_ask_pizza_type:
-  - text: |
-      🤔 Which pizza would you like to order?
   utter_ask_topping_confirmation:
   - text: |
       🍕 Would you like to go with the standard toppings or customize your own toppings?
+  utter_summarize_pizza_order:
+  - text: You have ordered a {pizza_quantity} {pizza_size} {pizza_type} pizza with {pizza_topping} topping. Is this correct?
+  utter_ask_custom_toppings:
+  - text: |
+      🍕 What toppings would you like to add to your pizza?
+  utter_summarize_customized_toppings:
+  - text: |
+      🍕 You have customized your pizza with the following toppings: {pizza_topping}. Is this correct?
 templates:
   utter_greet:
   - text: Hello! Welcome to Champ Pizza Hut! How may I assist you today?
@@ -193,40 +209,54 @@ templates:
   - text: "\U0001F355 Here are some of our recommended vegetarian pizzas:\n\n  - \U0001F966 Recommended Vegetarian Pizzas:\n      - Chef's Special Veggie Pizza: Our chef's signature creation with a delightful combination of vegetarian flavors. Price: $15.99\n      - Margherita Pizza: Classic tomato sauce, mozzarella cheese, fresh basil leaves. Price: $10.99\n\n-------------------------------------------\n\U0001F914 Which one would you like to try?\n"
   utter_recommend_non_vegetarian_pizza:
   - text: "\U0001F355 Here are some of our recommended non-vegetarian pizzas:\n\n  - \U0001F357 Recommended Non-Vegetarian Pizzas:\n      - Chef's Special Meat Lover's Pizza: Our chef's signature creation loaded with savory meats. Price: $16.99\n      - Pepperoni Paradise Pizza: A classic favorite topped with generous pepperoni slices. Price: $11.99\n\n-------------------------------------------\n\U0001F914 Which one would you like to try?\n"
-  utter_pizza_size:
+  utter_ask_pizza_type:
+  - text: "\U0001F914 Which pizza would you like to order?\n"
+  utter_ask_pizza_topping:
+  - text: "\U0001F355 What toppings would you like on your pizza?\n"
+  utter_ask_pizza_size:
+  - text: "\U0001F355 We offer the following sizes for our pizzas:\n\n  - Small: 8 inches\n  - Medium: 12 inches\n  - Large: 16 inches\n\n\U0001F914 Which size would you like to order?\n"
+  utter_pizza_sizes:
   - text: "\U0001F355 Here are the available sizes for our pizzas:\n\n  - Small: 8 inches\n  - Medium: 12 inches\n  - Large: 16 inches\n\n\U0001F914 Which size would you like to order?\n"
-  utter_pizza_order_form:
-  - text: Your pizza is on the way
+  utter_ask_pizza_quantity:
+  - text: "\U0001F355 How many pizzas would you like to order?\n"
+  utter_ask_topping_confirmation:
+  - text: "\U0001F355 Would you like to go with the standard toppings or customize your own toppings?\n"
   utter_summarize_pizza_order:
   - text: You have ordered a {pizza_quantity} {pizza_size} {pizza_type} pizza with {pizza_topping} topping. Is this correct?
+  utter_summarize_customized_toppings:
+  - text: "\U0001F355 You have customized your pizza with the following toppings: {pizza_topping}. Is this correct?\n"
+actions:
+- action_ask_topping_confirmation
+- utter_affirm
+- utter_ask_pizza_type
+- utter_initiate_general_conversation
+- utter_greet
+- utter_inform_menu
+- utter_summarize_customized_toppings
+- action_submit_pizza_custom_topping_form
+- utter_summarize_pizza_order
+- action_ask_pizza_topping
+- utter_ask_custom_toppings
+- action_set_standard_toppings_null
+- action_ask_pizza_custom_toppings
+- action_submit_pizza_order_form
+- action_ask_pizza_size
+- action_ask_pizza_quantity
+- action_validate_pizza_order_form
+- action_validate_pizza_custom_topping_form
+
+
 forms:
   pizza_order_form:
     required_slots:
     - pizza_type
-    - pizza_quantity
-    - pizza_size
     - pizza_topping
-slots:
-  pizza_type:
-    type: text
-    mappings:
-    - type: from_entity
-      entity: pizza_type
-  pizza_quantity:
-    type: text
-    mappings:
-    - type: from_entity
-      entity: pizza_quantity
-  pizza_size:
-    type: text
-    mappings:
-    - type: from_entity
-      entity: pizza_size
-  pizza_topping:
-    type: text
-    mappings:
-    - type: from_entity
-      entity: pizza_topping
+    - pizza_size
+    - pizza_quantity
+  pizza_custom_topping_form:
+    required_slots:
+    - pizza_custom_toppings
+
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true

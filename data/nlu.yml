@@ -147,6 +147,8 @@ nlu:
     - Are you a food restaurant?
     - Are you a pizza shop?
     - Are you a food shop?
+    - i want food
+    - I want to order pizza
 - intent: inform_menu
   examples: |
     - What do you have in the pizza menu?
@@ -328,7 +330,7 @@ nlu:
     - What is the most ordered [non-vegetarian](recommendation_category) pizza in your eatery?
     - What is the most ordered [non-vegetarian](recommendation_category) pizza in your bistro?
     - What is the most ordered [non-vegetarian](recommendation_category) pizza in your pizzeria?
-- intent: pizza_order_start
+- intent: inform_pizza_type
   examples: |
     - I want to order [a](pizza_quantity) [Margherita](pizza_type) pizza.
     - I want [one](pizza_quantity) [Margherita](pizza_type) pizza.
@@ -392,6 +394,8 @@ nlu:
     - [Large](pizza_size) [Margherita](pizza_type) pizzas with [mushrooms](pizza_topping) please.
     - I want to order [a](pizza_quantity) [Margherita](pizza_type) pizza
     - i will go with [margherita](pizza_type) pizza
+    - I want to order [Margherita](pizza_type) pizza
+    - I want to order [Margherita](pizza_type) pizza
 - intent: pizza_order_confirm_positive
   examples: |
     - Yes, that's what I want
@@ -656,6 +660,7 @@ nlu:
     - I like the listed toppings
     - I like the listed toppings on my pizza
     - I like the listed toppings on my order
+    - Yes, standard toppings please
 - intent: pizza_custom_topping_request
   examples: |
     - I want to customize my pizza toppings
@@ -690,9 +695,11 @@ nlu:
     - Custom please
     - No, thank you, I want to customize my pizza toppings
     - No, thank you, I want to customize my pizza
+    - No, I want custom toppings
 - intent: inform_pizza_customized_topping
   examples: |
     - I want [mushrooms](pizza_topping) on my pizza
+    - I want [pepperoni](pizza_topping) on my pizza
     - I want [pepperoni](pizza_topping) on my pizza
 - intent: inform_pizza_quantity
   examples: |
@@ -751,7 +758,7 @@ nlu:
     - [three](pizza_quantity) please
     - [four](pizza_quantity) please
     - [five](pizza_quantity) please
-    - [2](pizza_quantity)
+    - [two](pizza_quantity)
 - intent: inform_pizza_size
   examples: |
     - [small](pizza_size)

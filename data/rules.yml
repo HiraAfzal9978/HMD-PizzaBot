@@ -22,15 +22,15 @@ rules:
       - intent: bot_challenge
       - action: utter_bot_challenge
 
-  - rule: Handle user acknowledges the bot's response as correct
-    steps:
-      - intent: affirm
-      - action: utter_affirm
-
-  - rule: Handle user denying the bot's response
-    steps:
-      - intent: deny
-      - action: utter_deny
+#  - rule: Handle user acknowledges the bot's response as correct
+#    steps:
+#      - intent: affirm
+#      - action: utter_affirm
+#
+#  - rule: Handle user denying the bot's response
+#    steps:
+#      - intent: deny
+#      - action: utter_deny
 
   - rule: Handle user's request to initiate general conversation for ordering pizza
     steps:
@@ -83,17 +83,18 @@ rules:
           - pizza_type: true
     steps:
       - intent: pizza_custom_topping_request
-      - action: action_set_standard_toppings_null
       - action: pizza_custom_topping_form
       - active_loop: pizza_custom_topping_form
 
   - rule: Pizza Topping Confirmation with Standard Toppings
     condition:
+      - active_loop: pizza_order_form
       - slot_was_set:
           - pizza_type: true
           - pizza_topping: true
     steps:
       - intent: pizza_standard_topping_confirm
+      - action: action_set_custom_toppings_null
       - action: pizza_order_form
       - active_loop: pizza_order_form
 
@@ -103,12 +104,14 @@ rules:
       - slot_was_set:
           - pizza_type: true
           - pizza_topping: true
+          - topping_satisfaction: true
+          - pizza_custom_toppings: true
     steps:
       - action: pizza_custom_topping_form
       - active_loop: null
       - action: utter_summarize_customized_toppings
-      - intent: affirm
-      - action: utter_affirm
+#      - intent: affirm
+#      - action: utter_affirm
       - action: action_submit_pizza_custom_topping_form
 
   - rule: Submit Pizza Order Form

@@ -9,10 +9,10 @@ PIZZA_TYPES = ["margherita", "supreme", "pesto and sun-dried tomato", "pepperoni
 PIZZA_SIZES = ["small", "medium", "large"]
 PIZZA_QUANTITY = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"]
 PIZZA_TOPPINGS_STD = {
-    "margherita": ["Mozzarella Cheese", "Classic Tomato Sauce ", "Fresh Basil Leaves"],
-    "supreme": ["Loaded with Mushrooms", "Bell Peppers", "Onions", "Olives", "Tomatoes"],
+    "margherita": ["Mozzarella Cheese", "Tomato Sauce", "Basil Leaves"],
+    "supreme": ["Mushrooms", "Bell Peppers", "Onions", "Olives", "Tomatoes"],
     "pesto and sun-dried tomato": ["Pesto Sauce", "Sun-dried Tomatoes", "Feta Cheese", "Spinach"],
-    "pepperoni": ["Pepperoni Slices", "Mozzarella Cheese", "Classic Tomato Sauce"],
+    "pepperoni": ["Pepperoni Slices", "Mozzarella Cheese", "Tomato Sauce"],
     "bbq chicken": ["BBQ Sauce", "Grilled Chicken", "Red Onions", "Cilantro", "Mozzarella Cheese"],
     "seafood": ["Shrimp", "Mussels", "Clams", "Tomato Sauce", "Mozzarella Cheese"]
 }
@@ -24,6 +24,32 @@ PIZZA_PRICES = {
     "bbq chicken": {"small": 12.99, "medium": 15.99, "large": 18.99},
     "seafood": {"small": 13.99, "medium": 16.99, "large": 19.99}
 }
+
+AVAILABLE_POSSIBLE_TOPPINGS = [
+    "mozzarella cheese",
+    "feta cheese",
+    "tomato sauce"
+    "pesto sauce",
+    "bbq sauce",
+    "grilled chicken",
+    "tomatoes",
+    "sun-dried tomatoes",
+    "spinach",
+    "basil leaves",
+    "pepperoni slices",
+    "mushrooms",
+    "onions",
+    "red onions",
+    "olives",
+    "prosciutto",
+    "artichokes",
+    "anchovies",
+    "bell peppers",
+    "cilantro",
+    "shrimp",
+    "mussels",
+    "clams"
+]
 
 
 class ActionAskPizzaSize(Action):
@@ -53,10 +79,8 @@ class ActionAskPizzaTopping(Action):
 
         if pizza_type:
             dispatcher.utter_message(
-                text="The standard toppings for {} are: {}.".format(pizza_type, PIZZA_TOPPINGS_STD[pizza_type]),
-                response="utter_ask_topping_confirmation"
+                text="The standard toppings for {} are: {}.".format(pizza_type, PIZZA_TOPPINGS_STD[pizza_type])
             )
-            # dispatcher.utter_message(response="utter_ask_topping_confirmation")
             return [
                 SlotSet("pizza_topping", PIZZA_TOPPINGS_STD[pizza_type]),
                 FollowupAction("action_ask_topping_confirmation")
@@ -71,12 +95,10 @@ class ActionAskToppingConfirmation(Action):
         return "action_ask_topping_confirmation"
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        dispatcher.utter_message(
-            text="🍕 Would you like to go with the standard toppings or customize your own toppings?",
-            response="utter_ask_custom_toppings"
-        )
+        dispatcher.utter_message(text="🍕 Would you like to go with the standard toppings or customize your own toppings?")
 
-        return []
+        # de-activate the pizza_order_form and allow user to choose either standard or custom toppings
+        return [FollowupAction("action_listen")]
 
 
 class ActionAskPizzaCustomToppings(Action):
@@ -84,8 +106,60 @@ class ActionAskPizzaCustomToppings(Action):
         return "action_ask_pizza_custom_toppings"
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        dispatcher.utter_message(response="utter_ask_custom_toppings")
+        # get current selected pizza_topping for the current pizza_type
+        pizza_topping = tracker.get_slot("pizza_topping")
+
+        # get the available possible toppings
+        available_possible_toppings = AVAILABLE_POSSIBLE_TOPPINGS
+
+        # remove the standard toppings from the available possible toppings
+        for topping in pizza_topping:
+            if topping.lower() in available_possible_toppings:
+                available_possible_toppings.remove(topping.lower())
+
+        # add 'and' before the last topping if there are more than one pizza_topping
+        if len(pizza_topping) > 1:
+            pizza_topping[-1] = "and " + pizza_topping[-1]
+
+        # add 'and' before the last topping if there are more than one topping
+        if len(available_possible_toppings) > 1:
+            available_possible_toppings[-1] = "and " + available_possible_toppings[-1]
+
+        message = "🍕 Current Selected Toppings for Your '{}' Pizza are: {}".format(
+            tracker.get_slot("pizza_type"), ", ".join(pizza_topping)
+        )
+        message += "\n🍕 We offer the following topping options: {}.".format(", ".join(available_possible_toppings))
+        message += "\n\n👋 Please make your own custom toppings (🍕) selection(s)..."
+
+        dispatcher.utter_message(text=message)
+
         return []
+
+
+class ActionAskToppingSatisfaction(Action):
+    def name(self) -> Text:
+        return "action_ask_topping_satisfaction"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        # get the latest customized toppings
+        # pizza_custom_toppings = tracker.get_slot("pizza_topping")
+        # # Show the latest customized toppings with an engaging message to the customer to confirm the toppings
+        # dispatcher.utter_message(text="🍕 Your updated toppings are: {}.".format(pizza_custom_toppings))
+        dispatcher.utter_message(response="utter_ask_topping_satisfaction")
+        return []
+
+
+class ActionSetCustomToppingsNull(Action):
+    def name(self) -> Text:
+        return "action_set_custom_toppings_null"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        # get pizza_type and pizza_topping from the tracker
+        pizza_type = tracker.get_slot("pizza_type").lower()
+        print("F:", pizza_type)
+        if pizza_type:
+            # set the pizza_topping slot with the standard toppings
+            return [SlotSet("pizza_topping", PIZZA_TOPPINGS_STD[pizza_type]), SlotSet("pizza_custom_toppings", None)]
 
 
 class ActionSetStandardToppingsNull(Action):
@@ -96,9 +170,9 @@ class ActionSetStandardToppingsNull(Action):
         return [SlotSet("pizza_topping", None)]
 
 
-class ActionValidatePizzaOrderForm(FormValidationAction):
+class ValidatePizzaOrderForm(FormValidationAction):
     def name(self) -> Text:
-        return "action_validate_pizza_order_form"
+        return "validate_pizza_order_form"
 
     async def validate_pizza_type(self, slot_value: Any, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> Dict[Text, Any]:
         """Validate pizza_type value."""
@@ -110,14 +184,20 @@ class ActionValidatePizzaOrderForm(FormValidationAction):
 
     async def validate_pizza_topping(self, slot_value: Any, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> Dict[Text, Any]:
         """Validate pizza_topping value."""
-        pizza_type = tracker.get_slot("pizza_type").lower()
-        pizza_topping = slot_value.split(",")
-        pizza_topping = [topping.strip() for topping in pizza_topping]
+        # pizza_type = tracker.get_slot("pizza_type").lower()
+        # pizza_custom_toppings = tracker.get_slot("pizza_custom_toppings")
+        pizza_topping = tracker.get_slot("pizza_topping")
 
-        if all(topping in PIZZA_TOPPINGS_STD[pizza_type] for topping in pizza_topping):
+        # if pizza_custom_toppings:
+        #     dispatcher.utter_message(text="Your customized toppings are: {}.".format(pizza_topping))
+        #     return {"pizza_topping": pizza_topping}
+        # elif pizza_topping:
+        #     return {"pizza_topping": pizza_topping}
+
+        if pizza_topping:
             return {"pizza_topping": pizza_topping}
         else:
-            dispatcher.utter_message(text="Sorry, we don't have that topping: {}. Please choose from the available toppings.".format(slot_value), response="utter_ask_topping_confirmation")
+            dispatcher.utter_message(text="Sorry, I didn't get that. Please choose a pizza type from the available menu.", response="utter_inform_menu")
             return {"pizza_topping": None}
 
     async def validate_pizza_size(self, slot_value: Any, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> Dict[Text, Any]:
@@ -166,27 +246,73 @@ class ActionSubmitPizzaOrderForm(Action):
         return []
 
 
-class ActionValidatePizzaCustomToppingForm(FormValidationAction):
+class ValidatePizzaCustomToppingForm(FormValidationAction):
     def name(self) -> Text:
-        return "action_validate_pizza_custom_topping_form"
+        return "validate_pizza_custom_topping_form"
 
     async def required_slots(self, slots_mapped_in_domain: List[Text], dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> Optional[List[Text]]:
-        return ["pizza_custom_toppings"]
+        if tracker.get_slot("topping_satisfaction"):
+            return []
+        else:
+            print("B")
+            return ["pizza_custom_toppings", "topping_satisfaction"]
 
     async def validate_pizza_custom_toppings(self, slot_value: Any, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> Dict[Text, Any]:
         """Validate pizza_custom_toppings value."""
-        pizza_type = tracker.get_slot("pizza_type").lower()
         pizza_topping = tracker.get_slot("pizza_topping")
+        pizza_custom_toppings = tracker.get_slot("pizza_custom_toppings")
+        pizza_topping = ", ".join(pizza_topping)
+        if pizza_custom_toppings:
+            if pizza_custom_toppings.__contains__(","):
+                pizza_custom_toppings = pizza_custom_toppings.split(",")
+            else:
+                pizza_custom_toppings = [pizza_custom_toppings]
 
-        print("pizza_type: ", pizza_type)
-        print("pizza_topping: ", pizza_topping)
+            # check the intent of customer
+            latest_intent = tracker.latest_message["intent"].get("name")
+            if latest_intent == "add_pizza_custom_toppings":
+                pizza_custom_toppings = [topping.strip() for topping in pizza_custom_toppings]
+            elif latest_intent == "remove_pizza_custom_toppings":
+                pizza_custom_toppings = [topping.strip() for topping in pizza_custom_toppings]
+                pizza_topping = pizza_topping.split(",")
+                pizza_topping = [topping.strip() for topping in pizza_topping]
+                for topping in pizza_custom_toppings:
+                    if topping in pizza_topping:
+                        pizza_topping.remove(topping)
+                pizza_topping = ", ".join(pizza_topping)
+            else:
+                print("Invalid intent:", latest_intent)
 
-        # set pizza_custom_toppings slot with value from pizza_topping slot
-        if pizza_topping:
-            return {"pizza_custom_toppings": pizza_topping}
+            # split the toppings into a list
+            pizza_topping = pizza_topping.split(",")
+            pizza_topping = [topping.strip() for topping in pizza_topping]
+
+            # add the custom toppings to the standard toppings list
+            if latest_intent == "add_pizza_custom_toppings":
+                pizza_topping.extend(pizza_custom_toppings)
+                dispatcher.utter_message(text="We have added {} to your toppings. You now have: {}.".format(
+                    pizza_custom_toppings, pizza_topping)
+                )
+            elif latest_intent == "remove_pizza_custom_toppings":
+                dispatcher.utter_message(text="We have removed {} from your toppings. You now have: {}.".format(
+                    pizza_custom_toppings, pizza_topping)
+                )
+
+            return {"pizza_topping": pizza_topping, "pizza_custom_toppings": pizza_custom_toppings}
         else:
-            dispatcher.utter_message(text="Sorry, I didn't get that. Please provide the custom toppings for your pizza.")
-            return {"pizza_custom_toppings": None}
+            return {"pizza_topping": pizza_topping, "pizza_custom_toppings": None}
+
+    async def validate_topping_satisfaction(self, slot_value: Any, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> Dict[Text, Any]:
+        """Validate topping_satisfaction value."""
+        latest_intent = tracker.latest_message["intent"].get("name")
+        if latest_intent == "pizza_custom_toppings_happy":
+            return {"topping_satisfaction": True}
+        else:
+            return {"topping_satisfaction": None}
+        # if slot_value:
+        #     return {"topping_satisfaction": slot_value}
+        # else:
+        #     return {"topping_satisfaction": None}
 
 
 class ActionSubmitPizzaCustomToppingForm(Action):
@@ -195,8 +321,9 @@ class ActionSubmitPizzaCustomToppingForm(Action):
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         pizza_topping = tracker.get_slot("pizza_topping")
-        pizza_topping = pizza_topping.split(",")
         pizza_topping = [topping.strip() for topping in pizza_topping]
+
+        print("F:", pizza_topping)
 
         return [
             SlotSet("pizza_topping", pizza_topping),  # set the slot value

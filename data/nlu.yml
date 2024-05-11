@@ -149,6 +149,7 @@ nlu:
     - Are you a food shop?
     - i want food
     - I want to order pizza
+    - I want pizza
 - intent: inform_menu
   examples: |
     - What do you have in the pizza menu?
@@ -355,47 +356,13 @@ nlu:
     - [Two](pizza_quantity) [Margherita](pizza_type) pizzas please.
     - Please add [two](pizza_quantity) [Margherita](pizza_type) pizzas to my order.
     - Please [two](pizza_quantity) [Margherita](pizza_type) pizzas.
-    - I want to order [a](pizza_quantity) [small](pizza_size) pizza with [mushrooms](pizza_topping).
-    - I want [one](pizza_quantity) [medium](pizza_size) pizza with [pepperoni](pizza_topping).
-    - Add [one](pizza_quantity) [large](pizza_size) pizza with [bell peppers](pizza_topping) to my order.
-    - I would like to order [two](pizza_quantity) [small](pizza_size) pizzas with [onions](pizza_topping).
-    - I would like to order [a](pizza_quantity) [medium](pizza_size) pizza with [sausage](pizza_topping).
-    - I want to order [three](pizza_quantity) [large](pizza_size) pizzas with [mushrooms](pizza_topping) please.
-    - I would like to order [two](pizza_quantity) [small](pizza_size) pizzas with [pepperoni](pizza_topping) please.
-    - I would like to order [a](pizza_quantity) [medium](pizza_size) pizza with [mushrooms](pizza_topping) please.
-    - I want to order [three](pizza_quantity) [large](pizza_size) pizzas with [peppers](pizza_topping) please.
-    - [Two](pizza_quantity) [small](pizza_size) pizzas with [sausage](pizza_topping).
-    - [one](pizza_quantity) [medium](pizza_size) pizza with [mushrooms](pizza_topping).
-    - [A](pizza_quantity) [large](pizza_size) pizza with [pepperoni](pizza_topping).
-    - [Medium](pizza_size) pizza with [olives](pizza_topping).
-    - [Small](pizza_size) pizzas with [pepperoni](pizza_topping).
-    - [Large](pizza_size) pizza with [mushrooms](pizza_topping) please.
-    - Please add [one](pizza_quantity) [small](pizza_size) pizza with [mushrooms](pizza_topping) to my order.
-    - Please [medium](pizza_size) pizza with [pepperoni](pizza_topping).
-    - Please [a](pizza_quantity) [large](pizza_size) pizza with [bell peppers](pizza_topping).
-    - [Large](pizza_size) pizza with [sausage](pizza_topping).
-    - [Two](pizza_quantity) [small](pizza_size) pizzas with [mushrooms](pizza_topping).
-    - [Three](pizza_quantity) [medium](pizza_size) pizzas with [pepperoni](pizza_topping).
-    - [Four](pizza_quantity) [large](pizza_size) pizzas with [sausage](pizza_topping).
-    - I want to order [a](pizza_quantity) [small](pizza_size) [Margherita](pizza_type) pizza with [mushrooms](pizza_topping).
-    - I want [one](pizza_quantity) [medium](pizza_size) [Vegetarian Supreme](pizza_type) pizza with [pepperoni](pizza_topping).
     - Add [one](pizza_quantity) [large](pizza_size) [Pesto and Sun-Dried Tomato](pizza_type) pizza to my order.
-    - I would like to order [two](pizza_quantity) [small](pizza_size) [BBQ Chicken](pizza_type) pizzas with [mushrooms](pizza_topping).
-    - I would like to order [a](pizza_quantity) [medium](pizza_size) [Seafood Delight](pizza_type) pizza with [Tangy BBQ sauce](pizza_topping).
-    - I want to order [three](pizza_quantity) [large](pizza_size) [Margherita](pizza_type) pizzas with [grilled chicken](pizza_topping) please.
-    - I would like to order [two](pizza_quantity) [small](pizza_size) [Pepperoni](pizza_type) pizzas with [cilantro](pizza_topping) please.
-    - I would like to order [a](pizza_quantity) [medium](pizza_size) [Margherita](pizza_type) pizza with [mozzarella cheese](pizza_topping) please.
-    - I want to order [three](pizza_quantity) [large](pizza_size) [BBQ Chicken](pizza_type) pizzas with [shrimp](pizza_topping) please.
-    - [Two](pizza_quantity) [small](pizza_size) [Vegetarian Supreme](pizza_type) pizzas with [calamari](pizza_topping).
-    - [one](pizza_quantity) [medium](pizza_size) [Margherita](pizza_type) pizza with [Tangy BBQ sauce](pizza_topping).
-    - [A](pizza_quantity) [large](pizza_size) [Pepperoni](pizza_type) pizza with [grilled chicken](pizza_topping).
-    - [Medium](pizza_size) [Pesto and Sun-Dried Tomato](pizza_type) pizza with [cilantro](pizza_topping).
-    - [Small](pizza_size) [BBQ Chicken](pizza_type) pizzas with [mozzarella cheese](pizza_topping).
-    - [Large](pizza_size) [Margherita](pizza_type) pizzas with [mushrooms](pizza_topping) please.
     - I want to order [a](pizza_quantity) [Margherita](pizza_type) pizza
     - i will go with [margherita](pizza_type) pizza
     - I want to order [Margherita](pizza_type) pizza
-    - I want to order [Margherita](pizza_type) pizza
+    - I want [Margherita](pizza_type) pizza
+    - Margherita pizza please
+    - [Margherita](pizza_type) pizza please
 - intent: pizza_order_confirm_positive
   examples: |
     - Yes, that's what I want
@@ -661,6 +628,16 @@ nlu:
     - I like the listed toppings on my pizza
     - I like the listed toppings on my order
     - Yes, standard toppings please
+    - yes, standard toppings
+    - standard toppings, please
+    - standard toppings, thank you
+    - standard toppings, thanks
+    - Definitely, I want the standard toppings
+    - Definitely, I want the standard toppings on my pizza
+    - Default toppings, please
+    - Default toppings, thank you
+    - Default toppings, thanks
+
 - intent: pizza_custom_topping_request
   examples: |
     - I want to customize my pizza toppings
@@ -696,11 +673,124 @@ nlu:
     - No, thank you, I want to customize my pizza toppings
     - No, thank you, I want to customize my pizza
     - No, I want custom toppings
-- intent: inform_pizza_customized_topping
+    - No, custom toppings please
+
+- intent: add_pizza_custom_toppings
   examples: |
-    - I want [mushrooms](pizza_topping) on my pizza
-    - I want [pepperoni](pizza_topping) on my pizza
-    - I want [pepperoni](pizza_topping) on my pizza
+    - Please add [pepperoni](pizza_custom_toppings) and [olives](pizza_custom_toppings) to my pizza
+    - Can you add [onions](pizza_custom_toppings), [mushrooms](pizza_custom_toppings) and [spinach](pizza_custom_toppings)
+    - Can you add [bell peppers](pizza_custom_toppings) and [tomatoes](pizza_custom_toppings) to my pizza
+    - I would like to add [cheese](pizza_custom_toppings) and [olives](pizza_custom_toppings) to my pizza
+    - Can you add [bell peppers](pizza_custom_toppings) and [tomatoes](pizza_custom_toppings) to my pizza
+    - I want to add [mushrooms](pizza_custom_toppings) and [onions](pizza_custom_toppings) to my pizza
+    - I want to add [pepperoni](pizza_custom_toppings) and [olives](pizza_custom_toppings) to my pizza
+    - Yes, please add [pepperoni](pizza_custom_toppings) and [olives](pizza_custom_toppings) to my pizza
+    - Yes, please add [onions](pizza_custom_toppings), [mushrooms](pizza_custom_toppings) and [spinach](pizza_custom_toppings)
+    - Yes, please add [bell peppers](pizza_custom_toppings) and [tomatoes](pizza_custom_toppings) to my pizza
+    - Add [cheese](pizza_custom_toppings) and [olives](pizza_custom_toppings) to my pizza
+    - Add [bell peppers](pizza_custom_toppings), [tomatoes](pizza_custom_toppings) and [spinach](pizza_custom_toppings) to my pizza
+    - Add [mushrooms](pizza_custom_toppings), [onions](pizza_custom_toppings) and [spinach](pizza_custom_toppings).
+    - Add [pepperoni](pizza_custom_toppings) and [olives](pizza_custom_toppings).
+    - Add [onions](pizza_custom_toppings)
+    - Add [mushrooms](pizza_custom_toppings)
+    - Add [spinach](pizza_custom_toppings)
+    - Add [bell peppers](pizza_custom_toppings)
+    - Add [tomatoes](pizza_custom_toppings)
+    - Please add [pepperoni](pizza_custom_toppings)
+    - Please add [olives](pizza_custom_toppings)
+    - Please add [onions](pizza_custom_toppings)
+    - Please add [mushrooms](pizza_custom_toppings)
+    - Please add [spinach](pizza_custom_toppings)
+    - Please add [bell peppers](pizza_custom_toppings)
+    - Please add [tomatoes](pizza_custom_toppings), [spinach](pizza_custom_toppings) and [olives](pizza_custom_toppings)
+    - Yes, add [pepperoni](pizza_custom_toppings)
+    - Yes, add [olives](pizza_custom_toppings)
+    - Yes, add [onions](pizza_custom_toppings)
+    - Yes, add [mushrooms](pizza_custom_toppings)
+    - Yes, add [spinach](pizza_custom_toppings)
+    - Yes, add [bell peppers](pizza_custom_toppings)
+    - Yes, add [tomatoes](pizza_custom_toppings)
+    - Yes, please add [pepperoni](pizza_custom_toppings)
+    - Yes, please add [olives](pizza_custom_toppings)
+    - Yes, please add [onions](pizza_custom_toppings)
+    - Yes, please add [mushrooms](pizza_custom_toppings)
+    - Yes, please add [spinach](pizza_custom_toppings)
+    - Yes, please add [bell peppers](pizza_custom_toppings)
+
+- intent: remove_pizza_custom_toppings
+  examples: |
+    - Please remove [pepperoni](pizza_custom_toppings) and [olives](pizza_custom_toppings) from my pizza
+    - Can you remove [mushrooms](pizza_custom_toppings) and [onions](pizza_custom_toppings) from my pizza
+    - I would like to remove [cheese](pizza_custom_toppings) from my pizza
+    - Can you remove [bell peppers](pizza_custom_toppings) and [tomatoes](pizza_custom_toppings) from my pizza
+    - I want to remove [mushrooms](pizza_custom_toppings) and [onions](pizza_custom_toppings) from my pizza
+    - I want to remove [pepperoni](pizza_custom_toppings) and [olives](pizza_custom_toppings) from my pizza
+    - Yes, please remove [pepperoni](pizza_custom_toppings) and [olives](pizza_custom_toppings) from my pizza
+    - Yes, please remove [onions](pizza_custom_toppings), [mushrooms](pizza_custom_toppings) and [spinach](pizza_custom_toppings) from my pizza
+    - Yes, please remove [bell peppers](pizza_custom_toppings) and [tomatoes](pizza_custom_toppings) from my pizza
+    - Remove [cheese](pizza_custom_toppings) and [olives](pizza_custom_toppings) from my pizza
+    - Remove [bell peppers](pizza_custom_toppings), [tomatoes](pizza_custom_toppings) and [spinach](pizza_custom_toppings) from my pizza
+    - Remove [mushrooms](pizza_custom_toppings), [onions](pizza_custom_toppings) and [spinach](pizza_custom_toppings).
+    - Remove [pepperoni](pizza_custom_toppings) and [olives](pizza_custom_toppings).
+    - Remove [onions](pizza_custom_toppings)
+    - Remove [mushrooms](pizza_custom_toppings)
+    - Remove [spinach](pizza_custom_toppings)
+    - Remove [bell peppers](pizza_custom_toppings)
+    - Remove [tomatoes](pizza_custom_toppings)
+    - Please remove [pepperoni](pizza_custom_toppings)
+    - Please remove [olives](pizza_custom_toppings)
+    - Please remove [onions](pizza_custom_toppings)
+    - Please remove [mushrooms](pizza_custom_toppings)
+    - Please remove [spinach](pizza_custom_toppings)
+    - Please remove [bell peppers](pizza_custom_toppings)
+    - Please remove [tomatoes](pizza_custom_toppings), [spinach](pizza_custom_toppings) and [olives](pizza_custom_toppings)
+    - Yes, remove [pepperoni](pizza_custom_toppings)
+    - Yes, remove [olives](pizza_custom_toppings)
+    - Yes, remove [onions](pizza_custom_toppings)
+    - Yes, remove [mushrooms](pizza_custom_toppings)
+    - Yes, remove [spinach](pizza_custom_toppings)
+    - Yes, remove [bell peppers](pizza_custom_toppings)
+    - Yes, remove [tomatoes](pizza_custom_toppings)
+    - Yes, please remove [pepperoni](pizza_custom_toppings)
+    - Yes, please remove [olives](pizza_custom_toppings)
+    - Yes, please remove [onions](pizza_custom_toppings)
+    - Yes, please remove [mushrooms](pizza_custom_toppings)
+    - Yes, please remove [spinach](pizza_custom_toppings)
+    - Yes, please remove [bell peppers](pizza_custom_toppings)
+
+- intent: pizza_custom_toppings_happy
+  examples: |
+    - Yes, I am happy with the custom toppings
+    - Yes, I am happy with the custom selection
+    - Yes, I am happy with the custom toppings selection
+    - I am happy with the custom toppings
+    - I am happy with the custom selection
+    - I am happy with the custom toppings selection
+    - Yes, it's perfect now.
+    - Yes, custom toppings are perfect
+    - Yes, custom selection is perfect
+    - I'm happy with my toppings selection.
+    - Perfect, no changes needed.
+    - Perfect, no more changes needed.
+    - Perfect, I'm satisfied with these toppings.
+    - Happy with the toppings.
+    _ Happy with the custom toppings.
+    - Happy with the custom selection.
+    - I'm happy with the custom toppings selection.
+    - Happy
+    - Satisfied
+    - More than happy
+    - More than satisfied
+    - I'm satisfied with these toppings.
+    - Exactly how I imagined it!
+    - No more changes, please.
+    - No more changes, I'm happy with these toppings.
+    - No more changes, I'm satisfied with these toppings.
+    - Hundred percent satisfied with these toppings.
+    - Hundred percent satisfied with these toppings selection.
+    - Hundred percent happy with these toppings.
+    - Hundred percent happy with these toppings selection.
+
 - intent: inform_pizza_quantity
   examples: |
     - [one](pizza_quantity)
@@ -758,7 +848,6 @@ nlu:
     - [three](pizza_quantity) please
     - [four](pizza_quantity) please
     - [five](pizza_quantity) please
-    - [two](pizza_quantity)
 - intent: inform_pizza_size
   examples: |
     - [small](pizza_size)
@@ -806,7 +895,8 @@ nlu:
     - [small](pizza_size) please
     - [medium](pizza_size) please
     - [large](pizza_size) please
-    - [small](pizza_size)
+
+
 - synonym: Margherita
   examples: |
     - margherita
@@ -816,7 +906,6 @@ nlu:
   examples: |
     - veggie
     - Vegetarian
-    - Vegetariana
     - vegetarian
     - vegetable
     - Vegetable
@@ -989,7 +1078,8 @@ nlu:
     - large
     - medium
     - small
-- regex: pizza_topping
+
+- regex: pizza_custom_toppings
   examples: |
     - Basil
     - Bell peppers

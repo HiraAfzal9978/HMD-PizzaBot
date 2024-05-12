@@ -94,7 +94,6 @@ rules:
           - pizza_topping: true
     steps:
       - intent: pizza_standard_topping_confirm
-      - action: action_set_custom_toppings_null
       - action: pizza_order_form
       - active_loop: pizza_order_form
 
@@ -110,8 +109,6 @@ rules:
       - action: pizza_custom_topping_form
       - active_loop: null
       - action: utter_summarize_customized_toppings
-#      - intent: affirm
-#      - action: utter_affirm
       - action: action_submit_pizza_custom_topping_form
 
   - rule: Submit Pizza Order Form
@@ -125,4 +122,5 @@ rules:
     steps:
       - action: pizza_order_form
       - active_loop: null
-      - action: utter_summarize_pizza_order
+      - action: utter_pizza_add_confirmation_message
+      - action: action_submit_pizza_order_form

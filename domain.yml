@@ -88,6 +88,10 @@ slots:
     - type: from_entity
       entity: pizza_quantity
 
+  order_list:
+    type: list
+    mappings:
+    - type: custom
 
 responses:
   utter_greet:
@@ -199,6 +203,8 @@ responses:
   utter_ask_topping_confirmation:
   - text: |
       🍕 Would you like to go with the standard toppings or customize your own toppings?
+  utter_pizza_add_confirmation_message:
+    - text: 🍕 Great! We have added {pizza_quantity} {pizza_size} {pizza_type} pizza(s) with {pizza_topping} toppings to your order.
   utter_summarize_pizza_order:
   - text: You have ordered {pizza_quantity} {pizza_size} {pizza_type} pizza(s) with {pizza_topping} toppings. Is this correct?
   utter_ask_custom_toppings:
@@ -255,6 +261,8 @@ templates:
     - text: "Would you like to add/remove more flavor or are you happy with it? Feel free to customize further! 🎨"
   utter_summarize_pizza_order:
   - text: You have ordered a {pizza_quantity} {pizza_size} {pizza_type} pizza with {pizza_topping} topping. Is this correct?
+  utter_pizza_add_confirmation_message:
+    - text: 🍕 Great! We have added {pizza_quantity} {pizza_size} {pizza_type} pizza(s) with {pizza_topping} toppings to your order.
   utter_summarize_customized_toppings:
   - text: "\U0001F355 Fantastic! You have customized your {pizza_type} pizza with these toppings: {pizza_topping}. Now, pizza is uniquely yours! 🍕 Let's move on to the next step in your pizza order. 🚀"
 
@@ -289,6 +297,8 @@ forms:
     - pizza_topping
     - pizza_size
     - pizza_quantity
+    - order_list
+
   pizza_custom_topping_form:
     required_slots:
     - pizza_custom_toppings

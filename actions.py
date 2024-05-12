@@ -156,7 +156,6 @@ class ActionSetCustomToppingsNull(Action):
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         # get pizza_type and pizza_topping from the tracker
         pizza_type = tracker.get_slot("pizza_type").lower()
-        print("F:", pizza_type)
         if pizza_type:
             # set the pizza_topping slot with the standard toppings
             return [SlotSet("pizza_topping", PIZZA_TOPPINGS_STD[pizza_type]), SlotSet("pizza_custom_toppings", None)]
@@ -218,6 +217,20 @@ class ValidatePizzaOrderForm(FormValidationAction):
             dispatcher.utter_message(text="Sorry, if you want to order more than 10 pizzas, then please contact us on +XX-XXX-XXX-XXXX")
             return {"pizza_quantity": None}
 
+    async def extract_order_list(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict) -> Dict[Text, Any]:
+        order_list = tracker.get_slot("order_list") or []
+        return {"order_list": order_list}
+
+    # async def validate_order_list(self, slot_value: Any, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> Dict[Text, Any]:
+    #     """Validate order_list value."""
+    #     # order list only contains the items which are dict type (i.e. the selected items) that are added to
+    #     # the order_list slot in the action_submit_pizza_order_form. Since the order list mapping is defined as
+    #     # from_text, so we need to remove any string type items from the order_list slot.
+    #     if slot_value:
+    #         return {"order_list": [item for item in slot_value if isinstance(item, dict)]}
+    #     else:
+    #         return {"order_list": []}
+
 
 class ActionSubmitPizzaOrderForm(Action):
     def name(self) -> Text:
@@ -230,20 +243,49 @@ class ActionSubmitPizzaOrderForm(Action):
         pizza_topping = tracker.get_slot("pizza_topping")
 
         if pizza_type and pizza_size and pizza_quantity:
-            pizza_price = PIZZA_PRICES[pizza_type][pizza_size]
-            pizza_quantity = PIZZA_QUANTITY.index(pizza_quantity) + 1
-            total_price = pizza_price * pizza_quantity
+            order_list = tracker.get_slot("order_list") or []
 
-            dispatcher.utter_message(
-                text="You have ordered {} {} {} pizza(s) with {} topping(s). Your total bill is ${:.2f}.".format(
-                    pizza_quantity, pizza_size, pizza_type, len(pizza_topping), total_price
-                )
-            )
+            # if order_list is not empty, then remove all the items from the order_list which are not dict type
+            order_list = [item for item in order_list if isinstance(item, dict)]
+
+            # calculate the total price of current selected items
+            current_item_price = PIZZA_PRICES[pizza_type][pizza_size] * PIZZA_QUANTITY.index(pizza_quantity) + 1
+
+            # if order_list is not empty, then calculate the total price of all items
+            if order_list:
+                total_price = sum([item["price"] for item in order_list]) + current_item_price
+            else:
+                total_price = current_item_price
+
+            # add the current selected item to the order_list
+            order_list.append({
+                "type": pizza_type,
+                "size": pizza_size,
+                "topping": pizza_topping,
+                "quantity": pizza_quantity,
+                "price": current_item_price
+            })
+
+            # Display Order Summary with the total price in a nice format
+            message = "🍕Here's Your Order Summary:\n"
+            for i, item in enumerate(order_list):
+                message += "{}. {} {} Pizza\n".format(i + 1, item["size"].capitalize(), item["type"].capitalize())
+                message += "   - Toppings: {}\n".format(", ".join(item["topping"]))
+                message += "   - Quantity: {}\n".format(item["quantity"].capitalize())
+                message += "   - Price: ${:.2f}\n".format(item["price"])
+
+            message += "\nTotal Price: ${:.2f}".format(total_price)
+
+            # prompt to ask if the customer wants to add more items to the order
+            message += "\n\n🍕 Would you like to add another Pizza to your order? or Proceed to Checkout?"
+
+            dispatcher.utter_message(text=message)
+
+            # set the order_list slot with the updated order_list
+            return [SlotSet("order_list", order_list)]
         else:
             dispatcher.utter_message(text="Sorry, I didn't get that. Please provide all the required information.")
             return [FollowupAction("action_restart")]
-
-        return []
 
 
 class ValidatePizzaCustomToppingForm(FormValidationAction):
@@ -254,7 +296,6 @@ class ValidatePizzaCustomToppingForm(FormValidationAction):
         if tracker.get_slot("topping_satisfaction"):
             return []
         else:
-            print("B")
             return ["pizza_custom_toppings", "topping_satisfaction"]
 
     async def validate_pizza_custom_toppings(self, slot_value: Any, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> Dict[Text, Any]:
@@ -280,23 +321,22 @@ class ValidatePizzaCustomToppingForm(FormValidationAction):
                     if topping in pizza_topping:
                         pizza_topping.remove(topping)
                 pizza_topping = ", ".join(pizza_topping)
-            else:
-                print("Invalid intent:", latest_intent)
 
             # split the toppings into a list
             pizza_topping = pizza_topping.split(",")
             pizza_topping = [topping.strip() for topping in pizza_topping]
 
-            # add the custom toppings to the standard toppings list
-            if latest_intent == "add_pizza_custom_toppings":
-                pizza_topping.extend(pizza_custom_toppings)
-                dispatcher.utter_message(text="We have added {} to your toppings. You now have: {}.".format(
-                    pizza_custom_toppings, pizza_topping)
-                )
-            elif latest_intent == "remove_pizza_custom_toppings":
-                dispatcher.utter_message(text="We have removed {} from your toppings. You now have: {}.".format(
-                    pizza_custom_toppings, pizza_topping)
-                )
+            if pizza_custom_toppings:
+                # add the custom toppings to the standard toppings list
+                if latest_intent == "add_pizza_custom_toppings":
+                    pizza_topping.extend(pizza_custom_toppings)
+                    dispatcher.utter_message(text="We have added {} to your toppings. You now have: {}.".format(
+                        pizza_custom_toppings, pizza_topping)
+                    )
+                elif latest_intent == "remove_pizza_custom_toppings":
+                    dispatcher.utter_message(text="We have removed {} from your toppings. You now have: {}.".format(
+                        pizza_custom_toppings, pizza_topping)
+                    )
 
             return {"pizza_topping": pizza_topping, "pizza_custom_toppings": pizza_custom_toppings}
         else:
@@ -322,8 +362,6 @@ class ActionSubmitPizzaCustomToppingForm(Action):
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         pizza_topping = tracker.get_slot("pizza_topping")
         pizza_topping = [topping.strip() for topping in pizza_topping]
-
-        print("F:", pizza_topping)
 
         return [
             SlotSet("pizza_topping", pizza_topping),  # set the slot value

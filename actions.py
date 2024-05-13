@@ -277,12 +277,19 @@ class ActionSubmitPizzaOrderForm(Action):
             message += "\nTotal Price: ${:.2f}".format(total_price)
 
             # prompt to ask if the customer wants to add more items to the order
-            message += "\n\n🍕 Would you like to add another Pizza to your order? or Proceed to Checkout?"
+            message += "\n\n🍕 Would you like to add another Pizza to your order? or Proceed to Pickup?"
 
             dispatcher.utter_message(text=message)
 
-            # set the order_list slot with the updated order_list
-            return [SlotSet("order_list", order_list)]
+            # set pizza_order_form slots to None so that the form can be filled again for the next order item
+            return [
+                SlotSet("pizza_type", None),
+                SlotSet("pizza_topping", None),
+                SlotSet("pizza_size", None),
+                SlotSet("pizza_quantity", None),
+                SlotSet("order_list", order_list),
+                FollowupAction("action_listen")
+            ]
         else:
             dispatcher.utter_message(text="Sorry, I didn't get that. Please provide all the required information.")
             return [FollowupAction("action_restart")]

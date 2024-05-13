@@ -124,3 +124,29 @@ rules:
       - active_loop: null
       - action: utter_pizza_add_confirmation_message
       - action: action_submit_pizza_order_form
+
+  - rule: Handle user's request to add more pizzas to the order - General
+    condition:
+      - slot_was_set:
+          - order_list: true
+    steps:
+      - intent: add_another_pizza_general
+      - action: utter_response_to_add_another_pizza_intent_general
+
+  - rule: Handle user's request to add more pizzas to the order - Specific
+    condition:
+      - slot_was_set:
+          - order_list: true
+    steps:
+      - intent: add_another_pizza_specific
+      - action: utter_response_to_add_specific_pizza_intent
+      - action: pizza_order_form
+      - active_loop: pizza_order_form
+
+  - rule: Handle user's request to proceed to pickup
+    condition:
+      - slot_was_set:
+          - order_list: true
+    steps:
+      - intent: proceed_to_pickup
+      - action: utter_response_to_proceed_to_pickup_intent

@@ -28,6 +28,10 @@ intents:
 - show_complete_pizza_order
 - start_greet
 - user_topping_confirmation
+- add_another_pizza_general
+- add_another_pizza_specific
+- proceed_to_pickup
+
 
 entities:
   - pizza_topping
@@ -215,8 +219,22 @@ responses:
         Would you like to add/remove more flavor or are you happy with it? Feel free to customize further! 🎨.
   utter_summarize_customized_toppings:
   - text: |
-      🍕 Great! Your customized toppings for {pizza_type} are {pizza_topping}. Is this correct?
-      
+      🍕 Great! Your customized toppings for {pizza_type} are {pizza_topping}. Now, pizza is uniquely yours! 🍕 Let's move on to the next step in your pizza order. 🚀
+  utter_response_to_add_another_pizza_intent_general:
+  - text: |
+      🍕 Great! Let's add another pizza to your order. 🍕
+
+      🤔 This time, would you like to try our recommended pizzas or explore the menu for more options?
+  utter_response_to_add_specific_pizza_intent:
+    - text: |
+        🍕 Great choice! Let's add another {pizza_type} pizza to your order. 🍕
+        
+        Let's move on to the next step in your pizza order. 🚀
+  utter_response_to_proceed_to_pickup_intent:
+    - text: |
+        🍕 Great! Let's proceed to the pickup. 🍕
+        
+        Now, let's move on to the next step in your pizza order. 🚀
 
 templates:
   utter_greet:
@@ -265,7 +283,12 @@ templates:
     - text: 🍕 Great! We have added {pizza_quantity} {pizza_size} {pizza_type} pizza(s) with {pizza_topping} toppings to your order.
   utter_summarize_customized_toppings:
   - text: "\U0001F355 Fantastic! You have customized your {pizza_type} pizza with these toppings: {pizza_topping}. Now, pizza is uniquely yours! 🍕 Let's move on to the next step in your pizza order. 🚀"
-
+  utter_response_to_add_another_pizza_intent_general:
+    - text: "🍕 Great! Let's add another pizza to your order. 🍕 \n\n 🤔 This time, would you like to try our recommended pizzas or explore the menu for more options?"
+  utter_response_to_add_specific_pizza_intent:
+    - text: "🍕 Great choice! Let's add another {pizza_type} pizza to your order. 🍕 \n\n Let's move on to the next step in your pizza order. 🚀"
+  utter_response_to_proceed_to_pickup_intent:
+    - text: "🍕 Great! Let's proceed to the pickup. 🍕 \n\n Now, let's move on to the next step in your pizza order. 🚀"
 
 actions:
 - utter_initiate_general_conversation

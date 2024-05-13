@@ -790,7 +790,6 @@ nlu:
     - Hundred percent satisfied with these toppings selection.
     - Hundred percent happy with these toppings.
     - Hundred percent happy with these toppings selection.
-
 - intent: inform_pizza_quantity
   examples: |
     - [one](pizza_quantity)
@@ -895,6 +894,175 @@ nlu:
     - [small](pizza_size) please
     - [medium](pizza_size) please
     - [large](pizza_size) please
+
+
+- intent: add_another_pizza_general
+  examples: |
+    - I want to add another pizza
+    - I want to add another pizza to my order
+    - I want to add another pizza to my cart
+    - I want to add another pizza to my basket
+    - I want to add another pizza to my list
+    - Can I add another pizza?
+    - Can I add another pizza to my order?
+    - Can I add another pizza to my cart?
+    - Can I add another pizza to my basket?
+    - Can I add another pizza to my list?
+    - Add another pizza
+    - Add another pizza to my order
+    - Add another pizza to my cart
+    - Order another pizza
+    - Order another pizza to my order
+    - Want another pizza
+    - Want another pizza to my order
+    - Want to add another pizza
+    - Want to add another pizza to my order
+    - I want to order another pizza
+    - I want to order another pizza to my order
+    - I want to order another pizza to my cart
+    - I want to order another pizza to my basket
+    - I want to order another pizza to my list
+    - Wanna add another pizza
+    - Wanna add another pizza to my order
+    - Wanna add another pizza to my cart
+    - Am I able to add another pizza?
+    - Am I able to add another pizza to my order?
+    - Am I able to add another pizza to my cart?
+    - One more pizza please
+    - One more pizza to my order please
+    - One more pizza to my cart please
+    - I also have more pizza to order
+    - I also have more pizza to order to my order
+    - I also have more pizza to order to my cart
+    - I also have more order to add
+    - I also have more order to add to my order
+    - Yes, I want to add another pizza
+    - Yes, I want to add another pizza to my order
+    - Yes, I want to add another pizza to my cart
+    - Yes, I want to add another pizza to my basket
+    - Yes, I want to add another pizza to my list
+    - Yes, please add another pizza
+    - Yes, please add another pizza to my order
+    - Yes, please add another pizza to my cart
+    - Yes, please I want to add another pizza
+    - Yes, please I want to add another pizza to my order
+    - Yes, I have more pizza to order
+    - Yes, I have more pizza to order to my order
+    - Yes, I have more pizza to order to my cart
+    - Yes I need to add another pizza
+    - Yes I need to add another pizza to my order
+    - Yes i need to order another pizza
+    - Yes i need to order another pizza to my order
+
+- intent: add_another_pizza_specific
+  examples: |
+    - I want to add another [margherita](pizza_type)
+    - I want to add another [vegetarian](pizza_type)
+    - I want to add another [pepperoni](pizza_type)
+    - I want to add another [BBQ](pizza_type)
+    - I want to add another [margherita](pizza_type) pizza
+    - I want to add another [vegetarian](pizza_type) pizza
+    - I want to add another [pepperoni](pizza_type) pizza
+    - I want to add another [BBQ](pizza_type) pizza
+    - Can I add another [margherita](pizza_type)?
+    - Can I add another [vegetarian](pizza_type)?
+    - Can I add another [pepperoni](pizza_type)?
+    - Can I add another [BBQ](pizza_type)?
+    - Can I add another [margherita](pizza_type) pizza?
+    - Can I add another [vegetarian](pizza_type) pizza?
+    - Can I add another [pepperoni](pizza_type) pizza?
+    - Can I add another [BBQ](pizza_type) pizza?
+    - Add another [margherita](pizza_type)
+    - Add another [vegetarian](pizza_type)
+    - Add another [pepperoni](pizza_type)
+    - Add another [BBQ](pizza_type)
+    - Add another [margherita](pizza_type) pizza
+    - Add another [vegetarian](pizza_type) pizza
+    - Add another [pepperoni](pizza_type) pizza
+    - Add another [BBQ](pizza_type) pizza
+    - Order another [margherita](pizza_type)
+    - Order another [vegetarian](pizza_type)
+    - Order another [pepperoni](pizza_type)
+    - Order another [BBQ](pizza_type)
+    - Order another [margherita](pizza_type) pizza
+    - Order another [vegetarian](pizza_type) pizza
+    - Order another [pepperoni](pizza_type) pizza
+    - Order another [BBQ](pizza_type) pizza
+    - Want another [margherita](pizza_type)
+    - Want another [vegetarian](pizza_type)
+    - Want another [pepperoni](pizza_type)
+    - Want another [BBQ](pizza_type)
+    - Yes, I want to add another [margherita](pizza_type)
+    - Yes, I want to add another [vegetarian](pizza_type)
+    - Yes, I want to add another [pepperoni](pizza_type)
+    - I want to add another [Margherita](pizza_type) [small](pizza_size) pizza
+    - I want to add another [Vegetarian](pizza_type) [medium](pizza_size) pizza
+    - I want to add another [Pepperoni](pizza_type) [large](pizza_size) pizza
+    - I want to add another [BBQ](pizza_type) [small](pizza_size) pizza
+    - I want to add another a [margherita](pizza_type) [small](pizza_size) pizza
+    - I want to add another a [small](pizza_size) [margherita](pizza_type) pizza
+    - I want to add another a [medium](pizza_size) [vegetarian](pizza_type) pizza
+    - I want to add another a [large](pizza_size) [pepperoni](pizza_type) pizza
+    - I want to add another a [small](pizza_size) [BBQ](pizza_type) pizza
+    - I want to add another a [margherita](pizza_type) [small](pizza_size) pizza
+    - Yes, I want to add another [margherita](pizza_type) [small](pizza_size) pizza
+    - Yes, I want to add another [vegetarian](pizza_type) [medium](pizza_size) pizza
+    - Yes, I want to add another [pepperoni](pizza_type) [large](pizza_size) pizza
+    - Want another [margherita](pizza_type) [small](pizza_size) pizza
+    - Want another [vegetarian](pizza_type) [medium](pizza_size) pizza
+    - Want another [pepperoni](pizza_type) [large](pizza_size) pizza
+    - Yes, I would like to order [two](pizza_quantity) more [small](pizza_size) [margherita](pizza_type) pizzas
+    - Yes, I would like to order [three](pizza_quantity) more [medium](pizza_size) [vegetarian](pizza_type) pizzas
+    - Yes, I would like to order [four](pizza_quantity) more [large](pizza_size) [pepperoni](pizza_type) pizzas
+    - I would like to order [five](pizza_quantity) more [small](pizza_size) [BBQ](pizza_type) pizzas
+
+- intent: proceed_to_pickup
+  examples: |
+    - I want to proceed to checkout
+    - I want to proceed to payment
+    - I want to proceed to payment and checkout
+    - I want to proceed to payment and checkout now
+    - I want to proceed to payment and checkout immediately
+    - I want to proceed to payment and checkout right now
+    - I want to proceed to payment and checkout right away
+    - I want to proceed to payment and checkout as soon as possible
+    - I'm ready to place my order
+    - Yes, proceed to checkout
+    - Confirm checkout
+    - Let's finalize the order
+    - Let's finalize the order and proceed to checkout
+    - Yes, I'm ready to checkout
+    - Yes, please proceed to checkout
+    - Yes, please proceed to pick up
+    - Yes, please proceed to checkout and pick up
+    - Please go ahead and checkout for pick up
+    - Yes, I want to proceed with the order.
+    - Yes, I want to proceed with the order and checkout
+    - Yes, I want to proceed with the order and pick up
+    - Yes, I want to proceed with the order and checkout for pick up
+    - Proceed to checkout.
+    - I'm ready to checkout.
+    - Let's go to the checkout.
+    - I'm happy with my order, let's checkout.
+    - I'm happy with my order, let's proceed to checkout.
+    - I'm happy with my order, let's proceed to pick up.
+    - I'm happy with my order, let's proceed to checkout and pick up.
+    - Yes, I want to complete the order.
+    - Yes, I want to complete the order and checkout
+    - Yes, I want to complete the order and pick up
+    - Yes, I want to complete the purchase.
+    - Yes, I want to complete the purchase and pick up
+    - Checkout please
+    - Proceed please
+    - Proceed to checkout please
+    - Please checkout
+    - Please proceed
+    - Please proceed to checkout
+    - Please proceed to payment
+    - Please proceed to payment and checkout
+    - Please proceed now
+    
+
 
 
 - synonym: Margherita

@@ -36,19 +36,19 @@ stories:
   - story: Show the menu
     steps:
       - intent: inform_menu
-      - action: utter_inform_menu
+      - action: action_inform_menu
       - action: utter_ask_pizza_type
 
   - story: Show the vegetarian menu
     steps:
       - intent: inform_vegetarian_menu
-      - action: utter_inform_vegetarian_menu
+      - action: action_inform_vegetarian_menu
       - action: utter_ask_pizza_type
 
   - story: Show the non-vegetarian menu
     steps:
       - intent: inform_non_vegetarian_menu
-      - action: utter_inform_non_vegetarian_menu
+      - action: action_inform_non_vegetarian_menu
       - action: utter_ask_pizza_type
 
   - story: Request for recommendations

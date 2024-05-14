@@ -333,99 +333,387 @@ nlu:
     - What is the most ordered [non-vegetarian](recommendation_category) pizza in your pizzeria?
 - intent: inform_pizza_type
   examples: |
-    - I want to order [a](pizza_quantity) [Margherita](pizza_type) pizza.
-    - I want [one](pizza_quantity) [Margherita](pizza_type) pizza.
-    - Add [one](pizza_quantity) [Margherita](pizza_type) pizza to my order.
-    - Add [a](pizza_quantity) [Margherita](pizza_type) pizza to my order.
-    - I would like to order [one](pizza_quantity) [Margherita](pizza_type) pizza.
-    - I would like to order [a](pizza_quantity) [Margherita](pizza_type) pizza.
-    - I want to order [one](pizza_quantity) [Margherita](pizza_type) pizza please.
-    - I want to order [a](pizza_quantity) [Margherita](pizza_type) pizza please.
-    - I would like to order [a](pizza_quantity) [Margherita](pizza_type) pizza please.
-    - [One](pizza_quantity) [Margherita](pizza_type) pizza.
-    - [a](pizza_quantity) [Margherita](pizza_type).
-    - [One](pizza_quantity) [Margherita](pizza_type) please.
-    - [1](pizza_quantity) [Margherita](pizza_type) pizza.
-    - I want to order [1](pizza_quantity) [Margherita](pizza_type) pizzas.
-    - I want to order [two](pizza_quantity) [Margherita](pizza_type) pizzas.
-    - I want to order [2](pizza_quantity) [Margherita](pizza_type) pizzas.
-    - Add [2](pizza_quantity) [Margherita](pizza_type) pizzas to my order.
-    - I would like to order [2](pizza_quantity) [Margherita](pizza_type) pizzas.
-    - I want to order [2](pizza_quantity) [Margherita](pizza_type) pizzas please.
-    - [Two](pizza_quantity) [Margherita](pizza_type) pizzas.
-    - [Two](pizza_quantity) [Margherita](pizza_type) pizzas please.
-    - Please add [two](pizza_quantity) [Margherita](pizza_type) pizzas to my order.
-    - Please [two](pizza_quantity) [Margherita](pizza_type) pizzas.
-    - Add [one](pizza_quantity) [large](pizza_size) [Pesto and Sun-Dried Tomato](pizza_type) pizza to my order.
-    - I want to order [a](pizza_quantity) [Margherita](pizza_type) pizza
-    - i will go with [margherita](pizza_type) pizza
-    - I want to order [Margherita](pizza_type) pizza
-    - I want [Margherita](pizza_type) pizza
-    - Margherita pizza please
+    - [Margherita](pizza_type)
+    - [Pepperoni](pizza_type)
+    - [BBQ Chicken](pizza_type)
+    - [Supreme](pizza_type)
+    - [pesto and sun-dried tomato](pizza_type)
+    - [seafood](pizza_type)
+    - [Margherita](pizza_type) pizza
+    - [Pepperoni](pizza_type) pizza
+    - [BBQ Chicken](pizza_type) pizza
+    - [Supreme](pizza_type) pizza
+    - [pesto and sun-dried tomato](pizza_type) pizza
+    - [seafood](pizza_type) pizza
+    - [Margherita](pizza_type) please
+    - [Pepperoni](pizza_type) please
+    - [BBQ Chicken](pizza_type) please
+    - [Supreme](pizza_type) please
+    - [pesto and sun-dried tomato](pizza_type) please
+    - [seafood](pizza_type) please
     - [Margherita](pizza_type) pizza please
-- intent: pizza_order_confirm_positive
-  examples: |
-    - Yes, that's what I want
-    - Yes, that's what I ordered
-    - Yes, that's what I asked for
-    - Yes, that's what I requested
-    - yes, that's the correct pizza
-    - yeah, the pizza is correct
-    - the pizza is correct
-    - sure, that is the right pizza
-    - absolutely, that's it
-    - indeed, that's the right pizza
-    - definitely, that's the pizza
-    - of course, that's correct pizza i ordered
-    - certainly, that's the right one
-    - correct, that's the pizza i wanted
-    - that's the correct pizza
-    - Yess, the pizza i wanted
-    - yes, thats the size, type and amount of pizza i wanted
-    - the pizza seems right
-    - absolutely, that's the correct pizza
-    - yes, that matches my pizza
-    - sure, that's the pizza I asked for
-    - of course, that's the right one
-    - correct, that's the pizza I'm expecting
-    - that's the pizza I'm looking for
-    - yes, that's the pizza I've been waiting for
-    - yes, that's the correct size and type
-    - that's exactly the pizza I wanted
-    - confirm my pizza
-    - confirm pizza
-- intent: pizza_order_confirm_negative
-  examples: |
-    - The pizza order is not correct
-    - The pizza order is wrong
-    - The pizza order is incorrect
-    - the pizza is not right
-    - the pizza is not correct
-    - the pizza is wrong
-    - that's not the right pizza
-    - that's not the correct pizza
-    - that's not the pizza I ordered
-    - I ordered something different
-    - I ordered something else
-    - It's the wrong pizza
-    - It's not the right pizza
-    - It's not the correct pizza
-    - It's not the pizza I ordered
-    - There's a mistake on the pizza
-    - I don't want this pizza, its wrong
-    - There's an error on the pizza
-    - that's not the correct
-    - the type of pizza is wrong
-    - the size of pizza is wrong
-    - the amount of pizza is wrong
-    - the pizza size is not correct
-    - the pizza type is not correct
-    - the pizza amount is not correct
-    - No, pizza is not correct
-    - No, pizza is wrong
-    - No pizza is not right
-    - No pizza is not correct
-    - No pizza is incorrect
+    - [Pepperoni](pizza_type) pizza please
+    - [BBQ Chicken](pizza_type) pizza please
+    - [Supreme](pizza_type) pizza please
+    - [pesto and sun-dried tomato](pizza_type) pizza please
+    - [seafood](pizza_type) pizza please
+    - Please [Margherita](pizza_type) pizza
+    - Please [Pepperoni](pizza_type) pizza
+    - Please [BBQ Chicken](pizza_type) pizza
+    - Please [Supreme](pizza_type) pizza
+    - Please [pesto and sun-dried tomato](pizza_type) pizza
+    - Please [seafood](pizza_type) pizza
+    - I want [Margherita](pizza_type) pizza
+    - I want [Pepperoni](pizza_type) pizza
+    - I want [BBQ Chicken](pizza_type) pizza
+    - I want [Supreme](pizza_type) pizza
+    - I want [pesto and sun-dried tomato](pizza_type) pizza
+    - I want [seafood](pizza_type) pizza
+    - I want [Margherita](pizza_type)
+    - I want [Pepperoni](pizza_type)
+    - I want [BBQ Chicken](pizza_type)
+    - I want [Supreme](pizza_type)
+    - I want [pesto and sun-dried tomato](pizza_type)
+    - I want [seafood](pizza_type)
+    - [one](pizza_quantity) [Margherita](pizza_type) pizza
+    - [one](pizza_quantity) [Pepperoni](pizza_type) pizza
+    - [one](pizza_quantity) [BBQ Chicken](pizza_type) pizza
+    - [one](pizza_quantity) [Supreme](pizza_type) pizza
+    - [one](pizza_quantity) [pesto and sun-dried tomato](pizza_type) pizza
+    - [one](pizza_quantity) [seafood](pizza_type) pizza
+    - [one](pizza_quantity) [Margherita](pizza_type)
+    - [one](pizza_quantity) [Pepperoni](pizza_type)
+    - [one](pizza_quantity) [BBQ Chicken](pizza_type)
+    - [one](pizza_quantity) [Supreme](pizza_type)
+    - [one](pizza_quantity) [pesto and sun-dried tomato](pizza_type)
+    - [one](pizza_quantity) [seafood](pizza_type)
+    - [a](pizza_quantity) [Margherita](pizza_type) pizza
+    - [a](pizza_quantity) [Pepperoni](pizza_type) pizza
+    - [a](pizza_quantity) [BBQ Chicken](pizza_type) pizza
+    - [a](pizza_quantity) [Supreme](pizza_type) pizza
+    - [a](pizza_quantity) [pesto and sun-dried tomato](pizza_type) pizza
+    - [a](pizza_quantity) [seafood](pizza_type) pizza
+    - [a](pizza_quantity) [Margherita](pizza_type)
+    - [a](pizza_quantity) [Pepperoni](pizza_type)
+    - [a](pizza_quantity) [BBQ Chicken](pizza_type)
+    - [a](pizza_quantity) [Supreme](pizza_type)
+    - [a](pizza_quantity) [pesto and sun-dried tomato](pizza_type)
+    - [a](pizza_quantity) [seafood](pizza_type)
+    - [two](pizza_quantity) [Margherita](pizza_type) pizzas please
+    - [two](pizza_quantity) [Pepperoni](pizza_type) pizzas please
+    - [two](pizza_quantity) [BBQ Chicken](pizza_type) pizzas please
+    - [two](pizza_quantity) [Supreme](pizza_type) pizzas please
+    - [two](pizza_quantity) [pesto and sun-dried tomato](pizza_type) pizzas please
+    - [two](pizza_quantity) [seafood](pizza_type) pizzas please
+    - [two](pizza_quantity) [Margherita](pizza_type)
+    - [two](pizza_quantity) [Pepperoni](pizza_type)
+    - [two](pizza_quantity) [BBQ Chicken](pizza_type)
+    - [two](pizza_quantity) [Supreme](pizza_type)
+    - [two](pizza_quantity) [pesto and sun-dried tomato](pizza_type)
+    - [two](pizza_quantity) [seafood](pizza_type)
+    - [three](pizza_quantity) [Margherita](pizza_type) pizzas please
+    - [three](pizza_quantity) [Pepperoni](pizza_type) pizzas please
+    - [three](pizza_quantity) [BBQ Chicken](pizza_type) pizzas please
+    - [three](pizza_quantity) [Supreme](pizza_type) pizzas please
+    - [three](pizza_quantity) [pesto and sun-dried tomato](pizza_type) pizzas please
+    - [three](pizza_quantity) [seafood](pizza_type) pizzas please
+    - [three](pizza_quantity) [Margherita](pizza_type)
+    - [three](pizza_quantity) [Pepperoni](pizza_type)
+    - [three](pizza_quantity) [BBQ Chicken](pizza_type)
+    - [three](pizza_quantity) [Supreme](pizza_type)
+    - [three](pizza_quantity) [pesto and sun-dried tomato](pizza_type)
+    - [three](pizza_quantity) [seafood](pizza_type)
+    - [four](pizza_quantity) [Margherita](pizza_type) pizzas please
+    - [four](pizza_quantity) [Pepperoni](pizza_type) pizzas please
+    - [four](pizza_quantity) [BBQ Chicken](pizza_type) pizzas please
+    - [four](pizza_quantity) [Supreme](pizza_type) pizzas please
+    - [four](pizza_quantity) [pesto and sun-dried tomato](pizza_type) pizzas please
+    - [four](pizza_quantity) [seafood](pizza_type) pizzas please
+    - [four](pizza_quantity) [Margherita](pizza_type)
+    - [four](pizza_quantity) [Pepperoni](pizza_type)
+    - [four](pizza_quantity) [BBQ Chicken](pizza_type)
+    - [four](pizza_quantity) [Supreme](pizza_type)
+    - [four](pizza_quantity) [pesto and sun-dried tomato](pizza_type)
+    - [four](pizza_quantity) [seafood](pizza_type)
+    - [five](pizza_quantity) [Margherita](pizza_type) pizzas please
+    - [five](pizza_quantity) [Pepperoni](pizza_type) pizzas please
+    - [five](pizza_quantity) [BBQ Chicken](pizza_type) pizzas please
+    - [five](pizza_quantity) [Supreme](pizza_type) pizzas please
+    - [five](pizza_quantity) [pesto and sun-dried tomato](pizza_type) pizzas please
+    - [five](pizza_quantity) [seafood](pizza_type) pizzas please
+    - [five](pizza_quantity) [Margherita](pizza_type)
+    - [five](pizza_quantity) [Pepperoni](pizza_type)
+    - [five](pizza_quantity) [BBQ Chicken](pizza_type)
+    - [five](pizza_quantity) [Supreme](pizza_type)
+    - [five](pizza_quantity) [pesto and sun-dried tomato](pizza_type)
+    - [five](pizza_quantity) [seafood](pizza_type)
+    - [six](pizza_quantity) [Margherita](pizza_type) pizzas please
+    - [six](pizza_quantity) [Pepperoni](pizza_type) pizzas please
+    - [six](pizza_quantity) [BBQ Chicken](pizza_type) pizzas please
+    - Please [six](pizza_quantity) [Supreme](pizza_type) pizzas
+    - [six](pizza_quantity) [pesto and sun-dried tomato](pizza_type) pizzas please
+    - [six](pizza_quantity) [seafood](pizza_type) pizzas please
+    - [six](pizza_quantity) [Margherita](pizza_type)
+    - [six](pizza_quantity) [Pepperoni](pizza_type)
+    - [six](pizza_quantity) [BBQ Chicken](pizza_type)
+    - [six](pizza_quantity) [Supreme](pizza_type)
+    - [six](pizza_quantity) [pesto and sun-dried tomato](pizza_type)
+    - [six](pizza_quantity) [seafood](pizza_type)
+    - [seven](pizza_quantity) [Margherita](pizza_type) pizzas please
+    - [seven](pizza_quantity) [Pepperoni](pizza_type) pizzas please
+    - [seven](pizza_quantity) [BBQ Chicken](pizza_type) pizzas please
+    - [seven](pizza_quantity) [Supreme](pizza_type) pizzas please
+    - [seven](pizza_quantity) [pesto and sun-dried tomato](pizza_type) pizzas please
+    - [seven](pizza_quantity) [seafood](pizza_type) pizzas please
+    - [seven](pizza_quantity) [Margherita](pizza_type)
+    - [seven](pizza_quantity) [Pepperoni](pizza_type)
+    - [seven](pizza_quantity) [BBQ Chicken](pizza_type)
+    - [seven](pizza_quantity) [Supreme](pizza_type)
+    - [seven](pizza_quantity) [pesto and sun-dried tomato](pizza_type)
+    - [seven](pizza_quantity) [seafood](pizza_type)
+    - [eight](pizza_quantity) [Margherita](pizza_type) pizzas please
+    - [eight](pizza_quantity) [Pepperoni](pizza_type) pizzas please
+    - [eight](pizza_quantity) [BBQ Chicken](pizza_type) pizzas please
+    - [eight](pizza_quantity) [Supreme](pizza_type) pizzas please
+    - [eight](pizza_quantity) [pesto and sun-dried tomato](pizza_type) pizzas please
+    - [eight](pizza_quantity) [seafood](pizza_type) pizzas please
+    - [eight](pizza_quantity) [Margherita](pizza_type)
+    - [eight](pizza_quantity) [Pepperoni](pizza_type)
+    - [eight](pizza_quantity) [BBQ Chicken](pizza_type)
+    - [eight](pizza_quantity) [Supreme](pizza_type)
+    - [eight](pizza_quantity) [pesto and sun-dried tomato](pizza_type)
+    - [eight](pizza_quantity) [seafood](pizza_type)
+    - [nine](pizza_quantity) [Margherita](pizza_type) pizzas please
+    - [nine](pizza_quantity) [Pepperoni](pizza_type) pizzas please
+    - [nine](pizza_quantity) [BBQ Chicken](pizza_type) pizzas please
+    - [nine](pizza_quantity) [Supreme](pizza_type) pizzas please
+    - [nine](pizza_quantity) [pesto and sun-dried tomato](pizza_type) pizzas please
+    - [nine](pizza_quantity) [seafood](pizza_type) pizzas please
+    - [nine](pizza_quantity) [Margherita](pizza_type)
+    - [nine](pizza_quantity) [Pepperoni](pizza_type)
+    - [nine](pizza_quantity) [BBQ Chicken](pizza_type)
+    - [nine](pizza_quantity) [Supreme](pizza_type)
+    - [nine](pizza_quantity) [pesto and sun-dried tomato](pizza_type)
+    - [nine](pizza_quantity) [seafood](pizza_type)
+    - [ten](pizza_quantity) [Margherita](pizza_type) pizzas please
+    - [ten](pizza_quantity) [Pepperoni](pizza_type) pizzas please
+    - [ten](pizza_quantity) [BBQ Chicken](pizza_type) pizzas please
+    - [ten](pizza_quantity) [Supreme](pizza_type) pizzas please
+    - [ten](pizza_quantity) [pesto and sun-dried tomato](pizza_type) pizzas please
+    - [ten](pizza_quantity) [seafood](pizza_type) pizzas please
+    - [ten](pizza_quantity) [Margherita](pizza_type)
+    - [ten](pizza_quantity) [Pepperoni](pizza_type)
+    - [ten](pizza_quantity) [BBQ Chicken](pizza_type)
+    - [ten](pizza_quantity) [Supreme](pizza_type)
+    - [ten](pizza_quantity) [pesto and sun-dried tomato](pizza_type)
+    - [ten](pizza_quantity) [seafood](pizza_type)
+    - Please add [Margherita](pizza_type) pizza
+    - Please add [Pepperoni](pizza_type) pizza
+    - Please add [BBQ Chicken](pizza_type) pizza
+    - Please add [Supreme](pizza_type) pizza
+    - Please add [pesto and sun-dried tomato](pizza_type) pizza
+    - Please add [seafood](pizza_type) pizza
+    - Please add [Margherita](pizza_type)
+    - Please add [Pepperoni](pizza_type)
+    - Please add [BBQ Chicken](pizza_type)
+    - Please add [Supreme](pizza_type)
+    - Please add [pesto and sun-dried tomato](pizza_type)
+    - Please add [seafood](pizza_type)
+    - Add [Margherita](pizza_type) pizza
+    - Add [Pepperoni](pizza_type) pizza
+    - Add [BBQ Chicken](pizza_type) pizza
+    - Add [Supreme](pizza_type) pizza
+    - Add [pesto and sun-dried tomato](pizza_type) pizza
+    - Add [seafood](pizza_type) pizza
+    - Add [Margherita](pizza_type)
+    - Add [Pepperoni](pizza_type)
+    - Add [BBQ Chicken](pizza_type)
+    - Add [Supreme](pizza_type)
+    - Add [pesto and sun-dried tomato](pizza_type)
+    - Add [seafood](pizza_type)
+    - Please add [a](pizza_quantity) [Margherita](pizza_type) pizza
+    - Please add [a](pizza_quantity) [Pepperoni](pizza_type) pizza
+    - Please add [a](pizza_quantity) [BBQ Chicken](pizza_type) pizza
+    - Please add [a](pizza_quantity) [Supreme](pizza_type) pizza
+    - Please add [a](pizza_quantity) [pesto and sun-dried tomato](pizza_type) pizza
+    - Please add [a](pizza_quantity) [seafood](pizza_type) pizza
+    - Please add [a](pizza_quantity) [Margherita](pizza_type)
+    - Please add [a](pizza_quantity) [Pepperoni](pizza_type)
+    - Please add [a](pizza_quantity) [BBQ Chicken](pizza_type)
+    - Please add [a](pizza_quantity) [Supreme](pizza_type)
+    - Please add [a](pizza_quantity) [pesto and sun-dried tomato](pizza_type)
+    - Please add [a](pizza_quantity) [seafood](pizza_type)
+    - Add [a](pizza_quantity) [Margherita](pizza_type) pizza
+    - Add [a](pizza_quantity) [Pepperoni](pizza_type) pizza
+    - Add [a](pizza_quantity) [BBQ Chicken](pizza_type) pizza
+    - Add [a](pizza_quantity) [Supreme](pizza_type) pizza
+    - Add [a](pizza_quantity) [pesto and sun-dried tomato](pizza_type) pizza
+    - Add [a](pizza_quantity) [seafood](pizza_type) pizza
+    - Add [a](pizza_quantity) [Margherita](pizza_type)
+    - Add [a](pizza_quantity) [Pepperoni](pizza_type)
+    - Add [a](pizza_quantity) [BBQ Chicken](pizza_type)
+    - Add [a](pizza_quantity) [Supreme](pizza_type)
+    - Add [a](pizza_quantity) [pesto and sun-dried tomato](pizza_type)
+    - Add [a](pizza_quantity) [seafood](pizza_type)
+    - Add [one](pizza_quantity) [Margherita](pizza_type) pizza
+    - Add [one](pizza_quantity) [Pepperoni](pizza_type) pizza
+    - Add [one](pizza_quantity) [BBQ Chicken](pizza_type) pizza
+    - Add [one](pizza_quantity) [Supreme](pizza_type) pizza
+    - Add [one](pizza_quantity) [pesto and sun-dried tomato](pizza_type) pizza
+    - Add [one](pizza_quantity) [seafood](pizza_type) pizza
+    - Add [one](pizza_quantity) [Margherita](pizza_type)
+    - Add [one](pizza_quantity) [Pepperoni](pizza_type)
+    - Add [one](pizza_quantity) [BBQ Chicken](pizza_type)
+    - Add [one](pizza_quantity) [Supreme](pizza_type)
+    - Add [one](pizza_quantity) [pesto and sun-dried tomato](pizza_type)
+    - Add [one](pizza_quantity) [seafood](pizza_type)
+    - Add [two](pizza_quantity) [Margherita](pizza_type) pizzas
+    - Add [two](pizza_quantity) [Pepperoni](pizza_type) pizzas
+    - Add [two](pizza_quantity) [BBQ Chicken](pizza_type) pizzas
+    - Add [two](pizza_quantity) [Supreme](pizza_type) pizzas
+    - Add [two](pizza_quantity) [pesto and sun-dried tomato](pizza_type) pizzas
+    - Add [two](pizza_quantity) [seafood](pizza_type) pizzas
+    - Add [two](pizza_quantity) [Margherita](pizza_type)
+    - Add [two](pizza_quantity) [Pepperoni](pizza_type)
+    - Add [two](pizza_quantity) [BBQ Chicken](pizza_type)
+    - Add [two](pizza_quantity) [Supreme](pizza_type)
+    - Add [two](pizza_quantity) [pesto and sun-dried tomato](pizza_type)
+    - Add [two](pizza_quantity) [seafood](pizza_type)
+    - Add [three](pizza_quantity) [Margherita](pizza_type) pizzas
+    - Add [three](pizza_quantity) [Pepperoni](pizza_type) pizzas
+    - Add [three](pizza_quantity) [BBQ Chicken](pizza_type) pizzas
+    - Add [three](pizza_quantity) [Supreme](pizza_type) pizzas
+    - Add [three](pizza_quantity) [pesto and sun-dried tomato](pizza_type) pizzas
+    - Add [three](pizza_quantity) [seafood](pizza_type) pizzas
+    - Add [three](pizza_quantity) [Margherita](pizza_type)
+    - Add [three](pizza_quantity) [Pepperoni](pizza_type)
+    - Add [three](pizza_quantity) [BBQ Chicken](pizza_type)
+    - Add [three](pizza_quantity) [Supreme](pizza_type)
+    - Add [three](pizza_quantity) [pesto and sun-dried tomato](pizza_type)
+    - Add [three](pizza_quantity) [seafood](pizza_type)
+    - Add [four](pizza_quantity) [Margherita](pizza_type) pizzas
+    - Add [four](pizza_quantity) [Pepperoni](pizza_type) pizzas
+    - Add [four](pizza_quantity) [BBQ Chicken](pizza_type) pizzas
+    - Add [four](pizza_quantity) [Supreme](pizza_type) pizzas
+    - Add [four](pizza_quantity) [pesto and sun-dried tomato](pizza_type) pizzas
+    - Add [four](pizza_quantity) [seafood](pizza_type) pizzas
+    - Add [four](pizza_quantity) [Margherita](pizza_type)
+    - Add [four](pizza_quantity) [Pepperoni](pizza_type)
+    - Add [four](pizza_quantity) [BBQ Chicken](pizza_type)
+    - Add [four](pizza_quantity) [Supreme](pizza_type)
+    - Add [four](pizza_quantity) [pesto and sun-dried tomato](pizza_type)
+    - Add [four](pizza_quantity) [seafood](pizza_type)
+    - Add [five](pizza_quantity) [Margherita](pizza_type) pizzas
+    - Add [five](pizza_quantity) [Pepperoni](pizza_type) pizzas
+    - Add [five](pizza_quantity) [BBQ Chicken](pizza_type) pizzas
+    - Add [five](pizza_quantity) [Supreme](pizza_type) pizzas
+    - Add [five](pizza_quantity) [pesto and sun-dried tomato](pizza_type) pizzas
+    - Add [five](pizza_quantity) [seafood](pizza_type) pizzas
+    - Add [five](pizza_quantity) [Margherita](pizza_type)
+    - Add [five](pizza_quantity) [Pepperoni](pizza_type)
+    - Add [five](pizza_quantity) [BBQ Chicken](pizza_type)
+    - [small](pizza_size) [Margherita](pizza_type) pizza
+    - [medium](pizza_size) [Pepperoni](pizza_type) pizza
+    - [large](pizza_size) [BBQ Chicken](pizza_type) pizza
+    - [small](pizza_size) [Supreme](pizza_type) pizza
+    - [medium](pizza_size) [pesto and sun-dried tomato](pizza_type) pizza
+    - [large](pizza_size) [seafood](pizza_type) pizza
+    - [small](pizza_size) [Margherita](pizza_type)
+    - [medium](pizza_size) [Pepperoni](pizza_type)
+    - [large](pizza_size) [BBQ Chicken](pizza_type)
+    - [small](pizza_size) [Supreme](pizza_type)
+    - [medium](pizza_size) [pesto and sun-dried tomato](pizza_type)
+    - [large](pizza_size) [seafood](pizza_type)
+    - Please add [small](pizza_size) [Margherita](pizza_type) pizza
+    - Please add [medium](pizza_size) [Pepperoni](pizza_type) pizza
+    - Please add [large](pizza_size) [BBQ Chicken](pizza_type) pizza
+    - Please add [small](pizza_size) [Supreme](pizza_type) pizza
+    - Please add [medium](pizza_size) [pesto and sun-dried tomato](pizza_type) pizza
+    - Please add [large](pizza_size) [seafood](pizza_type) pizza
+    - Please add [small](pizza_size) [Margherita](pizza_type)
+    - Please add [medium](pizza_size) [Pepperoni](pizza_type)
+    - Please add [large](pizza_size) [BBQ Chicken](pizza_type)
+    - Please add [small](pizza_size) [Supreme](pizza_type)
+    - Please add [medium](pizza_size) [pesto and sun-dried tomato](pizza_type)
+    - Please add [large](pizza_size) [seafood](pizza_type)
+    - Add [small](pizza_size) [Margherita](pizza_type) pizza
+    - Add [medium](pizza_size) [Pepperoni](pizza_type) pizza
+    - Add [large](pizza_size) [BBQ Chicken](pizza_type) pizza
+    - Add [small](pizza_size) [Supreme](pizza_type) pizza
+    - Add [medium](pizza_size) [pesto and sun-dried tomato](pizza_type) pizza
+    - Add [large](pizza_size) [seafood](pizza_type) pizza
+    - Add [small](pizza_size) [Margherita](pizza_type)
+    - Add [medium](pizza_size) [Pepperoni](pizza_type)
+    - Add [large](pizza_size) [BBQ Chicken](pizza_type)
+    - Add [small](pizza_size) [Supreme](pizza_type)
+    - Add [medium](pizza_size) [pesto and sun-dried tomato](pizza_type)
+    - Add [large](pizza_size) [seafood](pizza_type)
+    - Please add [a](pizza_quantity) [small](pizza_size) [Margherita](pizza_type) pizza
+    - Please add [a](pizza_quantity) [medium](pizza_size) [Pepperoni](pizza_type) pizza
+    - Please add [a](pizza_quantity) [large](pizza_size) [BBQ Chicken](pizza_type) pizza
+    - Please add [a](pizza_quantity) [small](pizza_size) [Supreme](pizza_type) pizza
+    - Please add [a](pizza_quantity) [medium](pizza_size) [pesto and sun-dried tomato](pizza_type) pizza
+    - Please add [a](pizza_quantity) [large](pizza_size) [seafood](pizza_type) pizza
+    - Please add [a](pizza_quantity) [small](pizza_size) [Margherita](pizza_type)
+    - Please add [a](pizza_quantity) [medium](pizza_size) [Pepperoni](pizza_type)
+    - Please add [a](pizza_quantity) [large](pizza_size) [BBQ Chicken](pizza_type)
+    - Please add [a](pizza_quantity) [small](pizza_size) [Supreme](pizza_type)
+    - Please add [a](pizza_quantity) [medium](pizza_size) [pesto and sun-dried tomato](pizza_type)
+    - Please add [a](pizza_quantity) [large](pizza_size) [seafood](pizza_type)
+    - Add [a](pizza_quantity) [small](pizza_size) [Margherita](pizza_type) pizza
+    - Add [a](pizza_quantity) [medium](pizza_size) [Pepperoni](pizza_type) pizza
+    - Add [a](pizza_quantity) [large](pizza_size) [BBQ Chicken](pizza_type) pizza
+    - Add [a](pizza_quantity) [small](pizza_size) [Supreme](pizza_type) pizza
+    - Add [a](pizza_quantity) [medium](pizza_size) [pesto and sun-dried tomato](pizza_type) pizza
+    - Add [a](pizza_quantity) [large](pizza_size) [seafood](pizza_type) pizza
+    - Add [a](pizza_quantity) [small](pizza_size) [Margherita](pizza_type)
+    - Add [a](pizza_quantity) [medium](pizza_size) [Pepperoni](pizza_type)
+    - Add [a](pizza_quantity) [large](pizza_size) [BBQ Chicken](pizza_type)
+    - Add [a](pizza_quantity) [small](pizza_size) [Supreme](pizza_type)
+    - Add [a](pizza_quantity) [medium](pizza_size) [pesto and sun-dried tomato](pizza_type)
+    - Add [a](pizza_quantity) [large](pizza_size) [seafood](pizza_type)
+    - Add [one](pizza_quantity) [small](pizza_size) [Margherita](pizza_type) pizza
+    - Add [one](pizza_quantity) [medium](pizza_size) [Pepperoni](pizza_type) pizza
+    - Add [one](pizza_quantity) [large](pizza_size) [BBQ Chicken](pizza_type) pizza
+    - Add [one](pizza_quantity) [small](pizza_size) [Supreme](pizza_type) pizza
+    - Add [one](pizza_quantity) [medium](pizza_size) [pesto and sun-dried tomato](pizza_type) pizza
+    - Add [one](pizza_quantity) [large](pizza_size) [seafood](pizza_type) pizza
+    - Add [one](pizza_quantity) [small](pizza_size) [Margherita](pizza_type)
+    - Add [one](pizza_quantity) [medium](pizza_size) [Pepperoni](pizza_type)
+    - Add [one](pizza_quantity) [large](pizza_size) [BBQ Chicken](pizza_type)
+    - Add [one](pizza_quantity) [small](pizza_size) [Supreme](pizza_type)
+    - Add [one](pizza_quantity) [medium](pizza_size) [pesto and sun-dried tomato](pizza_type)
+    - Add [one](pizza_quantity) [large](pizza_size) [seafood](pizza_type)
+    - Add [two](pizza_quantity) [small](pizza_size) [Margherita](pizza_type) pizzas
+    - Add [two](pizza_quantity) [medium](pizza_size) [Pepperoni](pizza_type) pizzas
+    - Add [two](pizza_quantity) [large](pizza_size) [BBQ Chicken](pizza_type) pizzas
+    - Add [two](pizza_quantity) [small](pizza_size) [Supreme](pizza_type) pizzas
+    - Add [two](pizza_quantity) [medium](pizza_size) [pesto and sun-dried tomato](pizza_type) pizzas
+    - Add [two](pizza_quantity) [large](pizza_size) [seafood](pizza_type) pizzas
+    - Add [two](pizza_quantity) [small](pizza_size) [Margherita](pizza_type)
+    - Add [two](pizza_quantity) [medium](pizza_size) [Pepperoni](pizza_type)
+    - Add [two](pizza_quantity) [large](pizza_size) [BBQ Chicken](pizza_type)
+    - Add [two](pizza_quantity) [small](pizza_size) [Supreme](pizza_type)
+    - Add [two](pizza_quantity) [medium](pizza_size) [pesto and sun-dried tomato](pizza_type)
+    - Add [two](pizza_quantity) [large](pizza_size) [seafood](pizza_type)
+    - Add [three](pizza_quantity) [small](pizza_size) [Margherita](pizza_type) pizzas
+    - Add [three](pizza_quantity) [medium](pizza_size) [Pepperoni](pizza_type) pizzas
+    - Add [three](pizza_quantity) [large](pizza_size) [BBQ Chicken](pizza_type) pizzas
+    - Add [three](pizza_quantity) [small](pizza_size) [Supreme](pizza_type) pizzas
+    - Add [three](pizza_quantity) [medium](pizza_size) [pesto and sun-dried tomato](pizza_type) pizzas
+    - Add [three](pizza_quantity) [large](pizza_size) [seafood](pizza_type) pizzas
+    - Add [three](pizza_quantity) [small](pizza_size) [Margherita](pizza_type)
+    - Add [three](pizza_quantity) [medium](pizza_size) [Pepperoni](pizza_type)
+    - Add [three](pizza_quantity) [large](pizza_size) [BBQ Chicken](pizza_type)
+    - Add [three](pizza_quantity) [small](pizza_size) [Supreme](pizza_type)
+    - Add [three](pizza_quantity) [medium](pizza_size) [pesto and sun-dried tomato](pizza_type)
+    - Add [three](pizza_quantity) [large](pizza_size) [seafood](pizza_type)
+    - Add [four](pizza_quantity) [small](pizza_size) [Margherita](pizza_type) pizzas
+    - Add [four](pizza_quantity) [medium](pizza_size) [Pepperoni](pizza_type) pizzas
+    - Add [four](pizza_quantity) [large](pizza_size) [BBQ Chicken](pizza_type) pizzas
+    - Add [four](pizza_quantity) [small](pizza_size) [Supreme](pizza_type) pizzas
+    - Add [four](pizza_quantity) [medium](pizza_size) [pesto and sun-dried tomato](pizza_type) pizzas
+    - Add [four](pizza_quantity) [large](pizza_size) [seafood](pizza_type) pizzas
 - intent: pizza_order_modify
   examples: |
     - I want to modify my pizza order
@@ -802,16 +1090,6 @@ nlu:
     - [eight](pizza_quantity)
     - [nine](pizza_quantity)
     - [ten](pizza_quantity)
-    - [1](pizza_quantity)
-    - [2](pizza_quantity)
-    - [3](pizza_quantity)
-    - [4](pizza_quantity)
-    - [5](pizza_quantity)
-    - [6](pizza_quantity)
-    - [7](pizza_quantity)
-    - [8](pizza_quantity)
-    - [9](pizza_quantity)
-    - [10](pizza_quantity)
     - I want [one](pizza_quantity)
     - I want [two](pizza_quantity)
     - I want [three](pizza_quantity)
@@ -847,70 +1125,91 @@ nlu:
     - [three](pizza_quantity) please
     - [four](pizza_quantity) please
     - [five](pizza_quantity) please
+    - [six](pizza_quantity) please
+    - [seven](pizza_quantity) please
+    - [eight](pizza_quantity) please
+    - [nine](pizza_quantity) please
+    - [ten](pizza_quantity) please
+    - I want [one](pizza_quantity) pizza
+    - I want [two](pizza_quantity) pizzas
+    - I want [three](pizza_quantity) pizzas
+    - I want [four](pizza_quantity) pizzas
+    - I want [five](pizza_quantity) pizzas
+    - I want [six](pizza_quantity) pizzas
+    - I want [seven](pizza_quantity) pizzas
+    - I want [eight](pizza_quantity) pizzas
+    - I want [nine](pizza_quantity) pizzas
+    - I want [ten](pizza_quantity) pizzas
+    - Please add [one](pizza_quantity) pizza
+    - Please add [two](pizza_quantity) pizzas
+    - Please add [three](pizza_quantity) pizzas
+    - Please add [four](pizza_quantity) pizzas
+    - Please add [five](pizza_quantity) pizzas
+    - Please add [six](pizza_quantity) pizzas
+    - Please add [seven](pizza_quantity) pizzas
+    - Please add [eight](pizza_quantity) pizzas
+    - Please add [nine](pizza_quantity) pizzas
+    - Please add [ten](pizza_quantity) pizzas
 - intent: inform_pizza_size
   examples: |
     - [small](pizza_size)
     - [medium](pizza_size)
     - [large](pizza_size)
-    - [10 inches](pizza_size)
-    - [12 inches](pizza_size)
-    - [14 inches](pizza_size)
-    - [10"](pizza_size)
-    - [12"](pizza_size)
-    - [14"](pizza_size)
-    - [10 inch](pizza_size)
-    - [12 inch](pizza_size)
-    - [14 inch](pizza_size)
-    - [size S](pizza_size)
-    - [size M](pizza_size)
-    - [size L](pizza_size)
+    - [ten inches](pizza_size)
+    - [towel inches](pizza_size)
+    - [sixteen inches](pizza_size)
+    - [ten inch](pizza_size)
+    - [towel inch](pizza_size)
+    - [sixteen inch](pizza_size)
     - I want [small](pizza_size)
     - I want [medium](pizza_size)
     - I want [large](pizza_size)
-    - I want [10 inches](pizza_size)
-    - I want [12 inches](pizza_size)
-    - I want [14 inches](pizza_size)
-    - I want [10"](pizza_size)
-    - I want [12"](pizza_size)
-    - I want [14"](pizza_size)
-    - I want [10 inch](pizza_size)
-    - I want [12 inch](pizza_size)
-    - I want [14 inch](pizza_size)
+    - I want [ten inches](pizza_size)
+    - I want [towel inches](pizza_size)
+    - I want [sixteen inches](pizza_size)
+    - I want [ten inch](pizza_size)
+    - I want [towel inch](pizza_size)
+    - I want [sixteen inch](pizza_size)
     - I want [size S](pizza_size)
     - I want [size M](pizza_size)
     - I want [size L](pizza_size)
     - Please add [small](pizza_size)
     - Please add [medium](pizza_size)
     - Please add [large](pizza_size)
-    - Please add [10 inches](pizza_size)
-    - Please add [12 inches](pizza_size)
-    - Please add [14 inches](pizza_size)
-    - Please add [10"](pizza_size)
-    - Please add [12"](pizza_size)
-    - Please add [14"](pizza_size)
+    - Please add [ten inches](pizza_size)
+    - Please add [towel inches](pizza_size)
+    - Please add [sixteen inches](pizza_size)
     - Please [small](pizza_size)
     - Please [medium](pizza_size)
     - Please [large](pizza_size)
     - [small](pizza_size) please
     - [medium](pizza_size) please
     - [large](pizza_size) please
-
-
+    - [ten inches](pizza_size) please
+    - [towel inches](pizza_size) please
+    - [sixteen inches](pizza_size) please
+    - [ten inch](pizza_size) please
+    - [towel inch](pizza_size) please
+    - [sixteen inch](pizza_size) please
+    - I want [small](pizza_size) pizza
+    - I want [medium](pizza_size) pizzas
+    - I want [large](pizza_size) pizzas
+    - I want [ten inches](pizza_size) pizzas
+    - I want [towel inches](pizza_size) pizzas
+    - I want [sixteen inches](pizza_size) pizzas
+    - I want [ten inch](pizza_size) pizzas
+    - I want [towel inch](pizza_size) pizzas
+    - I want [sixteen inch](pizza_size) pizzas
+    - Please add [small](pizza_size) pizza
+    - Please add [medium](pizza_size) pizzas
+    - Please add [large](pizza_size) pizzas
 - intent: add_another_pizza_general
   examples: |
     - I want to add another pizza
     - I want to add another pizza to my order
-    - I want to add another pizza to my cart
-    - I want to add another pizza to my basket
     - I want to add another pizza to my list
-    - Can I add another pizza?
-    - Can I add another pizza to my order?
-    - Can I add another pizza to my cart?
-    - Can I add another pizza to my basket?
-    - Can I add another pizza to my list?
     - Add another pizza
     - Add another pizza to my order
-    - Add another pizza to my cart
     - Order another pizza
     - Order another pizza to my order
     - Want another pizza
@@ -919,31 +1218,22 @@ nlu:
     - Want to add another pizza to my order
     - I want to order another pizza
     - I want to order another pizza to my order
-    - I want to order another pizza to my cart
-    - I want to order another pizza to my basket
     - I want to order another pizza to my list
     - Wanna add another pizza
     - Wanna add another pizza to my order
     - Wanna add another pizza to my cart
-    - Am I able to add another pizza?
-    - Am I able to add another pizza to my order?
-    - Am I able to add another pizza to my cart?
     - One more pizza please
     - One more pizza to my order please
     - One more pizza to my cart please
     - I also have more pizza to order
     - I also have more pizza to order to my order
-    - I also have more pizza to order to my cart
     - I also have more order to add
     - I also have more order to add to my order
     - Yes, I want to add another pizza
     - Yes, I want to add another pizza to my order
-    - Yes, I want to add another pizza to my cart
-    - Yes, I want to add another pizza to my basket
     - Yes, I want to add another pizza to my list
     - Yes, please add another pizza
     - Yes, please add another pizza to my order
-    - Yes, please add another pizza to my cart
     - Yes, please I want to add another pizza
     - Yes, please I want to add another pizza to my order
     - Yes, I have more pizza to order
@@ -957,65 +1247,109 @@ nlu:
 - intent: add_another_pizza_specific
   examples: |
     - I want to add another [margherita](pizza_type)
-    - I want to add another [vegetarian](pizza_type)
     - I want to add another [pepperoni](pizza_type)
-    - I want to add another [BBQ](pizza_type)
+    - I want to add another [BBQ Chicken](pizza_type)
     - I want to add another [margherita](pizza_type) pizza
-    - I want to add another [vegetarian](pizza_type) pizza
     - I want to add another [pepperoni](pizza_type) pizza
-    - I want to add another [BBQ](pizza_type) pizza
-    - Can I add another [margherita](pizza_type)?
-    - Can I add another [vegetarian](pizza_type)?
-    - Can I add another [pepperoni](pizza_type)?
-    - Can I add another [BBQ](pizza_type)?
-    - Can I add another [margherita](pizza_type) pizza?
-    - Can I add another [vegetarian](pizza_type) pizza?
-    - Can I add another [pepperoni](pizza_type) pizza?
-    - Can I add another [BBQ](pizza_type) pizza?
+    - I want to add another [BBQ Chicken](pizza_type) pizza
     - Add another [margherita](pizza_type)
-    - Add another [vegetarian](pizza_type)
     - Add another [pepperoni](pizza_type)
-    - Add another [BBQ](pizza_type)
+    - Add another [BBQ Chicken](pizza_type)
     - Add another [margherita](pizza_type) pizza
-    - Add another [vegetarian](pizza_type) pizza
     - Add another [pepperoni](pizza_type) pizza
-    - Add another [BBQ](pizza_type) pizza
+    - Add another [BBQ Chicken](pizza_type) pizza
     - Order another [margherita](pizza_type)
-    - Order another [vegetarian](pizza_type)
     - Order another [pepperoni](pizza_type)
-    - Order another [BBQ](pizza_type)
+    - Order another [BBQ Chicken](pizza_type)
     - Order another [margherita](pizza_type) pizza
-    - Order another [vegetarian](pizza_type) pizza
     - Order another [pepperoni](pizza_type) pizza
-    - Order another [BBQ](pizza_type) pizza
+    - Order another [BBQ Chicken](pizza_type) pizza
     - Want another [margherita](pizza_type)
-    - Want another [vegetarian](pizza_type)
     - Want another [pepperoni](pizza_type)
-    - Want another [BBQ](pizza_type)
+    - Want another [BBQ Chicken](pizza_type)
     - Yes, I want to add another [margherita](pizza_type)
-    - Yes, I want to add another [vegetarian](pizza_type)
     - Yes, I want to add another [pepperoni](pizza_type)
     - I want to add another [Margherita](pizza_type) [small](pizza_size) pizza
-    - I want to add another [Vegetarian](pizza_type) [medium](pizza_size) pizza
     - I want to add another [Pepperoni](pizza_type) [large](pizza_size) pizza
-    - I want to add another [BBQ](pizza_type) [small](pizza_size) pizza
-    - I want to add another a [margherita](pizza_type) [small](pizza_size) pizza
-    - I want to add another a [small](pizza_size) [margherita](pizza_type) pizza
-    - I want to add another a [medium](pizza_size) [vegetarian](pizza_type) pizza
-    - I want to add another a [large](pizza_size) [pepperoni](pizza_type) pizza
-    - I want to add another a [small](pizza_size) [BBQ](pizza_type) pizza
-    - I want to add another a [margherita](pizza_type) [small](pizza_size) pizza
+    - I want to add another [BBQ Chicken](pizza_type) [small](pizza_size) pizza
     - Yes, I want to add another [margherita](pizza_type) [small](pizza_size) pizza
-    - Yes, I want to add another [vegetarian](pizza_type) [medium](pizza_size) pizza
     - Yes, I want to add another [pepperoni](pizza_type) [large](pizza_size) pizza
     - Want another [margherita](pizza_type) [small](pizza_size) pizza
-    - Want another [vegetarian](pizza_type) [medium](pizza_size) pizza
     - Want another [pepperoni](pizza_type) [large](pizza_size) pizza
     - Yes, I would like to order [two](pizza_quantity) more [small](pizza_size) [margherita](pizza_type) pizzas
-    - Yes, I would like to order [three](pizza_quantity) more [medium](pizza_size) [vegetarian](pizza_type) pizzas
     - Yes, I would like to order [four](pizza_quantity) more [large](pizza_size) [pepperoni](pizza_type) pizzas
-    - I would like to order [five](pizza_quantity) more [small](pizza_size) [BBQ](pizza_type) pizzas
-
+    - I would like to order [five](pizza_quantity) more [small](pizza_size) [BBQ Chicken](pizza_type) pizzas
+    - I want to add another [supreme](pizza_type)
+    - I want to add another [pesto and sun-dried tomato](pizza_type)
+    - I want to add another [seafood](pizza_type)
+    - I want to add another [bbq chicken](pizza_type)
+    - I want to add another [supreme](pizza_type) pizza
+    - I want to add another [pesto and sun-dried tomato](pizza_type) pizza
+    - I want to add another [seafood](pizza_type) pizza
+    - I want to add another [bbq chicken](pizza_type) pizza
+    - Add another [supreme](pizza_type)
+    - Add another [pesto and sun-dried tomato](pizza_type)
+    - Add another [seafood](pizza_type)
+    - Add another [bbq chicken](pizza_type)
+    - Add another [supreme](pizza_type) pizza
+    - Add another [pesto and sun-dried tomato](pizza_type) pizza
+    - Add another [seafood](pizza_type) pizza
+    - Add another [bbq chicken](pizza_type) pizza
+    - Order another [supreme](pizza_type)
+    - Order another [pesto and sun-dried tomato](pizza_type)
+    - Order another [seafood](pizza_type)
+    - Order another [bbq chicken](pizza_type)
+    - Order another [supreme](pizza_type) pizza
+    - Order another [pesto and sun-dried tomato](pizza_type) pizza
+    - Order another [seafood](pizza_type) pizza
+    - Order another [bbq chicken](pizza_type) pizza
+    - Want another [supreme](pizza_type)
+    - Want another [pesto and sun-dried tomato](pizza_type)
+    - Want another [seafood](pizza_type)
+    - Want another [bbq chicken](pizza_type)
+    - Yes, I want to add another [supreme](pizza_type)
+    - Yes, I want to add another [pesto and sun-dried tomato](pizza_type)
+    - Yes, I want to add another [seafood](pizza_type)
+    - Yes, I want to add another [bbq chicken](pizza_type)
+    - I want to add another [supreme](pizza_type) [medium](pizza_size) pizza
+    - I want to add another [pesto and sun-dried tomato](pizza_type) [large](pizza_size) pizza
+    - I want to add another [seafood](pizza_type) [small](pizza_size) pizza
+    - I want to add another [bbq chicken](pizza_type) [medium](pizza_size) pizza
+    - Yes, I want to add another [supreme](pizza_type) [large](pizza_size) pizza
+    - Yes, I want to add another [pesto and sun-dried tomato](pizza_type) [small](pizza_size) pizza
+    - Yes, I want to add another [seafood](pizza_type) [medium](pizza_size) pizza
+    - Yes, I want to add another [bbq chicken](pizza_type) [large](pizza_size) pizza
+    - Want another [supreme](pizza_type) [small](pizza_size) pizza
+    - Want another [pesto and sun-dried tomato](pizza_type) [medium](pizza_size) pizza
+    - Want another [seafood](pizza_type) [large](pizza_size) pizza
+    - Want another [bbq chicken](pizza_type) [small](pizza_size) pizza
+    - Yes, I would like to order [three](pizza_quantity) more [medium](pizza_size) [supreme](pizza_type) pizzas
+    - Yes, I would like to order [six](pizza_quantity) more [large](pizza_size) [pesto and sun-dried tomato](pizza_type) pizzas
+    - I would like to order [seven](pizza_quantity) more [small](pizza_size) [seafood](pizza_type) pizzas
+    - I would like to order [eight](pizza_quantity) more [medium](pizza_size) [bbq chicken](pizza_type) pizzas
+    - Yes add another [margherita](pizza_type)
+    - Yes add another [pepperoni](pizza_type)
+    - Yes add another [BBQ Chicken](pizza_type)
+    - Yes add another [margherita](pizza_type) pizza
+    - Yes add another [pepperoni](pizza_type) pizza
+    - Yes add another [BBQ Chicken](pizza_type) pizza
+    - Yes order another [margherita](pizza_type)
+    - Yes order another [pepperoni](pizza_type)
+    - Yes order another [BBQ Chicken](pizza_type)
+    - Yes order another [margherita](pizza_type) pizza
+    - Yes order another [pepperoni](pizza_type) pizza
+    - Yes order another [BBQ Chicken](pizza_type) pizza
+    - Yes want another [margherita](pizza_type)
+    - Yes want another [pepperoni](pizza_type)
+    - Yes want another [BBQ Chicken](pizza_type)
+    - Yes, I want to add another [margherita](pizza_type)
+    - Yes, I want to add another [pepperoni](pizza_type)
+    - Yes, I want to add another [BBQ Chicken](pizza_type)
+    - Yes, I want to add another [margherita](pizza_type) pizza
+    - Yes, I want to add another [pepperoni](pizza_type) pizza
+    - Yes, I want to add another [BBQ Chicken](pizza_type) pizza
+    - Yes, add another [margherita](pizza_type)
+    - Yes, add another [pepperoni](pizza_type)
 - intent: proceed_to_pickup
   examples: |
     - I want to proceed to checkout

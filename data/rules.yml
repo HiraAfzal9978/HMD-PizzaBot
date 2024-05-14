@@ -40,19 +40,19 @@ rules:
   - rule: Handle user's request to show the menu
     steps:
       - intent: inform_menu
-      - action: utter_inform_menu
+      - action: action_inform_menu
       - action: utter_ask_pizza_type
 
   - rule: Handle user's request to show the vegetarian menu
     steps:
       - intent: inform_vegetarian_menu
-      - action: utter_inform_vegetarian_menu
+      - action: action_inform_vegetarian_menu
       - action: utter_ask_pizza_type
 
   - rule: Handle user's request to show the non-vegetarian menu
     steps:
       - intent: inform_non_vegetarian_menu
-      - action: utter_inform_non_vegetarian_menu
+      - action: action_inform_non_vegetarian_menu
       - action: utter_ask_pizza_type
 
   - rule: Handle user's request for recommendations

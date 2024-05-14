@@ -6,8 +6,13 @@ from typing import Dict, Text, Any, List, Union, Optional
 
 
 PIZZA_TYPES = ["margherita", "supreme", "pesto and sun-dried tomato", "pepperoni", "seafood", "bbq chicken"]
-PIZZA_SIZES = ["small", "medium", "large"]
+VEGETARIAN_PIZZA_TYPES = ["margherita", "supreme", "pesto and sun-dried tomato"]
+NON_VEGETARIAN_PIZZA_TYPES = ["pepperoni","bbq chicken", "seafood"]
+
+PIZZA_SIZES = {"small": 8, "medium": 12, "large": 16}
 PIZZA_QUANTITY = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"]
+PIZZA_QUANTITY_ABBR = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+
 PIZZA_TOPPINGS_STD = {
     "margherita": ["Mozzarella Cheese", "Tomato Sauce", "Basil Leaves"],
     "supreme": ["Mushrooms", "Bell Peppers", "Onions", "Olives", "Tomatoes"],
@@ -52,12 +57,99 @@ AVAILABLE_POSSIBLE_TOPPINGS = [
 ]
 
 
+def generate_pizza_menu():
+    menu = "🍕 Here's Our Menu 🍕:\n\n"
+
+    menu += "- 🌱 Vegetarian Pizzas:\n"
+    for pizza_type in VEGETARIAN_PIZZA_TYPES:
+        menu += f"  - {pizza_type.capitalize()}: {', '.join(PIZZA_TOPPINGS_STD[pizza_type])}. "
+        menu += f"Price: ${PIZZA_PRICES[pizza_type]['medium']} (Medium)\n"
+
+    menu += "\n- 🍗 Non-Vegetarian Pizzas:\n"
+    for pizza_type in NON_VEGETARIAN_PIZZA_TYPES:
+        menu += f"  - {pizza_type.capitalize()}: {', '.join(PIZZA_TOPPINGS_STD[pizza_type])}. "
+        menu += f"Price: ${PIZZA_PRICES[pizza_type]['medium']} (Medium)\n"
+
+    menu += "\n-------------------------------------------\n"
+
+    return menu
+
+
+def generate_vegetarian_pizza_menu():
+    menu = "🍕 Here's Our Vegetarian Pizza Menu 🍕:\n\n"
+
+    menu += "- 🌱 Vegetarian Pizzas:\n"
+    for pizza_type in VEGETARIAN_PIZZA_TYPES:
+        menu += f"  - {pizza_type.capitalize()}: {', '.join(PIZZA_TOPPINGS_STD[pizza_type])}. "
+        menu += f"Price: ${PIZZA_PRICES[pizza_type]['medium']} (Medium)\n"
+
+    menu += "\n-------------------------------------------\n"
+
+    return menu
+
+
+def generate_non_vegetarian_pizza_menu():
+    menu = "🍕 Here's Our Non-Vegetarian Pizza Menu 🍕:\n\n"
+
+    menu += "- 🍗 Non-Vegetarian Pizzas:\n"
+    for pizza_type in NON_VEGETARIAN_PIZZA_TYPES:
+        menu += f"  - {pizza_type.capitalize()}: {', '.join(PIZZA_TOPPINGS_STD[pizza_type])}. "
+        menu += f"Price: ${PIZZA_PRICES[pizza_type]['medium']} (Medium)\n"
+
+    menu += "\n-------------------------------------------\n"
+
+    return menu
+
+
+def generate_pizza_sizes():
+    sizes = "🍕 We offer the following sizes for our pizzas:\n\n"
+
+    for size in PIZZA_SIZES.keys():
+        sizes += f"  - {size.capitalize()}: {PIZZA_SIZES[size]} inches\n"
+
+    return sizes
+
+
+class ActionInformMenu(Action):
+    def name(self) -> Text:
+        return "action_inform_menu"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        menu_message = generate_pizza_menu()
+        dispatcher.utter_message(text=menu_message, response="utter_ask_pizza_type")
+        return []
+
+
+class ActionInformVegetarianMenu(Action):
+    def name(self) -> Text:
+        return "action_inform_vegetarian_menu"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        menu_message = generate_vegetarian_pizza_menu()
+        dispatcher.utter_message(text=menu_message, response="utter_ask_pizza_type")
+        return []
+
+
+class ActionInformNonVegetarianMenu(Action):
+    def name(self) -> Text:
+        return "action_inform_non_vegetarian_menu"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        menu_message = generate_non_vegetarian_pizza_menu()
+        dispatcher.utter_message(text=menu_message, response="utter_ask_pizza_type")
+        return []
+
+
 class ActionAskPizzaSize(Action):
     def name(self) -> Text:
         return "action_ask_pizza_size"
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        dispatcher.utter_message(response="utter_ask_pizza_size")
+        size_message = generate_pizza_sizes()
+
+        size_message += "\n🤔 Which size would you like to order?"
+
+        dispatcher.utter_message(text=size_message)
         return []
 
 
@@ -201,7 +293,7 @@ class ValidatePizzaOrderForm(FormValidationAction):
 
     async def validate_pizza_size(self, slot_value: Any, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> Dict[Text, Any]:
         """Validate pizza_size value."""
-        if slot_value.lower() in PIZZA_SIZES:
+        if slot_value.lower() in PIZZA_SIZES.keys():
             return {"pizza_size": slot_value}
         else:
             dispatcher.utter_message(text="Sorry, we don't have that size: {}. Please choose from the available sizes.".format(slot_value), response="utter_pizza_size")

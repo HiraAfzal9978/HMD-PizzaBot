@@ -18,8 +18,6 @@ intents:
 - remove_pizza_custom_toppings
 - pizza_custom_toppings_happy
 - pizza_order_cancel
-- pizza_order_confirm_negative
-- pizza_order_confirm_positive
 - pizza_order_modify
 - pizza_standard_topping_confirm
 - recommend_non_vegetarian_pizza
@@ -112,39 +110,6 @@ responses:
   - text: Okay, let me know if you need anything else.
   utter_initiate_general_conversation:
   - text: Ah, the aroma of freshly baked pizza! You've landed in pizza heaven, my friend. How can I make your pizza dreams come true today? Would you like to explore our menu, or are you curious about our recommended specialities?
-  utter_inform_menu:
-  - text: |
-      🍕 Menu of the Pizza 🍕:
-
-      - 🌱 Vegetarian Pizzas:
-          - Margherita Pizza: Classic tomato sauce, mozzarella cheese, fresh basil leaves. Price: $9.99
-          - Vegetarian Supreme Pizza: Loaded with mushrooms, bell peppers, onions, olives, and tomatoes. Price: $11.99
-          - Pesto and Sun-Dried Tomato Pizza: Pesto sauce, sun-dried tomatoes, spinach, feta cheese. Price: $12.99
-
-      - 🍗 Non-Vegetarian Pizzas:
-          - Pepperoni Pizza: Generously topped with spicy pepperoni slices and mozzarella cheese. Price: $10.99
-          - BBQ Chicken Pizza: Tangy BBQ sauce, grilled chicken, red onions, cilantro, and mozzarella cheese. Price: $12.99
-          - Seafood Delight Pizza: A seafood lover's dream with shrimp, squid, mussels, and a blend of cheeses. Price: $14.99
-
-      -------------------------------------------
-  utter_inform_vegetarian_menu:
-  - text: |
-      🥦 Here are our delicious Vegetarian Pizzas:
-
-      - Margherita Pizza: Classic tomato sauce, mozzarella cheese, fresh basil leaves. Price: $9.99
-      - Vegetarian Supreme Pizza: Loaded with mushrooms, bell peppers, onions, olives, and tomatoes. Price: $11.99
-      - Pesto and Sun-Dried Tomato Pizza: Pesto sauce, sun-dried tomatoes, spinach, feta cheese. Price: $12.99
-
-      -------------------------------------------
-  utter_inform_non_vegetarian_menu:
-  - text: |
-      🍗 Here are our savory Non-Vegetarian Pizzas:
-
-      - Pepperoni Pizza: Generously topped with spicy pepperoni slices and mozzarella cheese. Price: $10.99
-      - BBQ Chicken Pizza: Tangy BBQ sauce, grilled chicken, red onions, cilantro, and mozzarella cheese. Price: $12.99
-      - Seafood Delight Pizza: A seafood lover's dream with shrimp, squid, mussels, and a blend of cheeses. Price: $14.99
-
-      -------------------------------------------
   utter_recommend_pizza:
   - text: |
       🍕 Here are some of our recommended pizzas:
@@ -185,22 +150,6 @@ responses:
   utter_ask_pizza_topping:
   - text: |
       🍕 What toppings would you like on your pizza?
-  utter_ask_pizza_size:
-  - text: |
-      🍕 We offer the following sizes for our pizzas:
-
-      - Small: 8 inches
-      - Medium: 12 inches
-      - Large: 16 inches
-
-      🤔 Which size would you like to order?
-  utter_pizza_sizes:
-  - text: |
-      🍕 Here are the available sizes for our pizzas:
-
-      - Small: 8 inches
-      - Medium: 12 inches
-      - Large: 16 inches
   utter_ask_pizza_quantity:
   - text: |
       🍕 How many pizzas would you like to order?
@@ -209,8 +158,6 @@ responses:
       🍕 Would you like to go with the standard toppings or customize your own toppings?
   utter_pizza_add_confirmation_message:
     - text: 🍕 Great! We have added {pizza_quantity} {pizza_size} {pizza_type} pizza(s) with {pizza_topping} toppings to your order.
-  utter_summarize_pizza_order:
-  - text: You have ordered {pizza_quantity} {pizza_size} {pizza_type} pizza(s) with {pizza_topping} toppings. Is this correct?
   utter_ask_custom_toppings:
   - text: |
       🍕 What toppings would you like to add to your pizza?
@@ -251,12 +198,6 @@ templates:
   - text: Okay, let me know if you need anything else.
   utter_initiate_general_conversation:
   - text: Ah, the aroma of freshly baked pizza! You've landed in pizza heaven, my friend. How can I make your pizza dreams come true today? Would you like to explore our menu, or are you curious about our recommended specialities?
-  utter_inform_menu:
-  - text: "\U0001F355 Menu of the Pizza \U0001F355:\n\n- \U0001F331 Vegetarian Pizzas:\n    - Margherita Pizza: Classic tomato sauce, mozzarella cheese, fresh basil leaves. Price: $9.99\n    - Vegetarian Supreme Pizza: Loaded with mushrooms, bell peppers, onions, olives, and tomatoes. Price: $11.99\n    - Pesto and Sun-Dried Tomato Pizza: Pesto sauce, sun-dried tomatoes, spinach, feta cheese. Price: $12.99\n\n- \U0001F357 Non-Vegetarian Pizzas:\n    - Pepperoni Pizza: Generously topped with spicy pepperoni slices and mozzarella cheese. Price: $10.99\n    - BBQ Chicken Pizza: Tangy BBQ sauce, grilled chicken, red onions, cilantro, and mozzarella cheese. Price: $12.99\n    - Seafood Delight Pizza: A seafood lover's dream with shrimp, squid, mussels, and a blend of cheeses. Price: $14.99\n\n-------------------------------------------\n  \U0001F914 Which pizza would you like to order?\n"
-  utter_inform_vegetarian_menu:
-  - text: "\U0001F966 Here are our delicious Vegetarian Pizzas:\n\n  - Margherita Pizza: Classic tomato sauce, mozzarella cheese, fresh basil leaves. Price: $9.99\n  - Vegetarian Supreme Pizza: Loaded with mushrooms, bell peppers, onions, olives, and tomatoes. Price: $11.99\n  - Pesto and Sun-Dried Tomato Pizza: Pesto sauce, sun-dried tomatoes, spinach, feta cheese. Price: $12.99\n\n-------------------------------------------\n\U0001F914 Which vegetarian pizza would you like to order?\n"
-  utter_inform_non_vegetarian_menu:
-  - text: "\U0001F357 Here are our savory Non-Vegetarian Pizzas:\n\n  - Pepperoni Pizza: Generously topped with spicy pepperoni slices and mozzarella cheese. Price: $10.99\n  - BBQ Chicken Pizza: Tangy BBQ sauce, grilled chicken, red onions, cilantro, and mozzarella cheese. Price: $12.99\n  - Seafood Delight Pizza: A seafood lover's dream with shrimp, squid, mussels, and a blend of cheeses. Price: $14.99\n\n-------------------------------------------\n\U0001F914 Which non-vegetarian pizza would you like to order?\n"
   utter_recommend_pizza:
   - text: "\U0001F355 Here are some of our recommended pizzas:\n\n  - \U0001F331 Recommended Vegetarian Pizzas:\n      - Chef's Special Veggie Pizza: Our chef's signature creation with a delightful combination of vegetarian flavors. Price: $15.99\n      - Margherita Pizza: Classic tomato sauce, mozzarella cheese, fresh basil leaves. Price: $10.99\n\n  - \U0001F357 Recommended Non-Vegetarian Pizzas:\n      - Chef's Special Meat Lover's Pizza: Our chef's signature creation loaded with savory meats. Price: $16.99\n      - Pepperoni Paradise Pizza: A classic favorite topped with generous pepperoni slices. Price: $11.99\n\n-------------------------------------------\n\U0001F914 Which one would you like to try?\n"
   utter_recommend_vegetarian_pizza:
@@ -267,18 +208,12 @@ templates:
   - text: "\U0001F914 Which pizza would you like to order?\n"
   utter_ask_pizza_topping:
   - text: "\U0001F355 What toppings would you like on your pizza?\n"
-  utter_ask_pizza_size:
-  - text: "\U0001F355 We offer the following sizes for our pizzas:\n\n  - Small: 8 inches\n  - Medium: 12 inches\n  - Large: 16 inches\n\n\U0001F914 Which size would you like to order?\n"
-  utter_pizza_sizes:
-  - text: "\U0001F355 Here are the available sizes for our pizzas:\n\n  - Small: 8 inches\n  - Medium: 12 inches\n  - Large: 16 inches\n\n\U0001F914 Which size would you like to order?\n"
   utter_ask_pizza_quantity:
   - text: "\U0001F355 How many pizzas would you like to order?\n"
   utter_ask_topping_confirmation:
   - text: "\U0001F355 Would you like to go with the standard toppings or customize your own toppings?\n"
   utter_ask_topping_satisfaction:
     - text: "Would you like to add/remove more flavor or are you happy with it? Feel free to customize further! 🎨"
-  utter_summarize_pizza_order:
-  - text: You have ordered a {pizza_quantity} {pizza_size} {pizza_type} pizza with {pizza_topping} topping. Is this correct?
   utter_pizza_add_confirmation_message:
     - text: 🍕 Great! We have added {pizza_quantity} {pizza_size} {pizza_type} pizza(s) with {pizza_topping} toppings to your order.
   utter_summarize_customized_toppings:
@@ -292,14 +227,15 @@ templates:
 
 actions:
 - utter_initiate_general_conversation
-- utter_inform_menu
 - utter_greet
 - utter_affirm
+- action_inform_menu
+- action_inform_non_vegetarian_menu
+- action_inform_vegetarian_menu
 - utter_ask_pizza_type
 - utter_ask_custom_toppings
 - utter_ask_topping_satisfaction
 - utter_summarize_customized_toppings
-- utter_summarize_pizza_order
 - action_ask_pizza_topping
 - action_ask_pizza_custom_toppings
 - action_ask_topping_confirmation

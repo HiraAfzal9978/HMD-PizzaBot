@@ -150,6 +150,8 @@ nlu:
     - i want food
     - I want to order pizza
     - I want pizza
+    - hi i want pizza
+    - i want pizza
 - intent: inform_menu
   examples: |
     - What do you have in the pizza menu?
@@ -714,6 +716,9 @@ nlu:
     - Add [four](pizza_quantity) [small](pizza_size) [Supreme](pizza_type) pizzas
     - Add [four](pizza_quantity) [medium](pizza_size) [pesto and sun-dried tomato](pizza_type) pizzas
     - Add [four](pizza_quantity) [large](pizza_size) [seafood](pizza_type) pizzas
+    - [margherita](pizza_type)
+    - [supreme](pizza_type)
+    - [margherita](pizza_type)
 - intent: pizza_order_modify
   examples: |
     - I want to modify my pizza order
@@ -925,8 +930,7 @@ nlu:
     - Default toppings, please
     - Default toppings, thank you
     - Default toppings, thanks
-
-- intent: pizza_custom_topping_request
+- intent: pizza_custom_toppings_request
   examples: |
     - I want to customize my pizza toppings
     - I want to customize my pizza
@@ -962,14 +966,13 @@ nlu:
     - No, thank you, I want to customize my pizza
     - No, I want custom toppings
     - No, custom toppings please
-
+    - custom toppings
 - intent: add_pizza_custom_toppings
   examples: |
     - Please add [pepperoni](pizza_custom_toppings) and [olives](pizza_custom_toppings) to my pizza
     - Can you add [onions](pizza_custom_toppings), [mushrooms](pizza_custom_toppings) and [spinach](pizza_custom_toppings)
     - Can you add [bell peppers](pizza_custom_toppings) and [tomatoes](pizza_custom_toppings) to my pizza
     - I would like to add [cheese](pizza_custom_toppings) and [olives](pizza_custom_toppings) to my pizza
-    - Can you add [bell peppers](pizza_custom_toppings) and [tomatoes](pizza_custom_toppings) to my pizza
     - I want to add [mushrooms](pizza_custom_toppings) and [onions](pizza_custom_toppings) to my pizza
     - I want to add [pepperoni](pizza_custom_toppings) and [olives](pizza_custom_toppings) to my pizza
     - Yes, please add [pepperoni](pizza_custom_toppings) and [olives](pizza_custom_toppings) to my pizza
@@ -1004,7 +1007,8 @@ nlu:
     - Yes, please add [mushrooms](pizza_custom_toppings)
     - Yes, please add [spinach](pizza_custom_toppings)
     - Yes, please add [bell peppers](pizza_custom_toppings)
-
+    - add [onions](pizza_custom_toppings)
+    - add [onions](pizza_custom_toppings)
 - intent: remove_pizza_custom_toppings
   examples: |
     - Please remove [pepperoni](pizza_custom_toppings) and [olives](pizza_custom_toppings) from my pizza
@@ -1045,7 +1049,6 @@ nlu:
     - Yes, please remove [mushrooms](pizza_custom_toppings)
     - Yes, please remove [spinach](pizza_custom_toppings)
     - Yes, please remove [bell peppers](pizza_custom_toppings)
-
 - intent: pizza_custom_toppings_happy
   examples: |
     - Yes, I am happy with the custom toppings
@@ -1062,7 +1065,6 @@ nlu:
     - Perfect, no more changes needed.
     - Perfect, I'm satisfied with these toppings.
     - Happy with the toppings.
-    _ Happy with the custom toppings.
     - Happy with the custom selection.
     - I'm happy with the custom toppings selection.
     - Happy
@@ -1078,6 +1080,7 @@ nlu:
     - Hundred percent satisfied with these toppings selection.
     - Hundred percent happy with these toppings.
     - Hundred percent happy with these toppings selection.
+    - happy
 - intent: inform_pizza_quantity
   examples: |
     - [one](pizza_quantity)
@@ -1150,6 +1153,7 @@ nlu:
     - Please add [eight](pizza_quantity) pizzas
     - Please add [nine](pizza_quantity) pizzas
     - Please add [ten](pizza_quantity) pizzas
+    - [two](pizza_quantity)
 - intent: inform_pizza_size
   examples: |
     - [small](pizza_size)
@@ -1203,6 +1207,7 @@ nlu:
     - Please add [small](pizza_size) pizza
     - Please add [medium](pizza_size) pizzas
     - Please add [large](pizza_size) pizzas
+    - [small](pizza_size)
 - intent: add_another_pizza_general
   examples: |
     - I want to add another pizza
@@ -1243,7 +1248,6 @@ nlu:
     - Yes I need to add another pizza to my order
     - Yes i need to order another pizza
     - Yes i need to order another pizza to my order
-
 - intent: add_another_pizza_specific
   examples: |
     - I want to add another [margherita](pizza_type)
@@ -1342,8 +1346,6 @@ nlu:
     - Yes want another [margherita](pizza_type)
     - Yes want another [pepperoni](pizza_type)
     - Yes want another [BBQ Chicken](pizza_type)
-    - Yes, I want to add another [margherita](pizza_type)
-    - Yes, I want to add another [pepperoni](pizza_type)
     - Yes, I want to add another [BBQ Chicken](pizza_type)
     - Yes, I want to add another [margherita](pizza_type) pizza
     - Yes, I want to add another [pepperoni](pizza_type) pizza
@@ -1395,10 +1397,7 @@ nlu:
     - Please proceed to payment
     - Please proceed to payment and checkout
     - Please proceed now
-    
-
-
-
+    - proceed to pickup
 - synonym: Margherita
   examples: |
     - margherita
@@ -1538,49 +1537,6 @@ nlu:
     - 7
     - seven
     - Seven
-- regex: pizza_quantity
-  examples: |
-    - 1
-    - 10
-    - 2
-    - 3
-    - 4
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    - A
-    - Eight
-    - Five
-    - Four
-    - Nine
-    - One
-    - Seven
-    - Six
-    - Ten
-    - Three
-    - Two
-    - a
-    - eight
-    - five
-    - four
-    - nine
-    - one
-    - seven
-    - six
-    - ten
-    - three
-    - two
-- regex: pizza_size
-  examples: |
-    - Large
-    - Medium
-    - Small
-    - large
-    - medium
-    - small
-
 - regex: pizza_custom_toppings
   examples: |
     - Basil
@@ -1623,6 +1579,48 @@ nlu:
     - tomato sauce
     - tomato sauce
     - tomato sauce
+- regex: pizza_quantity
+  examples: |
+    - 1
+    - 10
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - A
+    - Eight
+    - Five
+    - Four
+    - Nine
+    - One
+    - Seven
+    - Six
+    - Ten
+    - Three
+    - Two
+    - a
+    - eight
+    - five
+    - four
+    - nine
+    - one
+    - seven
+    - six
+    - ten
+    - three
+    - two
+- regex: pizza_size
+  examples: |
+    - Large
+    - Medium
+    - Small
+    - large
+    - medium
+    - small
 - regex: pizza_type
   examples: |
     - BBQ Chicken

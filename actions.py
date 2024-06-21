@@ -1,13 +1,12 @@
 from typing import Any, Text, Dict, List
 from rasa_sdk import Action, Tracker, FormValidationAction
 from rasa_sdk.executor import CollectingDispatcher
-from rasa_sdk.events import SlotSet, FollowupAction
+from rasa_sdk.events import SlotSet, FollowupAction, ActiveLoop, Form
 from typing import Dict, Text, Any, List, Union, Optional
-
 
 PIZZA_TYPES = ["margherita", "supreme", "pesto and sun-dried tomato", "pepperoni", "seafood", "bbq chicken"]
 VEGETARIAN_PIZZA_TYPES = ["margherita", "supreme", "pesto and sun-dried tomato"]
-NON_VEGETARIAN_PIZZA_TYPES = ["pepperoni","bbq chicken", "seafood"]
+NON_VEGETARIAN_PIZZA_TYPES = ["pepperoni", "bbq chicken", "seafood"]
 
 PIZZA_SIZES = {"small": 8, "medium": 12, "large": 16}
 PIZZA_QUANTITY = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"]
@@ -169,28 +168,59 @@ class ActionAskPizzaTopping(Action):
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         pizza_type = tracker.get_slot("pizza_type").lower()
 
+        latest_intent = tracker.latest_message["intent"].get("name")
+        print("ADN-latest_intent: ", latest_intent)
+
+        # if latest_intent == "pizza_custom_toppings_request":
+        #     return [FollowupAction("action_activate_toppings_form")]
+
         if pizza_type:
             dispatcher.utter_message(
-                text="The standard toppings for {} are: {}.".format(pizza_type, PIZZA_TOPPINGS_STD[pizza_type])
+                text="The standard toppings for {} are: {}. "
+                     "\n🍕 Would you like to go with the standard toppings or customize your own toppings?".format(
+                    pizza_type, PIZZA_TOPPINGS_STD[pizza_type]
+                )
             )
-            return [
-                SlotSet("pizza_topping", PIZZA_TOPPINGS_STD[pizza_type]),
-                FollowupAction("action_ask_topping_confirmation")
-            ]
+            return [ActiveLoop(None)]
+            # return [SlotSet("pizza_topping", PIZZA_TOPPINGS_STD[pizza_type])]
         else:
             dispatcher.utter_message(text="Sorry, I didn't get that. Please choose a pizza type from the available menu.", response="utter_inform_menu")
             return []
 
 
-class ActionAskToppingConfirmation(Action):
+# class ActionAskToppingConfirmation(Action):
+#     def name(self) -> Text:
+#         return "action_ask_topping_confirmation"
+#
+#     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+#         dispatcher.utter_message(text="🍕 Would you like to go with the standard toppings or customize your own toppings?")
+#
+#         # de-activate the pizza_order_form and allow user to choose either standard or custom toppings
+#         return [FollowupAction("action_listen")]
+
+
+# action_activate_toppings_form
+class ActionActivateToppingsForm(Action):
     def name(self) -> Text:
-        return "action_ask_topping_confirmation"
+        return "action_activate_toppings_form"
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        dispatcher.utter_message(text="🍕 Would you like to go with the standard toppings or customize your own toppings?")
+        # get the current selected pizza_type
+        # pizza_type = tracker.get_slot("pizza_type").lower()
+        # pizza_topping = tracker.get_slot("pizza_topping")
+        # pizza_size = tracker.get_slot("pizza_size")
+        # pizza_quantity = tracker.get_slot("pizza_quantity")
+        #
+        # get the latest intent of the user
+        latest_intent = tracker.latest_message["intent"].get("name")
+        print("action_activate_toppings_form: latest_intent: ", latest_intent)
+        #
+        # if pizza_type and pizza_topping is None and pizza_size is None and pizza_quantity is None:
+        #     # set slots values and activate the pizza_custom_topping_form
+        #     return [ActiveLoop("pizza_custom_topping_form")]
 
-        # de-activate the pizza_order_form and allow user to choose either standard or custom toppings
-        return [FollowupAction("action_listen")]
+        # Deactivate current active form
+        return [ActiveLoop(None)]
 
 
 class ActionAskPizzaCustomToppings(Action):
@@ -199,7 +229,9 @@ class ActionAskPizzaCustomToppings(Action):
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         # get current selected pizza_topping for the current pizza_type
-        pizza_topping = tracker.get_slot("pizza_topping")
+        pizza_type = tracker.get_slot("pizza_type").lower()
+        # get the current selected pizza_type's toppings
+        pizza_topping = PIZZA_TOPPINGS_STD[pizza_type]
 
         # get the available possible toppings
         available_possible_toppings = AVAILABLE_POSSIBLE_TOPPINGS
@@ -233,32 +265,8 @@ class ActionAskToppingSatisfaction(Action):
         return "action_ask_topping_satisfaction"
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        # get the latest customized toppings
-        # pizza_custom_toppings = tracker.get_slot("pizza_topping")
-        # # Show the latest customized toppings with an engaging message to the customer to confirm the toppings
-        # dispatcher.utter_message(text="🍕 Your updated toppings are: {}.".format(pizza_custom_toppings))
         dispatcher.utter_message(response="utter_ask_topping_satisfaction")
         return []
-
-
-class ActionSetCustomToppingsNull(Action):
-    def name(self) -> Text:
-        return "action_set_custom_toppings_null"
-
-    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        # get pizza_type and pizza_topping from the tracker
-        pizza_type = tracker.get_slot("pizza_type").lower()
-        if pizza_type:
-            # set the pizza_topping slot with the standard toppings
-            return [SlotSet("pizza_topping", PIZZA_TOPPINGS_STD[pizza_type]), SlotSet("pizza_custom_toppings", None)]
-
-
-class ActionSetStandardToppingsNull(Action):
-    def name(self) -> Text:
-        return "action_set_standard_toppings_null"
-
-    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        return [SlotSet("pizza_topping", None)]
 
 
 class ValidatePizzaOrderForm(FormValidationAction):
@@ -267,6 +275,12 @@ class ValidatePizzaOrderForm(FormValidationAction):
 
     async def validate_pizza_type(self, slot_value: Any, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> Dict[Text, Any]:
         """Validate pizza_type value."""
+        latest_intent = tracker.latest_message["intent"].get("name")
+        if latest_intent == "pizza_standard_topping_confirm":
+            pizza_type = tracker.get_slot("pizza_type")
+            pizza_topping = PIZZA_TOPPINGS_STD[pizza_type]
+            return {"pizza_type": pizza_type, "pizza_topping": pizza_topping}
+
         if slot_value.lower() in PIZZA_TYPES:
             return {"pizza_type": slot_value}
         else:
@@ -275,15 +289,11 @@ class ValidatePizzaOrderForm(FormValidationAction):
 
     async def validate_pizza_topping(self, slot_value: Any, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> Dict[Text, Any]:
         """Validate pizza_topping value."""
-        # pizza_type = tracker.get_slot("pizza_type").lower()
-        # pizza_custom_toppings = tracker.get_slot("pizza_custom_toppings")
         pizza_topping = tracker.get_slot("pizza_topping")
 
-        # if pizza_custom_toppings:
-        #     dispatcher.utter_message(text="Your customized toppings are: {}.".format(pizza_topping))
-        #     return {"pizza_topping": pizza_topping}
-        # elif pizza_topping:
-        #     return {"pizza_topping": pizza_topping}
+        # check the intent of customer
+        latest_intent = tracker.latest_message["intent"].get("name")
+        print("AA-latest_intent: ", latest_intent)
 
         if pizza_topping:
             return {"pizza_topping": pizza_topping}
@@ -312,16 +322,6 @@ class ValidatePizzaOrderForm(FormValidationAction):
     async def extract_order_list(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict) -> Dict[Text, Any]:
         order_list = tracker.get_slot("order_list") or []
         return {"order_list": order_list}
-
-    # async def validate_order_list(self, slot_value: Any, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> Dict[Text, Any]:
-    #     """Validate order_list value."""
-    #     # order list only contains the items which are dict type (i.e. the selected items) that are added to
-    #     # the order_list slot in the action_submit_pizza_order_form. Since the order list mapping is defined as
-    #     # from_text, so we need to remove any string type items from the order_list slot.
-    #     if slot_value:
-    #         return {"order_list": [item for item in slot_value if isinstance(item, dict)]}
-    #     else:
-    #         return {"order_list": []}
 
 
 class ActionSubmitPizzaOrderForm(Action):
@@ -399,9 +399,11 @@ class ValidatePizzaCustomToppingForm(FormValidationAction):
 
     async def validate_pizza_custom_toppings(self, slot_value: Any, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> Dict[Text, Any]:
         """Validate pizza_custom_toppings value."""
-        pizza_topping = tracker.get_slot("pizza_topping")
+        pizza_type = tracker.get_slot("pizza_type").lower()
+        pizza_topping = PIZZA_TOPPINGS_STD[pizza_type]
         pizza_custom_toppings = tracker.get_slot("pizza_custom_toppings")
         pizza_topping = ", ".join(pizza_topping)
+        print("Test: ", pizza_topping)
         if pizza_custom_toppings:
             if pizza_custom_toppings.__contains__(","):
                 pizza_custom_toppings = pizza_custom_toppings.split(",")
@@ -424,6 +426,7 @@ class ValidatePizzaCustomToppingForm(FormValidationAction):
             # split the toppings into a list
             pizza_topping = pizza_topping.split(",")
             pizza_topping = [topping.strip() for topping in pizza_topping]
+            print("Test-2: ", pizza_topping)
 
             if pizza_custom_toppings:
                 # add the custom toppings to the standard toppings list
@@ -448,10 +451,6 @@ class ValidatePizzaCustomToppingForm(FormValidationAction):
             return {"topping_satisfaction": True}
         else:
             return {"topping_satisfaction": None}
-        # if slot_value:
-        #     return {"topping_satisfaction": slot_value}
-        # else:
-        #     return {"topping_satisfaction": None}
 
 
 class ActionSubmitPizzaCustomToppingForm(Action):

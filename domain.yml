@@ -1,5 +1,8 @@
 version: '3.1'
 intents:
+- add_another_pizza_general
+- add_another_pizza_specific
+- add_pizza_custom_toppings
 - affirm
 - bot_challenge
 - complete_pizza_order_confirm
@@ -13,33 +16,27 @@ intents:
 - inform_vegetarian_menu
 - initiate_general_conversation
 - out_of_scope
-- pizza_custom_topping_request
-- add_pizza_custom_toppings
-- remove_pizza_custom_toppings
 - pizza_custom_toppings_happy
+- pizza_custom_toppings_request
 - pizza_order_cancel
 - pizza_order_modify
 - pizza_standard_topping_confirm
+- proceed_to_pickup
 - recommend_non_vegetarian_pizza
 - recommend_pizza
 - recommend_vegetarian_pizza
+- remove_pizza_custom_toppings
 - show_complete_pizza_order
 - start_greet
 - user_topping_confirmation
-- add_another_pizza_general
-- add_another_pizza_specific
-- proceed_to_pickup
-
-
 entities:
-  - pizza_topping
-  - pizza_custom_toppings
-  - pizza_type
-  - pizza_size
-  - pizza_quantity
-  - menu_category
-  - recommendation_category
-
+- pizza_custom_toppings
+- pizza_quantity
+- pizza_type
+- pizza_size
+- pizza_topping
+- menu_category
+- recommendation_category
 slots:
   pizza_type:
     type: text
@@ -47,54 +44,47 @@ slots:
     mappings:
     - type: from_entity
       entity: pizza_type
-
   pizza_topping:
     type: text
     influence_conversation: true
     mappings:
     - type: from_entity
       entity: pizza_topping
-
   pizza_custom_toppings:
     type: text
     influence_conversation: true
     mappings:
-      - type: from_entity
-        entity: pizza_custom_toppings
-
+    - type: from_entity
+      entity: pizza_custom_toppings
   topping_satisfaction:
     type: bool
     influence_conversation: true
     mappings:
-      - type: from_intent
-        intent: pizza_custom_toppings_happy
-        value: true
-      - type: from_intent
-        intent: add_pizza_custom_toppings
-        value: false
-      - type: from_intent
-        intent: remove_pizza_custom_toppings
-        value: false
-
+    - type: from_intent
+      intent: pizza_custom_toppings_happy
+      value: true
+    - type: from_intent
+      intent: add_pizza_custom_toppings
+      value: false
+    - type: from_intent
+      intent: remove_pizza_custom_toppings
+      value: false
   pizza_size:
     type: text
     influence_conversation: true
     mappings:
     - type: from_entity
       entity: pizza_size
-
   pizza_quantity:
     type: text
     influence_conversation: true
     mappings:
     - type: from_entity
       entity: pizza_quantity
-
   order_list:
     type: list
     mappings:
     - type: custom
-
 responses:
   utter_greet:
   - text: Hello! Welcome to Champ Pizza Hut! How may I assist you today?
@@ -157,13 +147,13 @@ responses:
   - text: |
       🍕 Would you like to go with the standard toppings or customize your own toppings?
   utter_pizza_add_confirmation_message:
-    - text: 🍕 Great! We have added {pizza_quantity} {pizza_size} {pizza_type} pizza(s) with {pizza_topping} toppings to your order.
+  - text: 🍕 Great! We have added {pizza_quantity} {pizza_size} {pizza_type} pizza(s) with {pizza_topping} toppings to your order.
   utter_ask_custom_toppings:
   - text: |
       🍕 What toppings would you like to add to your pizza?
   utter_ask_topping_satisfaction:
-    - text: |
-        Would you like to add/remove more flavor or are you happy with it? Feel free to customize further! 🎨.
+  - text: |
+      Would you like to add/remove more flavor or are you happy with it? Feel free to customize further! 🎨.
   utter_summarize_customized_toppings:
   - text: |
       🍕 Great! Your customized toppings for {pizza_type} are {pizza_topping}. Now, pizza is uniquely yours! 🍕 Let's move on to the next step in your pizza order. 🚀
@@ -173,16 +163,15 @@ responses:
 
       🤔 This time, would you like to try our recommended pizzas or explore the menu for more options?
   utter_response_to_add_specific_pizza_intent:
-    - text: |
-        🍕 Great choice! Let's add another {pizza_type} pizza to your order. 🍕
-        
-        Let's move on to the next step in your pizza order. 🚀
-  utter_response_to_proceed_to_pickup_intent:
-    - text: |
-        🍕 Great! Let's proceed to the pickup. 🍕
-        
-        Now, let's move on to the next step in your pizza order. 🚀
+  - text: |
+      🍕 Great choice! Let's add another {pizza_type} pizza to your order. 🍕
 
+      Let's move on to the next step in your pizza order. 🚀
+  utter_response_to_proceed_to_pickup_intent:
+  - text: |
+      🍕 Great! Let's proceed to the pickup. 🍕
+
+      Now, let's move on to the next step in your pizza order. 🚀
 templates:
   utter_greet:
   - text: Hello! Welcome to Champ Pizza Hut! How may I assist you today?
@@ -213,42 +202,41 @@ templates:
   utter_ask_topping_confirmation:
   - text: "\U0001F355 Would you like to go with the standard toppings or customize your own toppings?\n"
   utter_ask_topping_satisfaction:
-    - text: "Would you like to add/remove more flavor or are you happy with it? Feel free to customize further! 🎨"
+  - text: Would you like to add/remove more flavor or are you happy with it? Feel free to customize further! 🎨
   utter_pizza_add_confirmation_message:
-    - text: 🍕 Great! We have added {pizza_quantity} {pizza_size} {pizza_type} pizza(s) with {pizza_topping} toppings to your order.
+  - text: 🍕 Great! We have added {pizza_quantity} {pizza_size} {pizza_type} pizza(s) with {pizza_topping} toppings to your order.
   utter_summarize_customized_toppings:
-  - text: "\U0001F355 Fantastic! You have customized your {pizza_type} pizza with these toppings: {pizza_topping}. Now, pizza is uniquely yours! 🍕 Let's move on to the next step in your pizza order. 🚀"
+  - text: "\U0001F355 Fantastic! You have customized your {pizza_type} pizza with these toppings: {pizza_topping}. Now, pizza is uniquely yours! \U0001F355 Let's move on to the next step in your pizza order. \U0001F680"
   utter_response_to_add_another_pizza_intent_general:
-    - text: "🍕 Great! Let's add another pizza to your order. 🍕 \n\n 🤔 This time, would you like to try our recommended pizzas or explore the menu for more options?"
+  - text: "\U0001F355 Great! Let's add another pizza to your order. \U0001F355 \n\n \U0001F914 This time, would you like to try our recommended pizzas or explore the menu for more options?"
   utter_response_to_add_specific_pizza_intent:
-    - text: "🍕 Great choice! Let's add another {pizza_type} pizza to your order. 🍕 \n\n Let's move on to the next step in your pizza order. 🚀"
+  - text: "\U0001F355 Great choice! Let's add another {pizza_type} pizza to your order. \U0001F355 \n\n Let's move on to the next step in your pizza order. \U0001F680"
   utter_response_to_proceed_to_pickup_intent:
-    - text: "🍕 Great! Let's proceed to the pickup. 🍕 \n\n Now, let's move on to the next step in your pizza order. 🚀"
-
+  - text: "\U0001F355 Great! Let's proceed to the pickup. \U0001F355 \n\n Now, let's move on to the next step in your pizza order. \U0001F680"
 actions:
+- action_inform_menu
+- utter_pizza_add_confirmation_message
+- utter_response_to_proceed_to_pickup_intent
+#- action_ask_topping_confirmation
+- action_activate_toppings_form
+- action_submit_pizza_order_form
+- utter_ask_pizza_type
+- action_submit_pizza_custom_topping_form
+- utter_summarize_customized_toppings
 - utter_initiate_general_conversation
 - utter_greet
 - utter_affirm
-- action_inform_menu
 - action_inform_non_vegetarian_menu
 - action_inform_vegetarian_menu
-- utter_ask_pizza_type
 - utter_ask_custom_toppings
 - utter_ask_topping_satisfaction
-- utter_summarize_customized_toppings
 - action_ask_pizza_topping
 - action_ask_pizza_custom_toppings
-- action_ask_topping_confirmation
-- action_set_custom_toppings_null
-- action_set_standard_toppings_null
 - action_ask_topping_satisfaction
-- action_submit_pizza_custom_topping_form
-- action_submit_pizza_order_form
 - action_ask_pizza_size
 - action_ask_pizza_quantity
 - validate_pizza_custom_topping_form
 - validate_pizza_order_form
-
 forms:
   pizza_order_form:
     required_slots:
@@ -257,12 +245,10 @@ forms:
     - pizza_size
     - pizza_quantity
     - order_list
-
   pizza_custom_topping_form:
     required_slots:
     - pizza_custom_toppings
     - topping_satisfaction
-
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
